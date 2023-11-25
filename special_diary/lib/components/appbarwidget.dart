@@ -1,0 +1,17 @@
+import 'package:flutter/material.dart';
+
+class AppbarTitle extends StatelessWidget {
+  const AppbarTitle({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('Special Diary',style: TextStyle(fontSize: 25,fontWeight: FontWeight.w700),),
+        SizedBox(width: 5,),
+        Icon(Icons.volunteer_activism)
+      ],
+    );
+  }
+}
