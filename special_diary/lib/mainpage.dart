@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:secret_diary/maplocalview.dart';
 import 'eventupdate.dart';
-import 'model/datahandler.dart';
-import 'model/privacy.dart';
+import 'test/datehandler.dart';
+import 'test/sdiary.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -22,7 +22,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     handler = DatabaseHandler();
-    handler.initializePrivacyDB();
+    handler.initializeSdiaryDB();
 
   }
 
@@ -31,9 +31,9 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: FutureBuilder( //앱을 키면 db와 연결되어 있는 상태, FutureBuilder는 또 리스트 만들어 쓰지 않고 메모리 만들어 저장된 값 가져가 쓰는거
-        future: handler.queryPrivacy(), 
-        builder: (BuildContext context, AsyncSnapshot<List<Privacy>> snapshot){
+             body: FutureBuilder( //앱을 키면 db와 연결되어 있는 상태, FutureBuilder는 또 리스트 만들어 쓰지 않고 메모리 만들어 저장된 값 가져가 쓰는거
+        future: handler.querySdiary(), 
+        builder: (BuildContext context, AsyncSnapshot<List<Sdiary>> snapshot){
           if(snapshot.hasData){
             //snapshot통해 화면구성
             return ListView.builder(
@@ -55,7 +55,8 @@ class _MainPageState extends State<MainPage> {
                                   snapshot.data![index].id,
                                   snapshot.data![index].title,
                                   snapshot.data![index].content,
-                                  snapshot.data![index].eventdate,
+                                  snapshot.data![index].lat,
+                                  snapshot.data![index].lng,
                                   snapshot.data![index].image,
                                   snapshot.data![index].actiondate
                                 ]
@@ -74,7 +75,7 @@ class _MainPageState extends State<MainPage> {
                               onPressed: (context)async {
                               
                                 await handler
-                              .deletePrivacy(snapshot.data![index].id!);
+                              .deleteSdiary(snapshot.data![index].id!);
                               snapshot.data!.remove(snapshot.data![index]);
                               setState(() {
                                 
@@ -84,8 +85,6 @@ class _MainPageState extends State<MainPage> {
                               },
                             ),
                           ]),
-
-
                   child: GestureDetector(
                     onLongPress: () {
                       Get.to(MapLocationView(),
@@ -99,44 +98,43 @@ class _MainPageState extends State<MainPage> {
                               },
                     child: Card(
                       child: Container(
-                        height: 100,
-                        child: Row(
-                          
-                          children: [
-                            //snapshot이 메모리에 있는데이터 불러오는거
-                            Container(
-                              width: 100, // 이미지의 고정된 너비
-                              height: double.infinity, // 컨테이너의 높이를 꽉 채우도록 설정
-                              child: Image.memory(
-                                snapshot.data![index].image,
-                                fit: BoxFit.cover,
-                                width: 100,
+                        height: 350,
+                        width: double.infinity,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 420, // 이미지의 고정된 너비
+                                height: 200, // 컨테이너의 높이를 꽉 채우도록 설정
+                                child: Image.memory(
+                                  snapshot.data![index].image,
+                                  fit: BoxFit.cover,
+                                  width: 100,
+                                ),
                               ),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                
-                                Row(
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(270, 0, 0, 0),
+                                child: Row(
                                   children: [
-                                    SizedBox(width: 20,),
-                                    Text(snapshot.data![index].title, 
-                                    style: TextStyle(fontSize: 15,fontWeight:FontWeight.bold),),
+                                    Text(snapshot.data![index].actiondate != null
+                                    ? DateFormat('yyyy-MM-dd').format(snapshot.data![index].actiondate!)
+                                    : 'No Date'),
+                                    IconButton(
+                                      onPressed: () {
+                                        
+                                      }, 
+                                      icon: Icon(Icons.sunny)),
                                   ],
                                 ),
-                                // Text(snapshot.data![index].actiondate != null
-                                //         ? DateFormat('yyyy-MM-dd').format(snapshot.data![index].actiondate!)
-                                //         : 'No Date'),
-                                        
-                              ],
-                            ),
-                            Text(snapshot.data![index].actiondate != null
-                            ? DateFormat('yyyy-MM-dd').format(snapshot.data![index].actiondate!)
-                            : 'No Date'),
-                          ],
-
-                  
+                              ),
+                              Text(snapshot.data![index].title, 
+                                      style: TextStyle(fontSize: 17,fontWeight:FontWeight.bold),),
+                              Text(snapshot.data![index].content,style: TextStyle(fontSize: 15),),
+                        
+                            ],
+                        
+                          ),
                         ),
                       ),
                     ),
@@ -152,15 +150,16 @@ class _MainPageState extends State<MainPage> {
         }),
     );
   }
-  //---Function---
+
+    //---Function---
 
 
   reloadData(){
-    handler.queryPrivacy();
+    handler.querySdiary();
     
     setState(() {});
     
     
   }
 
-}//END
+}

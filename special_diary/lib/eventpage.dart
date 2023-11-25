@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:secret_diary/eventinsert.dart';
+import 'package:secret_diary/model/specialdiary.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+
 class EventPage extends StatefulWidget {
-  final Function(ThemeMode) onChangeTheme; 
-  const EventPage({super.key, required this.onChangeTheme});
+  const EventPage({super.key});
 
   @override
   State<EventPage> createState() => _EventPageState();
 }
 
 class _EventPageState extends State<EventPage> {
+  DateTime? selectedDay;
 
-  DateTime selectedDay = DateTime(
-    DateTime.now().year,
-    DateTime.now().month,
-    DateTime.now().day,
-  );
+  // DateTime selectedDay = DateTime(
+  //   DateTime.now().year,
+  //   DateTime.now().month,
+  //   DateTime.now().day,
+  // );
 
   DateTime focusedDay = DateTime.now();
 
-      _changeThemeMode(ThemeMode themeMode) {
-    widget.onChangeTheme(themeMode);
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +54,12 @@ class _EventPageState extends State<EventPage> {
           ),
         ],
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.to(()=>EventInsert(onChangeTheme: _changeThemeMode) );
+          // _openEventInsertPage();
+
+          Get.to(()=>EventInsert());
         },
         child: Icon(Icons.add),
         ),
@@ -64,5 +67,19 @@ class _EventPageState extends State<EventPage> {
     );
   }
   //---FUNCTIONS---
+
+  //     void _openEventInsertPage() {
+  //   if (selectedDay == null) {
+  //     Get.snackbar(
+  //       'ERROR', 
+  //       '글을 작성할 날짜를 선택해 주세요!',
+  //       snackPosition: SnackPosition.BOTTOM,
+  //       backgroundColor: Color.fromARGB(255, 122, 164, 249),
+  //     );
+  //   } else {
+  //     Get.to(() => EventInsert(onChangeTheme: widget.onChangeTheme), arguments: selectedDay);
+  //   }
+  // }
+
 
 }

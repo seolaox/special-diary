@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
-import 'package:secret_diary/eventupdate.dart';
-import 'package:secret_diary/model/datahandler.dart';
 import 'package:intl/intl.dart';
-import 'package:secret_diary/model/memopad.dart';
-import 'components/insertbottomsheet.dart';
-import 'components/updatebottomsheet.dart';
-import 'model/privacy.dart';
+import 'test/datehandler.dart';
+import 'test/memopad.dart';
 
 class MemoPage extends StatefulWidget {
   const MemoPage({super.key});
@@ -72,18 +68,32 @@ class _MemoPageState extends State<MemoPage> {
                             icon: Icons.edit,
                             label: 'Edit',
                             onPressed: (context) {
-                              Get.bottomSheet(
-                                UpdateBottomSheet(
-                                  memoModifyController: memoModifyController,
-                                  onPressed: () {
-                                    updateAction()!
-                                        .then((value) => reloadData());
-                                  },
-                                ),
-                              );
-                            },
+                              updateBottomSheet();
+                                                },
                           )
                         ]),
+                                              endActionPane: ActionPane(
+                          motion: BehindMotion(), //
+                          children: [
+                            SlidableAction(
+                              //버튼 눌렀을때 action
+                              backgroundColor: Colors.red,
+                              icon: Icons.delete,
+                              label: 'Delete',
+                              onPressed: (context)async {
+                              
+                                await handler
+                              .deleteMemoPad(snapshot.data![index].id!);
+                              snapshot.data!.remove(snapshot.data![index]);
+                              setState(() {
+                                
+                              });
+                            
+                          
+                              },
+                            ),
+                          ]),
+
                     child: Card(
                       shape: RoundedRectangleBorder(
                           borderRadius:
@@ -125,14 +135,7 @@ class _MemoPageState extends State<MemoPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.bottomSheet(
-            InsertBottomSheet(
-              memoController: memoController,
-              onPressed: () {
-                insertAction()!.then((value) => reloadData());
-              },
-            ),
-          );
+          insertBottomSheet();
         },
         child: Icon(Icons.add),
       ),
@@ -142,8 +145,77 @@ class _MemoPageState extends State<MemoPage> {
   //---Function---
 
   reloadData() {
-    handler.queryPrivacy();
+    handler.queryMemoPad();
     setState(() {});
+  }
+
+  insertBottomSheet(){
+    Get.bottomSheet(
+      Container(
+      width: 500,
+      height: 700,
+      color: Theme.of(context).colorScheme.secondaryContainer,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '- MEMO -',
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(3.0),
+            child: TextField(
+              controller: memoController,
+              decoration: const InputDecoration(
+                hintText: '내용을 입력해 주세요. ',
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15.0),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.0),
+                  ),
+                ),
+              ),
+              keyboardType: TextInputType.multiline,
+              maxLines: 13,
+              style: const TextStyle(
+                fontSize: 16,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              insertAction()!.then((value) => reloadData());
+            },
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(100, 50),
+              backgroundColor: Color.fromARGB(255, 146, 148, 255),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: const Text(
+              "입력",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 234, 234, 236),
+              ),
+            ),
+          ),
+        ],
+      ),
+    )
+    );
+    memoController.clear();
   }
 
   insertAction() async {
@@ -172,6 +244,73 @@ class _MemoPageState extends State<MemoPage> {
         ]);
   }
 
+  updateBottomSheet(){
+    Get.bottomSheet(
+      Container(
+      width: 500,
+      height: 700,
+      color: Theme.of(context).colorScheme.secondaryContainer,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '- MEMO -',
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(3.0),
+            child: TextField(
+              controller: memoController, // memoModifyController를 사용합니다.
+              decoration: const InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15.0),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.0),
+                  ),
+                ),
+              ),
+              keyboardType: TextInputType.multiline,
+              maxLines: 13,
+              style: const TextStyle(
+                fontSize: 16,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              updateAction()!.then((value) => reloadData());
+            },
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(100, 50),
+              backgroundColor: Color.fromARGB(255, 146, 148, 255),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: const Text(
+              "수정",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 234, 234, 236),
+              ),
+            ),
+          ),
+        ],
+      ),
+      )
+    );
+  }
+
   updateAction() async {
     //순서가 필요할때 무조건 async
     String memo = memoModifyController.text;
@@ -197,4 +336,7 @@ class _MemoPageState extends State<MemoPage> {
               child: Text('OK'))
         ]);
   }
+
+
+
 } //END

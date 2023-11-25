@@ -66,6 +66,9 @@ dependencies:
   #slidable
   flutter_slidable: ^3.0.1
 
+  #tab_bar
+  motion_tab_bar_v2: ^0.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

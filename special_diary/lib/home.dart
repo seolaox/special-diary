@@ -1,42 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
+import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
+import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:secret_diary/components/appbarwidget.dart';
-import 'package:secret_diary/eventpage.dart';
-import 'package:secret_diary/mainpage.dart';
+import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
 
+import 'eventpage.dart';
+import 'mainpage.dart';
 import 'memopage.dart';
 import 'setting.dart';
 
 class Home extends StatefulWidget {
-  final Function(ThemeMode) onChangeTheme; 
-  const Home({super.key, required this.onChangeTheme});
+  final Function(ThemeMode) onChangeTheme;
+
+  const Home({Key? key, required this.onChangeTheme}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  
-  _changeThemeMode(ThemeMode themeMode) {
+
+    _changeThemeMode(ThemeMode themeMode) {
     //SettingPage에서도 themeMode사용하도록 widget설정
     widget.onChangeTheme(themeMode);
   }
   
-  // property
-  late TabController tabController;
-  late bool iconTheme;
+  late MotionTabBarController _motionTabBarController;
 
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 4, vsync: this);
-    iconTheme = true;
+    _motionTabBarController = MotionTabBarController(
+      initialIndex: 1,
+      length: 4,
+      vsync: this,
+    );
   }
 
   @override
   void dispose() {
-    tabController.dispose();
+    _motionTabBarController.dispose();
     super.dispose();
   }
 
@@ -51,36 +54,43 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
       ),
       body: TabBarView(
-          controller: tabController,
-          physics: const NeverScrollableScrollPhysics(),
-          children: [
+        physics: NeverScrollableScrollPhysics(),
+        controller: _motionTabBarController,
+        children: [
             MainPage(),
-            EventPage(onChangeTheme: _changeThemeMode),
+            EventPage(),
             MemoPage(),
             Setting(onChangeTheme: _changeThemeMode) 
-          ]),
-      // 화면 하단 탭바 설정
-      bottomNavigationBar: 
-      TabBar(
-        controller: tabController,
-        tabs: const [
-          Tab(
-            icon: Icon(Icons.home),
-            text: "Home",
-          ),
-          Tab(
-            icon: Icon(Icons.event_note),
-            text: "Event",
-          ),
-          Tab(
-            icon: Icon(Icons.format_list_bulleted),
-            text: "Memo",
-          ),
-          Tab(
-            icon: Icon(Icons.settings),
-            text: "Setting",
-          )
         ],
+      ),
+      bottomNavigationBar: MotionTabBar(
+        controller: _motionTabBarController,
+        initialSelectedTab: "Home",
+        labels: const ["Home", "Event", "Memo", "Settings"],
+        icons: const [
+          Icons.home,
+          Icons.event_note,
+          Icons.format_list_bulleted,
+          Icons.settings,
+        ],
+        tabSize: 50,
+        tabBarHeight: 50,
+        textStyle: const TextStyle(
+          fontSize: 15,
+          // color: Colors.black,
+          fontWeight: FontWeight.w500,
+        ),
+        tabIconColor: Color.fromARGB(255, 40, 40, 40),
+        tabIconSize: 28.0,
+        tabIconSelectedSize: 26.0,
+        tabSelectedColor: Color.fromARGB(255, 123, 108, 236),
+        tabIconSelectedColor:Color.fromARGB(255, 29, 28, 28),
+        tabBarColor:Color.fromARGB(255, 191, 184, 243),
+        onTabItemSelected: (int value) {
+          setState(() {
+            _motionTabBarController.index = value;
+          });
+        },
       ),
     );
   }

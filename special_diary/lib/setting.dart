@@ -34,7 +34,7 @@ class _SettingState extends State<Setting> {
             Row(
               children: [
                 SizedBox(width: 10,),
-                Text('버전',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600),),
+                Text('버전',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
                 SizedBox(width: 295,),
                 Text('version',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500,color: Colors.grey[400]),),
               ],
@@ -43,8 +43,8 @@ class _SettingState extends State<Setting> {
             Row(
               children: [
                 SizedBox(width: 10,),
-                Text('서비스 이용 약관',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600),),
-                SizedBox(width: 215,),
+                Text('서비스 이용 약관',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
+                SizedBox(width: 225,),
                 Icon(Icons.arrow_forward_ios)
               ],
             ),
@@ -52,7 +52,7 @@ class _SettingState extends State<Setting> {
               Row(
               children: [
                 SizedBox(width: 10,),
-                Text('Tip',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600),),
+                Text('Tip',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
                 SizedBox(width: 328,),
                 Icon(Icons.arrow_forward_ios)
               ],
@@ -61,8 +61,8 @@ class _SettingState extends State<Setting> {
             Row(
               children: [
                 SizedBox(width: 10,),
-                Text('테마 변경',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600),),
-                SizedBox(width: 267,),
+                Text('테마 변경',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
+                SizedBox(width: 270,),
                 IconButton(
                   onPressed: () {
                     setState(() {
