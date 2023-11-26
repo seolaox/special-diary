@@ -134,7 +134,7 @@ Widget flutterMap(){
               Icon(
                 Icons.pin_drop_sharp,
                 size: 55,
-                color: Color.fromARGB(255, 155, 150, 247),) //마커 클릭하면 글자 보여줌
+                color: Color.fromARGB(255, 68, 118, 255),) //마커 클릭하면 글자 보여줌
             ],
           ),
           ),

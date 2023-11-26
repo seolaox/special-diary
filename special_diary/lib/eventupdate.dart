@@ -12,8 +12,7 @@ import 'test/datehandler.dart';
 import 'test/sdiary.dart';
 
 class EventUpdate extends StatefulWidget {
-  final Function(ThemeMode) onChangeTheme;
-  const EventUpdate({super.key, required this.onChangeTheme});
+  const EventUpdate({super.key});
 
   @override
   State<EventUpdate> createState() => _EventUpdateState();
@@ -62,11 +61,6 @@ class _EventUpdateState extends State<EventUpdate> {
     checkGallery = false;
   }
 
-
-      _changeThemeMode(ThemeMode themeMode) {
-    //SettingPage에서도 themeMode사용하도록 widget설정
-    widget.onChangeTheme(themeMode);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -373,17 +367,27 @@ class _EventUpdateState extends State<EventUpdate> {
   _showDialog() {
     Get.defaultDialog(
         title: '수정결과',
+        titleStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
         middleText: '수정이 완료되었습니다.',
+        middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
         barrierDismissible: false,
-        backgroundColor: const Color.fromARGB(255, 255, 210, 226),
+        backgroundColor: Color.fromARGB(255, 210, 220, 255),
         actions: [
           TextButton(
               onPressed: () {
-                Get.to(()=>Home(onChangeTheme: _changeThemeMode));
+                Get.back();
+                Get.back();
               },
-              child: Text('OK'))
+              child: Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
         ]);
   }
+
+
+
+
+
+
+
 
   // IconType을 문자열로 변환하기 위한 도우미 함수
 

@@ -25,7 +25,9 @@ class _MyAppState extends State<MyApp> {
     }); //setState로 화면 바뀌도록 설정하는것 , 다른 클래스에서는 thememode만 적용시키면 됨! 
   }
 
-  static const seedColor = Color.fromARGB(255, 142, 94, 255);
+  // static const seedColor = Color.fromARGB(255, 142, 94, 255);
+  static const seedColor = Color.fromARGB(255, 134, 136, 241);
+
 
   @override
   Widget build(BuildContext context) {

@@ -13,8 +13,7 @@ import 'test/datehandler.dart';
 import 'test/sdiary.dart';
 
 class EventInsert extends StatefulWidget {
-  final Function(ThemeMode) onChangeTheme; 
-  const EventInsert({super.key, required this.onChangeTheme});
+  const EventInsert({super.key});
 
   @override
   State<EventInsert> createState() => _EventInsertState();
@@ -63,10 +62,7 @@ class _EventInsertState extends State<EventInsert> {
     checkLocationPermission();
   }
 
-      _changeThemeMode(ThemeMode themeMode) {
-    //SettingPage에서도 themeMode사용하도록 widget설정
-    widget.onChangeTheme(themeMode);
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -286,7 +282,8 @@ class _EventInsertState extends State<EventInsert> {
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(100, 50),
-                  backgroundColor: Color.fromARGB(255, 146, 148, 255),
+                  // backgroundColor: Color.fromARGB(255, 146, 148, 255),
+                  backgroundColor: Color.fromARGB(255, 151, 161, 252),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -415,16 +412,19 @@ class _EventInsertState extends State<EventInsert> {
 
   _showDialog() {
     Get.defaultDialog(
-        title: '입력결과',
+        title: '입력결과', 
+        titleStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
         middleText: '입력이 완료되었습니다.',
+        middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
         barrierDismissible: false,
         backgroundColor: Color.fromARGB(255, 174, 160, 221),
         actions: [
           TextButton(
               onPressed: () {
-                Get.to(()=>Home(onChangeTheme: _changeThemeMode));
+                Get.back();
+                Get.back();
               },
-              child: Text('OK'))
+              child: Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
         ]);
   }
 

@@ -64,7 +64,7 @@ class _MemoPageState extends State<MemoPage> {
                         children: [
                           SlidableAction(
                             //버튼 눌렀을때 action
-                            backgroundColor: Color.fromARGB(255, 250, 170, 226),
+                            backgroundColor: Color.fromARGB(255, 190, 201, 244),
                             icon: Icons.edit,
                             label: 'Edit',
                             onPressed: (context) {
@@ -77,7 +77,7 @@ class _MemoPageState extends State<MemoPage> {
                           children: [
                             SlidableAction(
                               //버튼 눌렀을때 action
-                              backgroundColor: Colors.red,
+                              backgroundColor: const Color.fromARGB(255, 255, 158, 151),
                               icon: Icons.delete,
                               label: 'Delete',
                               onPressed: (context)async {
@@ -199,7 +199,7 @@ class _MemoPageState extends State<MemoPage> {
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(100, 50),
-              backgroundColor: Color.fromARGB(255, 174, 160, 221),
+              backgroundColor:  Color.fromARGB(255, 151, 161, 252),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -233,18 +233,23 @@ class _MemoPageState extends State<MemoPage> {
   _showInsertDialog() {
     Get.defaultDialog(
         title: '입력결과',
+        titleStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
         middleText: '입력이 완료되었습니다.',
+        middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
         barrierDismissible: false,
-        backgroundColor: Color.fromARGB(255, 174, 160, 221),
+        backgroundColor: Color.fromARGB(255, 200, 183, 255),
         actions: [
           TextButton(
               onPressed: () {
                 Get.back();
                 Get.back();
               },
-              child: Text('OK',style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),))
+              child: Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
         ]);
   }
+
+
+
 
   updateBottomSheet(){
     Get.bottomSheet(
@@ -296,7 +301,7 @@ class _MemoPageState extends State<MemoPage> {
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(100, 50),
-              backgroundColor: Color.fromARGB(255, 174, 160, 221),
+              backgroundColor: Color.fromARGB(255, 151, 161, 252),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -329,18 +334,25 @@ class _MemoPageState extends State<MemoPage> {
   _showUpdateDialog() {
     Get.defaultDialog(
         title: '수정결과',
+        titleStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
         middleText: '수정이 완료되었습니다.',
+        middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
         barrierDismissible: false,
-        backgroundColor:const Color.fromARGB(255, 255, 210, 226),
+        // backgroundColor:const Color.fromARGB(255, 255, 210, 226),
+        backgroundColor:Color.fromARGB(255, 210, 220, 255),
         actions: [
           TextButton(
               onPressed: () {
                 Get.back();
                 Get.back();
               },
-              child: Text('OK',style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),))
+              child: Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
         ]);
   }
+
+
+
+
 
 
 

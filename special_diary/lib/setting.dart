@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:secret_diary/components/appbarwidget.dart';
 
 class Setting extends StatefulWidget {
@@ -86,4 +88,9 @@ class _SettingState extends State<Setting> {
       ),
     );
   }
+
+    
+
+
+
 }
