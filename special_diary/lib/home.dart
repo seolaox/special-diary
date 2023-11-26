@@ -31,7 +31,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _motionTabBarController = MotionTabBarController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 4,
       vsync: this,
     );
@@ -48,17 +48,26 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
       appBar: AppBar(
-        toolbarHeight: 70,
+        toolbarHeight: 65,
         title: AppbarTitle(),
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+            gradient: LinearGradient(
+              colors: [Theme.of(context).colorScheme.primaryContainer,Theme.of(context).colorScheme.surfaceTint,],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter),
+              
+          ),),
+        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
       ),
       body: TabBarView(
         physics: NeverScrollableScrollPhysics(),
         controller: _motionTabBarController,
         children: [
-            MainPage(),
-            EventPage(),
+            MainPage(onChangeTheme: _changeThemeMode),
+            EventPage(onChangeTheme: _changeThemeMode),
             MemoPage(),
             Setting(onChangeTheme: _changeThemeMode) 
         ],
@@ -73,19 +82,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           Icons.format_list_bulleted,
           Icons.settings,
         ],
-        tabSize: 50,
-        tabBarHeight: 50,
+        tabSize: 35,
+        tabBarHeight: 45,
         textStyle: const TextStyle(
-          fontSize: 15,
-          // color: Colors.black,
+          fontSize: 13,
           fontWeight: FontWeight.w500,
         ),
-        tabIconColor: Color.fromARGB(255, 40, 40, 40),
+        tabIconColor: Theme.of(context).colorScheme.secondary,
         tabIconSize: 28.0,
         tabIconSelectedSize: 26.0,
-        tabSelectedColor: Color.fromARGB(255, 123, 108, 236),
-        tabIconSelectedColor:Color.fromARGB(255, 29, 28, 28),
-        tabBarColor:Color.fromARGB(255, 191, 184, 243),
+        tabSelectedColor: Theme.of(context).colorScheme.primaryContainer,
+        tabIconSelectedColor: Theme.of(context).colorScheme.secondary,
+        tabBarColor: Theme.of(context).colorScheme.surface,
         onTabItemSelected: (int value) {
           setState(() {
             _motionTabBarController.index = value;

@@ -35,7 +35,7 @@ class _MemoPageState extends State<MemoPage> {
       appBar: AppBar(
         title: TextField(
           decoration: InputDecoration(
-              hintText: '검색어를 입력해 주세요.', suffixIcon: Icon(Icons.search)),
+            hintText: '검색어를 입력해 주세요.', suffixIcon: Icon(Icons.search)),
           onChanged: (value) {
             setState(() {
               searchText = value;
@@ -64,7 +64,7 @@ class _MemoPageState extends State<MemoPage> {
                         children: [
                           SlidableAction(
                             //버튼 눌렀을때 action
-                            backgroundColor: Colors.green,
+                            backgroundColor: Color.fromARGB(255, 250, 170, 226),
                             icon: Icons.edit,
                             label: 'Edit',
                             onPressed: (context) {
@@ -72,7 +72,7 @@ class _MemoPageState extends State<MemoPage> {
                                                 },
                           )
                         ]),
-                                              endActionPane: ActionPane(
+                        endActionPane: ActionPane(
                           motion: BehindMotion(), //
                           children: [
                             SlidableAction(
@@ -88,8 +88,6 @@ class _MemoPageState extends State<MemoPage> {
                               setState(() {
                                 
                               });
-                            
-                          
                               },
                             ),
                           ]),
@@ -154,7 +152,11 @@ class _MemoPageState extends State<MemoPage> {
       Container(
       width: 500,
       height: 700,
-      color: Theme.of(context).colorScheme.secondaryContainer,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondaryContainer,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
+      ),
+
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -197,7 +199,7 @@ class _MemoPageState extends State<MemoPage> {
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(100, 50),
-              backgroundColor: Color.fromARGB(255, 146, 148, 255),
+              backgroundColor: Color.fromARGB(255, 174, 160, 221),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -233,14 +235,14 @@ class _MemoPageState extends State<MemoPage> {
         title: '입력결과',
         middleText: '입력이 완료되었습니다.',
         barrierDismissible: false,
-        backgroundColor: Colors.pink[100],
+        backgroundColor: Color.fromARGB(255, 174, 160, 221),
         actions: [
           TextButton(
               onPressed: () {
                 Get.back();
                 Get.back();
               },
-              child: Text('OK'))
+              child: Text('OK',style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),))
         ]);
   }
 
@@ -249,7 +251,10 @@ class _MemoPageState extends State<MemoPage> {
       Container(
       width: 500,
       height: 700,
-      color: Theme.of(context).colorScheme.secondaryContainer,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondaryContainer,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -291,7 +296,7 @@ class _MemoPageState extends State<MemoPage> {
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(100, 50),
-              backgroundColor: Color.fromARGB(255, 146, 148, 255),
+              backgroundColor: Color.fromARGB(255, 174, 160, 221),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -326,14 +331,14 @@ class _MemoPageState extends State<MemoPage> {
         title: '수정결과',
         middleText: '수정이 완료되었습니다.',
         barrierDismissible: false,
-        backgroundColor: Color.fromARGB(255, 173, 181, 227),
+        backgroundColor:const Color.fromARGB(255, 255, 210, 226),
         actions: [
           TextButton(
               onPressed: () {
                 Get.back();
                 Get.back();
               },
-              child: Text('OK'))
+              child: Text('OK',style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),))
         ]);
   }
 

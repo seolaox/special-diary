@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:secret_diary/eventinsert.dart';
-import 'package:secret_diary/model/specialdiary.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 
 class EventPage extends StatefulWidget {
-  const EventPage({super.key});
+  final Function(ThemeMode) onChangeTheme; 
+  const EventPage({super.key, required this.onChangeTheme});
 
   @override
   State<EventPage> createState() => _EventPageState();
@@ -23,7 +23,10 @@ class _EventPageState extends State<EventPage> {
 
   DateTime focusedDay = DateTime.now();
 
-
+    _changeThemeMode(ThemeMode themeMode) {
+    //SettingPage에서도 themeMode사용하도록 widget설정
+    widget.onChangeTheme(themeMode);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +62,7 @@ class _EventPageState extends State<EventPage> {
         onPressed: () {
           // _openEventInsertPage();
 
-          Get.to(()=>EventInsert());
+          Get.to(()=>EventInsert(onChangeTheme: _changeThemeMode));
         },
         child: Icon(Icons.add),
         ),

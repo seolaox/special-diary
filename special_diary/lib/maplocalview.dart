@@ -47,9 +47,21 @@ class _MapLocationViewState extends State<MapLocationView> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
       appBar: AppBar(
-        toolbarHeight: 70,
-        title: AppbarTitle(),
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        toolbarHeight: 65,
+        title: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 0, 45, 0),
+          child: AppbarTitle(),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            
+            gradient: LinearGradient(
+              colors: [Theme.of(context).colorScheme.primaryContainer,Theme.of(context).colorScheme.surfaceTint,],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter),
+              
+          ),),
+        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
       ),
       body: canRun
@@ -115,14 +127,14 @@ Widget flutterMap(){
           point: latlong.LatLng(latData, lngData), 
           child: Column( //Text,icon 넣을 수 있음.
             children: [ 
-              Text(value[1], 
+              Text('',
               style: TextStyle(fontWeight: FontWeight.bold,
-              color: Colors.black),
+              color: Color.fromARGB(255, 30, 30, 34)),
               ),
               Icon(
-                Icons.pin_drop,
-                size: 50,
-                color: Colors.blue[600],) //마커 클릭하면 글자 보여줌
+                Icons.pin_drop_sharp,
+                size: 55,
+                color: Color.fromARGB(255, 155, 150, 247),) //마커 클릭하면 글자 보여줌
             ],
           ),
           ),

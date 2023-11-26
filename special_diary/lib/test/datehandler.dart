@@ -10,7 +10,7 @@ class DatabaseHandler {
       join(path, 'sdiary.db'),
       onCreate: (database, version) async {
         await database.execute(
-            "create table sdiary(id integer primary key autoincrement, title text, content text, lat real, lng real, image blob, actiondate text)");
+            "create table sdiary(id integer primary key autoincrement, title text, content text, weathericon text, lat real, lng real, image blob, actiondate text)");
       },
       version: 1,
     );
@@ -31,10 +31,11 @@ class DatabaseHandler {
   insertSdiary(Sdiary sdiary) async {
     final Database db = await initializeSdiaryDB();
     await db.rawInsert(
-        "insert into sdiary(title, content, lat, lng, image, actiondate) values (?,?,?,?,?,datetime('now', 'localtime'))",
+        "insert into sdiary(title, content, weathericon, lat, lng, image, actiondate) values (?,?,?,?,?,?,datetime('now', 'localtime'))",
         [
           sdiary.title,
           sdiary.content,
+          sdiary.weathericon,
           sdiary.lat,
           sdiary.lng,
           sdiary.image
@@ -56,10 +57,11 @@ class DatabaseHandler {
   Future updateSdiary(Sdiary sdiary) async {
     final Database db = await initializeSdiaryDB();
     await db.rawUpdate(
-        "update sdiary set title = ?, content = ?, lat = ?, lng = ?, actiondate = datetime('now', 'localtime') where id = ?",
+        "update sdiary set title = ?, content = ?, weathericon =?, lat = ?, lng = ?, actiondate = datetime('now', 'localtime') where id = ?",
         [
           sdiary.title,
           sdiary.content,
+          sdiary.weathericon,
           sdiary.lat,
           sdiary.lng,
           sdiary.id
@@ -69,10 +71,11 @@ class DatabaseHandler {
   Future updateSdiaryAll(Sdiary sdiary) async {
     final Database db = await initializeSdiaryDB();
     await db.rawUpdate(
-        "update sdiary set title = ?, content = ?, lat = ?, lng = ?, image = ?, actiondate = datetime('now', 'localtime') where id = ?",
+        "update sdiary set title = ?, content = ?, weathericon = ?, lat = ?, lng = ?, image = ?, actiondate = datetime('now', 'localtime') where id = ?",
         [
           sdiary.title,
           sdiary.content,
+          sdiary.weathericon,
           sdiary.lat,
           sdiary.lng,
           sdiary.image,
