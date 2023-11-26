@@ -69,6 +69,9 @@ dependencies:
   #tab_bar
   motion_tab_bar_v2: ^0.3.0
 
+  #shared preferences
+  shared_preferences: ^2.2.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

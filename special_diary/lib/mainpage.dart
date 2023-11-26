@@ -127,12 +127,6 @@ class _MainPageState extends State<MainPage> {
                                       child: Text('Delete',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red[600],fontSize: 15),),
                                     ),
                                   ]);
-                              //     await handler.deleteSdiary(
-                              //     snapshot.data![index].id!);
-                              //     snapshot.data!
-                              //     .remove(snapshot.data![index]);
-                              //     Get.back();
-                              // setState(() {});
                             },
                           ),
                         ]),
@@ -219,7 +213,7 @@ class _MainPageState extends State<MainPage> {
     setState(() {});
   }
 
-  // 저장된 아이콘 값을 기반으로 아이콘 위젯을 반환하는 도우미 함수
+  // 저장된 아이콘 값을 기반으로 아이콘 위젯을 반환
   Widget getIconWidget(String iconString) {
     switch (iconString.toLowerCase()) {
       case 'sunny':
@@ -227,7 +221,7 @@ class _MainPageState extends State<MainPage> {
           Icons.sunny,
           color: Colors.amber[400],
         );
-      case 'waterdrop': // 'WaterDrop' 대신 'waterdrop'으로 수정
+      case 'waterdrop': 
         return Icon(Icons.water_drop, color: Colors.blue[300]);
       case 'cloud':
         return Icon(
@@ -239,13 +233,13 @@ class _MainPageState extends State<MainPage> {
           Icons.air,
           color: Colors.blueGrey[200],
         );
-      case 'acunit': // 'AcUnit' 대신 'acunit'으로 수정
+      case 'acunit': 
         return Icon(
           Icons.ac_unit,
           color: Colors.blue[100],
         );
       default:
-        return Icon(Icons.error); // 기본값으로 오류 아이콘을 표시
+        return Icon(Icons.error); 
     }
   }
 }
