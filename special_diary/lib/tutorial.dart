@@ -35,11 +35,21 @@ class _TutorialState extends State<Tutorial> {
         child: Center(
           child: Column(
             children: [
-              Text('Special Diary 사용법'),
+              Text('TUTORIAL',),
+              SizedBox(height: 20,),
               Text('1. Home화면'),
       
               
               
+              Text('2. Event화면 '),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              Image.asset('images/eventfirst.png',width: 150,height: 300,),
+              Image.asset('images/eventsecond.png',width: 150,height: 300,),
+                ],
+              ),
+              Text('기록할 날짜를 지정 후 +버튼 누르면 입력창으로 이동합니다.'),
               Text('2. Event입력'),
               Text('3. Memo입력'),
       
