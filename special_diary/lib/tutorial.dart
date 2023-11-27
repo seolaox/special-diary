@@ -49,8 +49,8 @@ class _TutorialState extends State<Tutorial> {
                 ],
               ),
               SizedBox(height: 10,),
-              Text('기록할 날짜를 지정 후 +버튼 누르면 입력창으로 이동합니다.',),
-              SizedBox(height: 50,),
+              Text('기록할 날짜를 지정 후 +버튼을 누르면 입력창으로 이동합니다.',),
+              SizedBox(height: 60,),
               Text('2. Event입력',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
               Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -67,7 +67,7 @@ class _TutorialState extends State<Tutorial> {
                 ],
               ),
 
-              SizedBox(height: 50,),
+              SizedBox(height: 60,),
               Text('3. Home화면',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -79,17 +79,28 @@ class _TutorialState extends State<Tutorial> {
               SizedBox(height: 10,),
               Text('앱을 실행할 때 구성되는 첫 화면입니다.'),
               Text('입력한 내용을 검색하면 키워드 검색으로 해당 기록물만 띄워줍니다.'),
-              SizedBox(height: 40,),
+              SizedBox(height: 50,),
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
               Image.asset('images/eventupdate.png',width: 150,height: 300,),
-              Image.asset('images/eventdelete.png',width: 150,height: 300,),
+              Image.asset('images/eventdatepick.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
-              Text('해당 카드를 오른쪽으로 밀면 수정, 왼쪽으로 밀면 삭제할 수 있습니다.'),
+              Text('해당 카드를 오른쪽으로 밀고 edit를 클릭 시 수정 페이지로 이동합니다.'),
+              Text('날짜,날씨,제목,내용,사진등을 변경할 수 있습니다.'),
               SizedBox(height: 50,),
+                Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              Image.asset('images/eventdelete.png',width: 150,height: 300,),
+              Image.asset('images/deleteshow.png',width: 150,height: 300,),
+                ],
+              ),
+              SizedBox(height: 10,),
+              Text('해당 카드를 왼쪽으로 밀고 delete를 클릭 시 삭제할 수 있습니다.'),
+              SizedBox(height: 60,),
               Text('4. Map 화면',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
                     Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -105,7 +116,7 @@ class _TutorialState extends State<Tutorial> {
                   ),
                 ],
               ),
-              SizedBox(height: 50,),
+              SizedBox(height: 60,),
               Text('5. Memo입력',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -118,6 +129,17 @@ class _TutorialState extends State<Tutorial> {
               SizedBox(height: 10,),
               Text('+버튼 누르면 입력창을 띄웁니다.'),
               Text('해당 카드를 오른쪽으로 밀면 수정, 왼쪽으로 밀면 삭제할 수 있습니다.'),
+              SizedBox(height: 50,),
+              Text('6. Theme 변경',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
+                Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              Image.asset('images/lighttheme.png',width: 150,height: 300,),
+              Image.asset('images/darktheme.png',width: 150,height: 300,),
+                ],
+              ),
+              SizedBox(height: 10,),
+              Text('해, 달 이모티콘을 누를 시 테마 변경이 가능합니다.'),
               SizedBox(height: 70,),
               
               

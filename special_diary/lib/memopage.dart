@@ -237,7 +237,8 @@ class _MemoPageState extends State<MemoPage> {
         middleText: '입력이 완료되었습니다.',
         middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
         barrierDismissible: false,
-        backgroundColor: Color.fromARGB(255, 200, 183, 255),
+        // backgroundColor: Color.fromARGB(255, 200, 183, 255),
+        backgroundColor: Color.fromARGB(255, 247, 228, 162),
         actions: [
           TextButton(
               onPressed: () {
@@ -343,8 +344,7 @@ class _MemoPageState extends State<MemoPage> {
         middleText: '수정이 완료되었습니다.',
         middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
         barrierDismissible: false,
-        // backgroundColor:const Color.fromARGB(255, 255, 210, 226),
-        backgroundColor:Color.fromARGB(255, 210, 220, 255),
+        backgroundColor:const Color.fromARGB(255, 255, 210, 226),
         actions: [
           TextButton(
               onPressed: () {
