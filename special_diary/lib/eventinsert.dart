@@ -91,8 +91,14 @@ class _EventInsertState extends State<EventInsert> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(240, 10, 3, 0),
-                child: Text("기념일:" +  formattedDate,style: TextStyle(fontWeight: FontWeight.w700),),
+                padding: const EdgeInsets.fromLTRB(290, 10, 3, 0),
+                child: Row(
+                  children: [
+                    Icon(Icons.event_available_outlined),
+                    SizedBox(width: 5,),
+                    Text(formattedDate,style: TextStyle(fontWeight: FontWeight.w700),),
+                  ],
+                ),
                 // child: Text('기념일 : ' + formattedDate'),
               ),
               Padding(
@@ -284,7 +290,7 @@ class _EventInsertState extends State<EventInsert> {
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(100, 50),
                   // backgroundColor: Color.fromARGB(255, 146, 148, 255),
-                  backgroundColor: Color.fromARGB(255, 151, 161, 252),
+                  backgroundColor: Color.fromARGB(255, 159, 168, 249),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

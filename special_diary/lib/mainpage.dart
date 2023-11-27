@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         title: TextField(
           decoration: InputDecoration(
-          hintText: '검색어를 입력해 주세요.', suffixIcon: Icon(Icons.search)),
+              hintText: '검색어를 입력해 주세요.', suffixIcon: Icon(Icons.search)),
           onChanged: (value) {
             setState(() {
               searchText = value;
@@ -48,7 +48,7 @@ class _MainPageState extends State<MainPage> {
             if (snapshot.hasData) {
               //snapshot통해 화면구성
               return ListView.builder(
-                // reverse: true,
+                reverse: true,
                 itemCount: snapshot.data?.length, //async타입이라 ?로
                 itemBuilder: (BuildContext context, int index) {
                   if (searchText.isNotEmpty &&
@@ -68,19 +68,17 @@ class _MainPageState extends State<MainPage> {
                             icon: Icons.edit,
                             label: 'Edit',
                             onPressed: (context) {
-                              Get.to(
-                                      EventUpdate(),
-                                      arguments: [
-                                    snapshot.data![index].id,
-                                    snapshot.data![index].title,
-                                    snapshot.data![index].content,
-                                    snapshot.data![index].weathericon,
-                                    snapshot.data![index].lat,
-                                    snapshot.data![index].lng,
-                                    snapshot.data![index].image,
-                                    snapshot.data![index].actiondate,
-                                    snapshot.data![index].eventdate
-                                  ])!
+                              Get.to(EventUpdate(), arguments: [
+                                snapshot.data![index].id,
+                                snapshot.data![index].title,
+                                snapshot.data![index].content,
+                                snapshot.data![index].weathericon,
+                                snapshot.data![index].lat,
+                                snapshot.data![index].lng,
+                                snapshot.data![index].image,
+                                snapshot.data![index].actiondate,
+                                snapshot.data![index].eventdate
+                              ])!
                                   .then((value) => reloadData());
                             },
                           )
@@ -90,44 +88,53 @@ class _MainPageState extends State<MainPage> {
                         children: [
                           SlidableAction(
                             //버튼 눌렀을때 action
-                            backgroundColor: const Color.fromARGB(255, 255, 158, 151),
+                            backgroundColor:
+                                const Color.fromARGB(255, 255, 158, 151),
                             icon: Icons.delete,
                             label: 'Delete',
                             onPressed: (context) async {
-                              Get.defaultDialog(
-                                  title: '',
-                                  middleText: "정말 삭제하시겠습니까?",middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),
-                                  backgroundColor: Theme.of(context)
-                                      .colorScheme
-                                      .tertiaryContainer,
-                                  barrierDismissible: false, //뒷배경 흐리게
-                                  buttonColor: Theme.of(context)
-                                      .colorScheme
-                                      .onTertiaryContainer,
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Get.back();
-                                      },
-                                      child: Text('Exit',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black,fontSize: 15),),
-                                    ),
-                                    TextButton(
-                                      onPressed: () async {
-                                        await handler.deleteSdiary(
-                                        snapshot.data![index].id!);
-                                        snapshot.data!
-                                        .remove(snapshot.data![index]);
-                                        Get.back();
-                                        setState(() {});
-
-                                        Get.back();
-                                        Get.back();
-
-                                        // Get.to(()=>Home(onChangeTheme: _changeThemeMode));
-                                      },
-                                      child: Text('Delete',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red[600],fontSize: 15),),
-                                    ),
-                                  ]);
+                              Get.bottomSheet(
+                                Container(
+                                width: 500,
+                                height: 250,
+                                decoration: BoxDecoration(
+                                borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
+                                color: Theme.of(context).colorScheme.secondaryContainer,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                        onPressed: () async {
+                                          await handler.deleteSdiary(
+                                              snapshot.data![index].id!);
+                                          snapshot.data!
+                                              .remove(snapshot.data![index]);
+                                          Get.back();
+                                          setState(() {});
+                                          Get.back();
+                                          Get.back();
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          minimumSize: Size(400, 60),
+                                          // backgroundColor: Color.fromARGB(255, 146, 148, 255),
+                                          backgroundColor: Theme.of(context).colorScheme.errorContainer
+                                        ),
+                                        child: Text('DELETE', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),)),
+                                        SizedBox(height: 10,),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          minimumSize: Size(400, 60),
+                                          // backgroundColor: Color.fromARGB(255, 146, 148, 255),
+                                          backgroundColor: Theme.of(context).colorScheme.surface
+                                        ),
+                                        child: Text('CANCEL', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),)),
+                                  ],
+                                ),
+                              ));
                             },
                           ),
                         ]),
@@ -164,7 +171,8 @@ class _MainPageState extends State<MainPage> {
                                       const EdgeInsets.fromLTRB(270, 0, 0, 0),
                                   child: Row(
                                     children: [
-                                      Text(snapshot.data![index].eventdate ?? 'No Date'),
+                                      Text(snapshot.data![index].eventdate ??
+                                          'No Date'),
                                       // Text(snapshot.data![index].eventdate !=
                                       //         null
                                       //     ? DateFormat('yyyy-MM-dd').format(
@@ -224,7 +232,7 @@ class _MainPageState extends State<MainPage> {
           Icons.sunny,
           color: Colors.amber[400],
         );
-      case 'waterdrop': 
+      case 'waterdrop':
         return Icon(Icons.water_drop, color: Colors.blue[300]);
       case 'cloud':
         return Icon(
@@ -236,13 +244,13 @@ class _MainPageState extends State<MainPage> {
           Icons.air,
           color: Colors.blueGrey[200],
         );
-      case 'acunit': 
+      case 'acunit':
         return Icon(
           Icons.ac_unit,
           color: Colors.blue[100],
         );
       default:
-        return Icon(Icons.error); 
+        return Icon(Icons.error);
     }
   }
 }
