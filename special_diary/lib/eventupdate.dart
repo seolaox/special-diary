@@ -59,6 +59,7 @@ class _EventUpdateState extends State<EventUpdate> {
     presentdate =
         value[7] != null ? DateTime.parse(value[7].toString()) : DateTime.now();
     checkGallery = false;
+    date = DateTime.now();
   }
 
 

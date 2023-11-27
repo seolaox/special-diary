@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:secret_diary/components/appbarwidget.dart';
+import 'package:secret_diary/tutorial.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Setting extends StatefulWidget {
@@ -67,9 +68,13 @@ class _SettingState extends State<Setting> {
               Row(
               children: [
                 SizedBox(width: 10,),
-                Text('Tip',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
-                SizedBox(width: 328,),
-                Icon(Icons.arrow_forward_ios)
+                Text('Tutorial',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
+                SizedBox(width: 272,),
+                IconButton(
+                  onPressed: () {
+                    Get.to(()=> Tutorial());
+                  }, 
+                  icon: Icon(Icons.arrow_forward_ios))
               ],
             ),
             Divider(thickness: 0.1,color: Colors.grey[450],),
@@ -81,7 +86,7 @@ class _SettingState extends State<Setting> {
                 Text('테마 변경',
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
-                SizedBox(width: 270),
+                SizedBox(width: 273),
                 IconButton(
                   onPressed: () {
                     setState(() {

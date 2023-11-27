@@ -68,7 +68,7 @@ class _MemoPageState extends State<MemoPage> {
                             icon: Icons.edit,
                             label: 'Edit',
                             onPressed: (context) {
-                              updateBottomSheet();
+                              updateBottomSheet(snapshot.data![index]);
                                                 },
                           )
                         ]),
@@ -251,7 +251,8 @@ class _MemoPageState extends State<MemoPage> {
 
 
 
-  updateBottomSheet(){
+  updateBottomSheet(MemoPad memo){
+    memoModifyController.text = memo.memo;
     Get.bottomSheet(
       Container(
       width: 500,
@@ -270,7 +271,7 @@ class _MemoPageState extends State<MemoPage> {
           Padding(
             padding: const EdgeInsets.all(3.0),
             child: TextField(
-              controller: memoController, // memoModifyController를 사용합니다.
+              controller: memoModifyController,
               decoration: const InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(),
@@ -297,7 +298,7 @@ class _MemoPageState extends State<MemoPage> {
           ),
           ElevatedButton(
             onPressed: () {
-              updateAction()!.then((value) => reloadData());
+              updateAction(memo.id!)!.then((value) => reloadData());
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(100, 50),
@@ -321,14 +322,18 @@ class _MemoPageState extends State<MemoPage> {
     );
   }
 
-  updateAction() async {
+  updateAction(int memoId) async {
     //순서가 필요할때 무조건 async
-    String memo = memoModifyController.text;
+  String memo = memoModifyController.text;
+  var memoUpdate = MemoPad(id: memoId, memo: memo, memoinsertdate: DateTime.now());
+  await handler.updateMemoPad(memoUpdate);
+  _showUpdateDialog();
 
-    var memoUpdate = MemoPad(memo: memo, memoinsertdate: DateTime.now());
+    // var memoUpdate = MemoPad(memo: memo, memoinsertdate: DateTime.now());
 
-    await handler.updateMemoPad(memoUpdate);
-    _showUpdateDialog();
+    // await handler.updateMemoPad(memoUpdate);
+
+
   }
 
   _showUpdateDialog() {
