@@ -37,20 +37,10 @@ class _TutorialState extends State<Tutorial> {
             mainAxisAlignment: MainAxisAlignment.center,
         
             children: [
-              Text('TUTORIAL',),
               SizedBox(height: 20,),
-              Text('1. Home화면'),
-                Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-              Image.asset('images/eventfirst.png',width: 150,height: 300,),
-              Image.asset('images/eventsecond.png',width: 150,height: 300,),
-                ],
-              ),
-              
-              
-              SizedBox(height: 20,),
-              Text('2. Event화면 '),
+              Text('- TUTORIAL -',style: TextStyle(fontSize: 21,fontWeight: FontWeight.w900),),
+                            SizedBox(height: 20,),
+              Text('1. 날짜 선택 ',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -58,11 +48,77 @@ class _TutorialState extends State<Tutorial> {
               Image.asset('images/eventsecond.png',width: 150,height: 300,),
                 ],
               ),
-              Text('기록할 날짜를 지정 후 +버튼 누르면 입력창으로 이동합니다.'),
-              Text('2. Event입력'),
-              Image.asset('images/eventinsert.png',width: 150,height: 300,),
-              Text('날씨선택, 제목, 내용, 사진을 선택하여 입력 버튼을 누를 시 기록한 내용이 저장됩니다.'),
-              Text('3. Memo입력'),
+              SizedBox(height: 10,),
+              Text('기록할 날짜를 지정 후 +버튼 누르면 입력창으로 이동합니다.',),
+              SizedBox(height: 50,),
+              Text('2. Event입력',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
+              Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('images/eventinsert.png',width: 150,height: 300,),
+                  Column(
+              
+                    children: [
+                      Text('날씨, 제목, 내용, 사진을'),
+                      Text('선택하여 입력 버튼을 누를 시'),
+                  Text('기록한 내용이 저장됩니다.'),
+                    ],
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 50,),
+              Text('3. Home화면',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
+                Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              Image.asset('images/homeview.png',width: 150,height: 300,),
+              Image.asset('images/eventsearch.png',width: 150,height: 300,),
+                ],
+              ),
+              SizedBox(height: 10,),
+              Text('앱을 실행할 때 구성되는 첫 화면입니다.'),
+              Text('입력한 내용을 검색하면 키워드 검색으로 해당 기록물만 띄워줍니다.'),
+              SizedBox(height: 40,),
+                Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              Image.asset('images/eventupdate.png',width: 150,height: 300,),
+              Image.asset('images/eventdelete.png',width: 150,height: 300,),
+                ],
+              ),
+              SizedBox(height: 10,),
+              Text('해당 카드를 오른쪽으로 밀면 수정, 왼쪽으로 밀면 삭제할 수 있습니다.'),
+              SizedBox(height: 50,),
+              Text('4. Map 화면',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
+                    Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('images/mapview.png',width: 150,height: 300,),
+                  Column(
+              
+                    children: [
+                      Text('해당 카드를 길게 누르면'),
+                      Text('기록한 곳의 장소를'),
+                      Text('띄워줍니다.'),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 50,),
+              Text('5. Memo입력',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
+                Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              Image.asset('images/memoinsert.png',width: 130,height: 270,),
+              Image.asset('images/memoupdate.png',width: 130,height: 270,),
+              Image.asset('images/memodelete.png',width: 130,height: 270,),
+                ],
+              ),
+              SizedBox(height: 10,),
+              Text('+버튼 누르면 입력창을 띄웁니다.'),
+              Text('해당 카드를 오른쪽으로 밀면 수정, 왼쪽으로 밀면 삭제할 수 있습니다.'),
+              SizedBox(height: 70,),
               
               
             ],
