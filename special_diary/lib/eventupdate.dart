@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
-
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -41,6 +41,9 @@ class _EventUpdateState extends State<EventUpdate> {
   late bool checkGallery;
   late DateTime presentdate;
   late DateTime date;
+  late DateTime eventUpdateDate;
+  late DateTime selectedDate; //날짜변경 버튼 누를 시 선택된 날짜
+  late String formattedDate; //전 페이지에서 선택한 날짜
 
 
   @override
@@ -58,8 +61,11 @@ class _EventUpdateState extends State<EventUpdate> {
     image = Image.memory(value[6]);
     presentdate =
         value[7] != null ? DateTime.parse(value[7].toString()) : DateTime.now();
+    eventUpdateDate = DateTime.parse(value[8]);
     checkGallery = false;
     date = DateTime.now();
+    selectedDate =  eventUpdateDate ?? date; // widget을 통해 selectedDay 값을 받아오기
+    formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
   }
 
 
@@ -90,7 +96,7 @@ class _EventUpdateState extends State<EventUpdate> {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(240, 10, 3, 0),
-                child: Text('기념일 : 2023-11-30'),
+                child: Text("기념일:" +  formattedDate,style: TextStyle(fontWeight: FontWeight.w700),),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(270, 0, 0, 0),
@@ -329,42 +335,49 @@ class _EventUpdateState extends State<EventUpdate> {
     );
   }
 
-  updateAction() async {
-    //순서가 필요할때 무조건 async
-    String title = titleController.text;
-    String content = contentController.text;
-    //file type을 byte type으로 변환하기
+  // updateAction 함수에서 eventDate를 DateTime으로 변환하여 설정
+updateAction() async {
+  //순서가 필요할때 무조건 async
+  String title = titleController.text;
+  String content = contentController.text;
+  DateTime eventDate = selectedDate; // 선택된 날짜를 DateTime으로 변환
 
-    if (checkGallery == true) {
-      File imageFile1 = File(imageFile!.path); // imageFile경로를 file로 만들어 넣기
-      Uint8List getImage =
-          await imageFile1.readAsBytes(); //file type을 8type으로 변환
-      var sdiaryUpdate = Sdiary(
-          id: id,
-          title: title,
-          content: content,
-          weathericon: getIconString(selectedIcon),
-          lat: value[4],
-          lng: value[5],
-          image: getImage,
-          actiondate: value[7]);
-      await handler.updateSdiaryAll(sdiaryUpdate);
-      _showDialog();
-    } else {
-      var sdiaryUpdate = Sdiary(
-          id: id,
-          title: title,
-          content: content,
-          weathericon: getIconString(selectedIcon),
-          lat: value[4],
-          lng: value[5],
-          image: value[6],
-          actiondate: value[7]);
-      await handler.updateSdiary(sdiaryUpdate);
-      _showDialog();
-    }
+  //file type을 byte type으로 변환하기
+  if (checkGallery == true) {
+    File imageFile1 = File(imageFile!.path); // imageFile경로를 file로 만들어 넣기
+    Uint8List getImage =
+        await imageFile1.readAsBytes(); //file type을 8type으로 변환
+
+    var sdiaryUpdate = Sdiary(
+      id: id,
+      title: title,
+      content: content,
+      weathericon: getIconString(selectedIcon),
+      lat: value[4],
+      lng: value[5],
+      image: getImage,
+      actiondate: value[7],
+      eventdate: DateFormat('yyyy-MM-dd').format(eventDate), // DateTime을 String으로 변환
+    );
+
+    await handler.updateSdiaryAll(sdiaryUpdate);
+    _showDialog();
+  } else {
+    var sdiaryUpdate = Sdiary(
+      id: id,
+      title: title,
+      content: content,
+      weathericon: getIconString(selectedIcon),
+      lat: value[4],
+      lng: value[5],
+      image: value[6],
+      actiondate: value[7],
+      eventdate: DateFormat('yyyy-MM-dd').format(eventDate), // DateTime을 String으로 변환
+    );
+    await handler.updateSdiary(sdiaryUpdate);
+    _showDialog();
   }
-
+}
   _showDialog() {
     Get.defaultDialog(
         title: '수정결과',
@@ -442,6 +455,11 @@ IconType getIconTypeFromString(String iconString) {
   }
 }
 
+    // 날짜 변경 시 호출되는 함수
+  void updateFormattedDate() {
+    formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
+    setState(() {});
+  }
 
 disDatePicker()async{
     //캘린더 날짜 범위 설정하기
@@ -456,5 +474,11 @@ disDatePicker()async{
     initialEntryMode: DatePickerEntryMode.calendarOnly, //캘린더로 설정하기
     locale: Locale('ko','KR') //한국시간으로 바꿔서 보여주기
   );
+  if (selectedDate != null) {
+      // 날짜 선택 시 selectedDate 업데이트
+      this.selectedDate = selectedDate;
+      // formattedDate 업데이트 함수 호출
+      updateFormattedDate();
+    }
   }
 } //END

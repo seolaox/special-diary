@@ -78,7 +78,8 @@ class _MainPageState extends State<MainPage> {
                                     snapshot.data![index].lat,
                                     snapshot.data![index].lng,
                                     snapshot.data![index].image,
-                                    snapshot.data![index].actiondate
+                                    snapshot.data![index].actiondate,
+                                    snapshot.data![index].eventdate
                                   ])!
                                   .then((value) => reloadData());
                             },
@@ -137,6 +138,7 @@ class _MainPageState extends State<MainPage> {
                           snapshot.data![index].title,
                           snapshot.data![index].lat,
                           snapshot.data![index].lng,
+                          snapshot.data![index].eventdate,
                         ])!
                             .then((value) => reloadData());
                       },
@@ -162,11 +164,12 @@ class _MainPageState extends State<MainPage> {
                                       const EdgeInsets.fromLTRB(270, 0, 0, 0),
                                   child: Row(
                                     children: [
-                                      Text(snapshot.data![index].actiondate !=
-                                              null
-                                          ? DateFormat('yyyy-MM-dd').format(
-                                              snapshot.data![index].actiondate!)
-                                          : 'No Date'),
+                                      Text(snapshot.data![index].eventdate ?? 'No Date'),
+                                      // Text(snapshot.data![index].eventdate !=
+                                      //         null
+                                      //     ? DateFormat('yyyy-MM-dd').format(
+                                      //         snapshot.data![index].actiondate!)
+                                      //     : 'No Date'),
                                       IconButton(
                                         onPressed: () {},
                                         iconSize: 24,

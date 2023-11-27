@@ -10,11 +10,12 @@ class DatabaseHandler {
       join(path, 'sdiary.db'),
       onCreate: (database, version) async {
         await database.execute(
-            "create table sdiary(id integer primary key autoincrement, title text, content text, weathericon text, lat real, lng real, image blob, actiondate text)");
+            "create table sdiary(id integer primary key autoincrement, title text, content text, weathericon text, lat real, lng real, image blob, actiondate text, eventdate text)"); // eventdate 추가
       },
       version: 1,
     );
-  } // ----
+  }
+ // ----
 
     Future<Database> initializeMemoPadDB() async {
     String path = await getDatabasesPath();
@@ -31,16 +32,18 @@ class DatabaseHandler {
   insertSdiary(Sdiary sdiary) async {
     final Database db = await initializeSdiaryDB();
     await db.rawInsert(
-        "insert into sdiary(title, content, weathericon, lat, lng, image, actiondate) values (?,?,?,?,?,?,datetime('now', 'localtime'))",
+        "insert into sdiary(title, content, weathericon, lat, lng, image, actiondate, eventdate) values (?,?,?,?,?,?,datetime('now', 'localtime'),?)", // eventdate 추가
         [
           sdiary.title,
           sdiary.content,
           sdiary.weathericon,
           sdiary.lat,
           sdiary.lng,
-          sdiary.image
+          sdiary.image,
+          sdiary.eventdate, 
         ]);
-  } // ----
+  }
+ // ----
 
   Future<List<Sdiary>> querySdiary() async {
     final Database db = await initializeSdiaryDB();
@@ -57,13 +60,14 @@ class DatabaseHandler {
   Future updateSdiary(Sdiary sdiary) async {
     final Database db = await initializeSdiaryDB();
     await db.rawUpdate(
-        "update sdiary set title = ?, content = ?, weathericon =?, lat = ?, lng = ?, actiondate = datetime('now', 'localtime') where id = ?",
+        "update sdiary set title = ?, content = ?, weathericon =?, lat = ?, lng = ?, eventdate = ?, actiondate = datetime('now', 'localtime') where id = ?",
         [
           sdiary.title,
           sdiary.content,
           sdiary.weathericon,
           sdiary.lat,
           sdiary.lng,
+          sdiary.eventdate,
           sdiary.id
         ]);
   } // ---
@@ -71,7 +75,7 @@ class DatabaseHandler {
   Future updateSdiaryAll(Sdiary sdiary) async {
     final Database db = await initializeSdiaryDB();
     await db.rawUpdate(
-        "update sdiary set title = ?, content = ?, weathericon = ?, lat = ?, lng = ?, image = ?, actiondate = datetime('now', 'localtime') where id = ?",
+        "update sdiary set title = ?, content = ?, weathericon = ?, lat = ?, lng = ?, image = ?, eventdate =?, actiondate = datetime('now', 'localtime') where id = ?",
         [
           sdiary.title,
           sdiary.content,
@@ -79,6 +83,7 @@ class DatabaseHandler {
           sdiary.lat,
           sdiary.lng,
           sdiary.image,
+          sdiary.eventdate,
           sdiary.id
         ]);
   } // ---

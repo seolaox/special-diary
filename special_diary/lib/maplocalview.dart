@@ -24,14 +24,13 @@ class _MapLocationViewState extends State<MapLocationView> {
   late String name;
 
 
-
   @override
   void initState() {
     super.initState();
     //현재 위치에서 버튼 누른걸로 되어있어서 초기값은 0
     mapController = MapController();
     canRun = false;
-    name = value[1];
+    name = value[4];
     latData = value[2];
     lngData = value[3];
 
@@ -127,10 +126,13 @@ Widget flutterMap(){
           point: latlong.LatLng(latData, lngData), 
           child: Column( //Text,icon 넣을 수 있음.
             children: [ 
-              Text('',
-              style: TextStyle(fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 30, 30, 34)),
+              Text(name, style: TextStyle(fontWeight: FontWeight.w800, fontSize: 12, color: Color.fromARGB(255, 63, 37, 149)),
               ),
+              Text("Special Day",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,
+              color: Color.fromARGB(255, 27, 46, 96)),
+              ),
+              
               Icon(
                 Icons.pin_drop_sharp,
                 size: 55,

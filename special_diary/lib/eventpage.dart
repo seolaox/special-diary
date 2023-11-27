@@ -13,14 +13,8 @@ class EventPage extends StatefulWidget {
 
 class _EventPageState extends State<EventPage> {
   DateTime? selectedDay;
+    DateTime focusedDay = DateTime.now();
 
-  // DateTime selectedDay = DateTime(
-  //   DateTime.now().year,
-  //   DateTime.now().month,
-  //   DateTime.now().day,
-  // );
-
-  DateTime focusedDay = DateTime.now();
 
 
   @override
@@ -55,9 +49,9 @@ class _EventPageState extends State<EventPage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // _openEventInsertPage();
+          _openEventInsertPage(selectedDay);
 
-          Get.to(()=>EventInsert());
+          // Get.to(()=>EventInsert());
         },
         child: Icon(Icons.add),
         ),
@@ -66,18 +60,20 @@ class _EventPageState extends State<EventPage> {
   }
   //---FUNCTIONS---
 
-  //     void _openEventInsertPage() {
-  //   if (selectedDay == null) {
-  //     Get.snackbar(
-  //       'ERROR', 
-  //       '글을 작성할 날짜를 선택해 주세요!',
-  //       snackPosition: SnackPosition.BOTTOM,
-  //       backgroundColor: Color.fromARGB(255, 122, 164, 249),
-  //     );
-  //   } else {
-  //     Get.to(() => EventInsert(onChangeTheme: widget.onChangeTheme), arguments: selectedDay);
-  //   }
-  // }
+      void _openEventInsertPage(DateTime? selectedDay) {
+    if (selectedDay == null) {
+      Get.snackbar(
+        'ERROR', 
+        '글을 작성할 날짜를 선택해 주세요.',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Color.fromARGB(255, 247, 228, 162),
+      );
+    } else {
+      Get.to(() => EventInsert(selectedDay: selectedDay));
+    }
+  }
+
+
 
 
 }
