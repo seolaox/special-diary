@@ -73,7 +73,7 @@ class _TutorialState extends State<Tutorial> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
               Image.asset('images/homeview.png',width: 150,height: 300,),
-              Image.asset('images/eventsearch.png',width: 150,height: 300,),
+              Image.asset('images/searchtext.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -83,8 +83,8 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              Image.asset('images/eventupdate.png',width: 150,height: 300,),
-              Image.asset('images/eventdatepick.png',width: 150,height: 300,),
+              Image.asset('images/update.png',width: 150,height: 300,),
+              Image.asset('images/datepicker.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -94,8 +94,8 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              Image.asset('images/eventdelete.png',width: 150,height: 300,),
-              Image.asset('images/deleteshow.png',width: 150,height: 300,),
+              Image.asset('images/delete.png',width: 150,height: 300,),
+              Image.asset('images/deletesheet.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
