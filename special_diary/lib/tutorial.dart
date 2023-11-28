@@ -44,8 +44,7 @@ class _TutorialState extends State<Tutorial> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              // Image.asset('images/eventfirst.png',width: 150,height: 300,),
-              // Image.asset('images/eventsecond.png',width: 150,height: 300,),
+              Image.asset('images/eventpage.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -55,25 +54,20 @@ class _TutorialState extends State<Tutorial> {
               Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Image.asset('images/eventinsert.png',width: 150,height: 300,),
-                  Column(
-              
-                    children: [
-                      Text('날씨, 제목, 내용, 사진을'),
-                      Text('선택하여 입력 버튼을 누를 시'),
-                  Text('기록한 내용이 저장됩니다.'),
-                    ],
-                  ),
+                  Image.asset('images/eventinsert.png',width: 150,height: 300,),
                 ],
               ),
+                  SizedBox(height: 15,),
+              Text('날씨, 제목, 내용, 사진을 선택하여',),
+              Text('버튼을 누를 시 기록한 내용이 저장됩니다.',),
 
               SizedBox(height: 60,),
               Text('3. Home화면',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              // Image.asset('images/homeview.png',width: 150,height: 300,),
-              // Image.asset('images/searchbar.png',width: 150,height: 300,),
+              Image.asset('images/homeview.png',width: 150,height: 300,),
+              Image.asset('images/eventsearch.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -83,8 +77,8 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              // Image.asset('images/update.png',width: 150,height: 300,),
-              // Image.asset('images/datepicker.png',width: 150,height: 300,),
+              Image.asset('images/eventupdate.png',width: 150,height: 300,),
+              Image.asset('images/eventpicker.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
