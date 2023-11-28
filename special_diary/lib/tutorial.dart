@@ -88,7 +88,7 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              Image.asset('images/eventdeleted.png',width: 150,height: 300,),
+              Image.asset('images/eventdeletecard.png',width: 150,height: 300,),
               Image.asset('images/eventdeletesheet.png',width: 150,height: 300,),
                 ],
               ),
@@ -99,7 +99,7 @@ class _TutorialState extends State<Tutorial> {
                     Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Image.asset('images/mapview.png',width: 150,height: 300,),
+                  Image.asset('images/mapview.png',width: 150,height: 300,),
                   Column(
               
                     children: [
@@ -115,9 +115,9 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              // Image.asset('images/memoinsert.png',width: 130,height: 270,),
-              // Image.asset('images/memoupdate.png',width: 130,height: 270,),
-              // Image.asset('images/memodelete.png',width: 130,height: 270,),
+              Image.asset('images/memoinsert.png',width: 130,height: 270,),
+              Image.asset('images/memoupdate.png',width: 130,height: 270,),
+              Image.asset('images/memodelete.png',width: 130,height: 270,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -129,8 +129,8 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              // Image.asset('images/lighttheme.png',width: 150,height: 300,),
-              // Image.asset('images/darktheme.png',width: 150,height: 300,),
+              Image.asset('images/lighttheme.png',width: 150,height: 300,),
+              Image.asset('images/darktheme.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
