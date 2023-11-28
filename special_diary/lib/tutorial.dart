@@ -44,8 +44,8 @@ class _TutorialState extends State<Tutorial> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              Image.asset('images/eventfirst.png',width: 150,height: 300,),
-              Image.asset('images/eventsecond.png',width: 150,height: 300,),
+              // Image.asset('images/eventfirst.png',width: 150,height: 300,),
+              // Image.asset('images/eventsecond.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -55,7 +55,7 @@ class _TutorialState extends State<Tutorial> {
               Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('images/eventinsert.png',width: 150,height: 300,),
+                  // Image.asset('images/eventinsert.png',width: 150,height: 300,),
                   Column(
               
                     children: [
@@ -72,8 +72,8 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              Image.asset('images/homeview.png',width: 150,height: 300,),
-              Image.asset('images/searchlist.png',width: 150,height: 300,),
+              // Image.asset('images/homeview.png',width: 150,height: 300,),
+              // Image.asset('images/searchbar.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -83,8 +83,8 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              Image.asset('images/update.png',width: 150,height: 300,),
-              Image.asset('images/datepicker.png',width: 150,height: 300,),
+              // Image.asset('images/update.png',width: 150,height: 300,),
+              // Image.asset('images/datepicker.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -94,8 +94,8 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              Image.asset('images/deletecard.png',width: 150,height: 300,),
-              Image.asset('images/deletecardsheet.png',width: 150,height: 300,),
+              // Image.asset('images/deletecard.png',width: 150,height: 300,),
+              // Image.asset('images/deletecardsheet.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -105,7 +105,7 @@ class _TutorialState extends State<Tutorial> {
                     Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('images/mapview.png',width: 150,height: 300,),
+                  // Image.asset('images/mapview.png',width: 150,height: 300,),
                   Column(
               
                     children: [
@@ -121,9 +121,9 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              Image.asset('images/memoinsert.png',width: 130,height: 270,),
-              Image.asset('images/memoupdate.png',width: 130,height: 270,),
-              Image.asset('images/memodelete.png',width: 130,height: 270,),
+              // Image.asset('images/memoinsert.png',width: 130,height: 270,),
+              // Image.asset('images/memoupdate.png',width: 130,height: 270,),
+              // Image.asset('images/memodelete.png',width: 130,height: 270,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -135,8 +135,8 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              Image.asset('images/lighttheme.png',width: 150,height: 300,),
-              Image.asset('images/darktheme.png',width: 150,height: 300,),
+              // Image.asset('images/lighttheme.png',width: 150,height: 300,),
+              // Image.asset('images/darktheme.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
