@@ -88,8 +88,8 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              // Image.asset('images/deletecard.png',width: 150,height: 300,),
-              // Image.asset('images/deletecardsheet.png',width: 150,height: 300,),
+              Image.asset('images/eventdeleted.png',width: 150,height: 300,),
+              Image.asset('images/eventdeletesheet.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
