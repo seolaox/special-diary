@@ -73,7 +73,7 @@ class _TutorialState extends State<Tutorial> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
               Image.asset('images/homeview.png',width: 150,height: 300,),
-              Image.asset('images/searchtext.png',width: 150,height: 300,),
+              Image.asset('images/searchlist.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -94,8 +94,8 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              Image.asset('images/delete.png',width: 150,height: 300,),
-              Image.asset('images/deletesheet.png',width: 150,height: 300,),
+              Image.asset('images/deletecard.png',width: 150,height: 300,),
+              Image.asset('images/deletecardsheet.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
