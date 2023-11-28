@@ -128,7 +128,8 @@ class _TutorialState extends State<Tutorial> {
               ),
               SizedBox(height: 10,),
               Text('+버튼 누르면 입력창을 띄웁니다.'),
-              Text('해당 카드를 오른쪽으로 밀면 수정, 왼쪽으로 밀면 삭제할 수 있습니다.'),
+              Text('해당 카드를 클릭하거나 오른쪽으로 밀면 수정,'),
+              Text('왼쪽으로 밀면 삭제할 수 있습니다.'),
               SizedBox(height: 50,),
               Text('6. Theme 변경',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
                 Row(

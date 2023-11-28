@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -13,8 +14,9 @@ import 'test/datehandler.dart';
 import 'test/sdiary.dart';
 
 class EventInsert extends StatefulWidget {
+  final Function(ThemeMode) onChangeTheme;
     final DateTime? selectedDay; //전페이지에서 selectedDay값 받아오기
-  const EventInsert({super.key, this.selectedDay});
+  const EventInsert({super.key, this.selectedDay, required this.onChangeTheme});
 
   @override
   State<EventInsert> createState() => _EventInsertState();
@@ -27,6 +29,7 @@ enum IconType {
   Air,
   AcUnit,
 }
+
 
 
 
@@ -46,6 +49,13 @@ class _EventInsertState extends State<EventInsert> {
 
   late DateTime selectedDate; //날짜변경 버튼 누를 시 선택된 날짜
   late String formattedDate; //전 페이지에서 선택한 날짜
+
+
+    _changeThemeMode(ThemeMode themeMode) {
+    //SettingPage에서도 themeMode사용하도록 widget설정
+    widget.onChangeTheme(themeMode);
+  }
+  
 
   @override
   void initState() {
@@ -352,19 +362,59 @@ class _EventInsertState extends State<EventInsert> {
     });
   }
 
+  // // 이미지 가져오는 함수
+  // getImageFromGallery(ImageSource imageSource) async {
+  //   final XFile? pickedFile = await picker.pickImage(
+  //       source: imageSource); //카메라에서 찍고, 갤러리에서 선택된게 pickedFile로 들어감
+  //   if (pickedFile == null) {
+  //     //취소할 경우 처리
+  //     return;
+  //   } else {
+  //     imageFile =
+  //         XFile(pickedFile.path); //imageFile에는 경로를 넣어놨는데 xfile의 경로를 알려주는거
+  //     setState(() {});
+  //   }
+  // }
+
+  
   // 이미지 가져오는 함수
-  getImageFromGallery(ImageSource imageSource) async {
-    final XFile? pickedFile = await picker.pickImage(
-        source: imageSource); //카메라에서 찍고, 갤러리에서 선택된게 pickedFile로 들어감
+getImageFromGallery(ImageSource imageSource) async {
+  try {
+    final XFile? pickedFile = await picker.pickImage(source: imageSource);
+    
     if (pickedFile == null) {
-      //취소할 경우 처리
+      // 사용자가 이미지 선택을 취소한 경우
       return;
     } else {
-      imageFile =
-          XFile(pickedFile.path); //imageFile에는 경로를 넣어놨는데 xfile의 경로를 알려주는거
+      imageFile = XFile(pickedFile.path);
       setState(() {});
     }
+  } catch (e) {
+    // 예외 처리
+    print("Error: $e");
+    if (e is PlatformException && e.code == 'photo_access_denied') {
+      // 사용자가 사진 액세스를 거부한 경우
+      showPhotoAccessDeniedDialog();
+    } 
   }
+}
+
+void showPhotoAccessDeniedDialog() {
+  // 사용자에게 사진 액세스 권한이 필요하다는 메시지를 표시
+  Get.defaultDialog(
+    title: '사진 액세스 거부됨',
+    titleStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+    middleText: '사진 액세스 권한이 필요합니다. \n 설정에서 권한을 부여해주세요.',
+    middleTextStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
+    backgroundColor: Theme.of(context).colorScheme.errorContainer,
+    actions: [TextButton(
+      onPressed: () {
+        Get.back();
+      }, child: Text('Exit',style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900,color: Color.fromARGB(255, 246, 144, 144)),))]
+    );
+
+}
+
 
   Widget _buildImagePicker() {
     return GestureDetector(
@@ -435,8 +485,7 @@ insertAction() async {
         actions: [
           TextButton(
               onPressed: () {
-                Get.back();
-                Get.back();
+                Get.offAll(Home(onChangeTheme: _changeThemeMode), arguments: 0); //모두끄고 arguments로 0번째 페이지로 보내기
               },
               child: Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
         ]);

@@ -49,10 +49,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
       appBar: AppBar(
         toolbarHeight: 65,
-        title: AppbarTitle(),
+        title: const AppbarTitle(),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+            borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
             gradient: LinearGradient(
               colors: [Theme.of(context).colorScheme.primaryContainer,Theme.of(context).colorScheme.surfaceTint,],
               begin: Alignment.bottomCenter,
@@ -63,12 +63,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
       ),
       body: TabBarView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         controller: _motionTabBarController,
         children: [
-            MainPage(),
-            EventPage(),
-            MemoPage(),
+            const MainPage(),
+            EventPage(onChangeTheme: _changeThemeMode),
+            const MemoPage(),
             Setting(onChangeTheme: _changeThemeMode) 
         ],
       ),

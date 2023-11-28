@@ -92,33 +92,38 @@ class _MemoPageState extends State<MemoPage> {
                             ),
                           ]),
 
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.elliptical(20, 20))),
-                      child: Container(
-                        height: 80,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
-                              child: Text(
-                                  snapshot.data![index].memoinsertdate != null
-                                      ? DateFormat('yyyy-MM-dd').format(
-                                          snapshot.data![index].memoinsertdate!)
-                                      : 'No Date'),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 5, 0, 0),
-                              child: Text(
-                                snapshot.data![index].memo,
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                    child: GestureDetector(
+                      onTap: () {
+                        updateBottomSheet(snapshot.data![index]);
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.elliptical(20, 20))),
+                        child: Container(
+                          height: 80,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
+                                child: Text(
+                                    snapshot.data![index].memoinsertdate != null
+                                        ? DateFormat('yyyy-MM-dd').format(
+                                            snapshot.data![index].memoinsertdate!)
+                                        : 'No Date'),
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(8, 5, 0, 0),
+                                child: Text(
+                                  snapshot.data![index].memo,
+                                  style: TextStyle(
+                                      fontSize: 15, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -227,26 +232,8 @@ class _MemoPageState extends State<MemoPage> {
     var memoInsert = MemoPad(memo: memo, memoinsertdate: DateTime.now());
 
     await handler.insertMemoPad(memoInsert);
-    _showInsertDialog();
-  }
-
-  _showInsertDialog() {
-    Get.defaultDialog(
-        title: '입력결과',
-        titleStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
-        middleText: '입력이 완료되었습니다.',
-        middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
-        barrierDismissible: false,
-        // backgroundColor: Color.fromARGB(255, 200, 183, 255),
-        backgroundColor: Color.fromARGB(255, 247, 228, 162),
-        actions: [
-          TextButton(
-              onPressed: () {
                 Get.back();
                 Get.back();
-              },
-              child: Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
-        ]);
   }
 
 
@@ -328,31 +315,14 @@ class _MemoPageState extends State<MemoPage> {
   String memo = memoModifyController.text;
   var memoUpdate = MemoPad(id: memoId, memo: memo, memoinsertdate: DateTime.now());
   await handler.updateMemoPad(memoUpdate);
-  _showUpdateDialog();
+                Get.back();
+                Get.back();
 
     // var memoUpdate = MemoPad(memo: memo, memoinsertdate: DateTime.now());
 
     // await handler.updateMemoPad(memoUpdate);
 
 
-  }
-
-  _showUpdateDialog() {
-    Get.defaultDialog(
-        title: '수정결과',
-        titleStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
-        middleText: '수정이 완료되었습니다.',
-        middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
-        barrierDismissible: false,
-        backgroundColor:const Color.fromARGB(255, 255, 210, 226),
-        actions: [
-          TextButton(
-              onPressed: () {
-                Get.back();
-                Get.back();
-              },
-              child: Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
-        ]);
   }
 
 

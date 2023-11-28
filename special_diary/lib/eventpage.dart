@@ -5,7 +5,8 @@ import 'package:table_calendar/table_calendar.dart';
 
 
 class EventPage extends StatefulWidget {
-  const EventPage({super.key});
+    final Function(ThemeMode) onChangeTheme;
+  const EventPage({super.key, required this.onChangeTheme});
 
   @override
   State<EventPage> createState() => _EventPageState();
@@ -15,7 +16,10 @@ class _EventPageState extends State<EventPage> {
   DateTime? selectedDay;
     DateTime focusedDay = DateTime.now();
 
-
+    _changeThemeMode(ThemeMode themeMode) {
+    //SettingPage에서도 themeMode사용하도록 widget설정
+    widget.onChangeTheme(themeMode);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +73,7 @@ class _EventPageState extends State<EventPage> {
         backgroundColor: Color.fromARGB(255, 247, 228, 162),
       );
     } else {
-      Get.to(() => EventInsert(selectedDay: selectedDay));
+      Get.to(() => EventInsert(selectedDay: selectedDay, onChangeTheme: _changeThemeMode,));
     }
   }
 
