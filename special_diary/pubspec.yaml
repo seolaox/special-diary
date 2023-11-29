@@ -116,9 +116,9 @@ flutter:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-    - family: EarlyFontDiary
+    - family: GangwonEduBold
       fonts:
-        - asset: fonts/EarlyFontDiary.ttf
+        - asset: fonts/GangwonEduBold.ttf
         # - asset: fonts/TrajanPro_Bold.ttf
         #   weight: 700
   #
