@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
         colorSchemeSeed: seedColor,
       ),
       theme: ThemeData(
-        fontFamily: 'GangwonEduBold',
+        // fontFamily: 'EF_Diary',
         brightness: Brightness.light,
         useMaterial3: true,
         colorSchemeSeed: seedColor,
