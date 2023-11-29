@@ -116,9 +116,9 @@ flutter:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-    - family: EF_Diary
+    - family: EarlyFontDiary
       fonts:
-        - asset: fonts/EF_Diary.ttf
+        - asset: fonts/EarlyFontDiary.ttf
         # - asset: fonts/TrajanPro_Bold.ttf
         #   weight: 700
   #
