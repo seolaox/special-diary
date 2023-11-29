@@ -111,17 +111,16 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    # - family: EF_Diary
-    #   fonts:
-    #     - asset: fonts/EF_Diary-Regular.ttf
-    #     - asset: fonts/EF_Diary-Italic.ttf
-    #       style: italic
-    - family: EarlyFontDiary
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+    - family: EF_Diary
       fonts:
-        - asset: fonts/EarlyFontDiary.ttf
-        #   weight: 400
-        # - asset: fonts/EarlyFontDiary_Bold.ttf
+        - asset: fonts/EF_Diary.ttf
+        # - asset: fonts/TrajanPro_Bold.ttf
         #   weight: 700
-  
+  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
