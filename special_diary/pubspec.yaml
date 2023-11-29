@@ -116,11 +116,12 @@ flutter:
     #     - asset: fonts/EF_Diary-Regular.ttf
     #     - asset: fonts/EF_Diary-Italic.ttf
     #       style: italic
-    - family: EF_Diary
+    - family: EarlyFontDiary
       fonts:
-        - asset: fonts/EF_Diary.ttf
-        - asset: fonts/EF_Diary_Bold.ttf
-          weight: 700
+        - asset: fonts/EarlyFontDiary.ttf
+        #   weight: 400
+        # - asset: fonts/EarlyFontDiary_Bold.ttf
+        #   weight: 700
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

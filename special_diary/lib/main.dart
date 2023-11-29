@@ -47,6 +47,7 @@ class _MyAppState extends State<MyApp> {
         colorSchemeSeed: seedColor,
       ),
       theme: ThemeData(
+        fontFamily: 'EarlyFontDiary',
         brightness: Brightness.light,
         useMaterial3: true,
         colorSchemeSeed: seedColor,

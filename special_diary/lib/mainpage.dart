@@ -30,15 +30,16 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
-          decoration: const InputDecoration(
-              hintText: '검색어를 입력해 주세요.', suffixIcon: Icon(Icons.search)),
-          onChanged: (value) {
-            setState(() {
-              searchText = value;
-            });
-          },
-        ),
+        title: Image.asset('name'),
+        // title: TextField(
+        //   decoration: const InputDecoration(
+        //       hintText: '검색어를 입력해 주세요.', suffixIcon: Icon(Icons.search)),
+        //   onChanged: (value) {
+        //     setState(() {
+        //       searchText = value;
+        //     });
+        //   },
+        // ),
       ),
       body: FutureBuilder(
           //앱을 키면 db와 연결되어 있는 상태, FutureBuilder는 또 리스트 만들어 쓰지 않고 메모리 만들어 저장된 값 가져가 쓰는거
