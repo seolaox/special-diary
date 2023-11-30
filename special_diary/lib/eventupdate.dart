@@ -8,8 +8,8 @@ import 'package:secret_diary/mainpage.dart';
 
 import 'components/appbarwidget.dart';
 import 'home.dart';
-import 'test/datehandler.dart';
-import 'test/sdiary.dart';
+import 'model/datehandler.dart';
+import 'model/sdiary.dart';
 
 class EventUpdate extends StatefulWidget {
   const EventUpdate({super.key});
@@ -49,6 +49,8 @@ class _EventUpdateState extends State<EventUpdate> {
   @override
   void initState() {
     super.initState();
+
+    
     handler = DatabaseHandler();
     // date = DateTime.now();
     titleController = TextEditingController();
@@ -58,10 +60,10 @@ class _EventUpdateState extends State<EventUpdate> {
     contentController.text = value[2];
     iconweather = getIconString(getIconTypeFromString(value[3]));
     selectedIcon = getIconTypeFromString(value[3]);
-    image = Image.memory(value[6]);
+    image = Image.memory(value[4]);
     presentdate =
-        value[7] != null ? DateTime.parse(value[7].toString()) : DateTime.now();
-    eventUpdateDate = DateTime.parse(value[8]);
+        value[5] != null ? DateTime.parse(value[5].toString()) : DateTime.now();
+    eventUpdateDate = DateTime.parse(value[6]);
     checkGallery = false;
     date = DateTime.now();
     selectedDate =  eventUpdateDate ?? date; // widget을 통해 selectedDay 값을 받아오기
@@ -328,7 +330,7 @@ class _EventUpdateState extends State<EventUpdate> {
           color: Color.fromARGB(255, 212, 221, 247),
           image: imageFile == null
               ? DecorationImage(
-                  image: MemoryImage(value[6]),
+                  image: MemoryImage(value[4]),
                   fit: BoxFit.cover,
                 )
               : DecorationImage(
@@ -358,10 +360,8 @@ updateAction() async {
       title: title,
       content: content,
       weathericon: getIconString(selectedIcon),
-      lat: value[4],
-      lng: value[5],
       image: getImage,
-      actiondate: value[7],
+      actiondate: value[5],
       eventdate: DateFormat('yyyy-MM-dd').format(eventDate), // DateTime을 String으로 변환
     );
 
@@ -373,10 +373,8 @@ updateAction() async {
       title: title,
       content: content,
       weathericon: getIconString(selectedIcon),
-      lat: value[4],
-      lng: value[5],
-      image: value[6],
-      actiondate: value[7],
+      image: value[4],
+      actiondate: value[5],
       eventdate: DateFormat('yyyy-MM-dd').format(eventDate), // DateTime을 String으로 변환
     );
     await handler.updateSdiary(sdiaryUpdate);
@@ -386,9 +384,9 @@ updateAction() async {
   _showDialog() {
     Get.defaultDialog(
         title: '수정결과',
-        titleStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+        titleStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.black, ),
         middleText: '수정이 완료되었습니다.',
-        middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+        middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black, ),
         barrierDismissible: false,
         backgroundColor: Color.fromARGB(255, 217, 203, 252),
         actions: [

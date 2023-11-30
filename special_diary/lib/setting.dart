@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:secret_diary/components/appbarwidget.dart';
+import 'package:secret_diary/service.dart';
 import 'package:secret_diary/tutorial.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -60,8 +61,10 @@ class _SettingState extends State<Setting> {
               children: [
                 SizedBox(width: 10,),
                 Text('서비스 이용 약관',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
-                SizedBox(width: 225,),
-                Icon(Icons.arrow_forward_ios)
+                SizedBox(width: 230,),
+                IconButton(
+                  onPressed: () => Get.to(()=>TermsOfService()), 
+                  icon: Icon(Icons.arrow_forward_ios),)
               ],
             ),
             Divider(thickness: 0.1,color: Colors.grey[450],),
@@ -69,7 +72,7 @@ class _SettingState extends State<Setting> {
               children: [
                 SizedBox(width: 10,),
                 Text('Tutorial',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
-                SizedBox(width: 272,),
+                SizedBox(width: 291,),
                 IconButton(
                   onPressed: () {
                     Get.to(()=> Tutorial());
@@ -86,7 +89,7 @@ class _SettingState extends State<Setting> {
                 Text('테마 변경',
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
-                SizedBox(width: 273),
+                SizedBox(width: 285),
                 IconButton(
                   onPressed: () {
                     setState(() {
@@ -114,7 +117,6 @@ class _SettingState extends State<Setting> {
                 ),
               ],
             ),
-
             Divider(thickness: 0.1,color: Colors.grey[450],),
           ],
         ),

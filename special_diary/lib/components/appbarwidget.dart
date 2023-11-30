@@ -8,7 +8,7 @@ class AppbarTitle extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Special Diary',style: TextStyle(fontSize: 25,fontWeight: FontWeight.w700),),
+        Text('My Special Diary',style: TextStyle( fontSize: 28,fontWeight: FontWeight.w700),),
         SizedBox(width: 5,),
         Icon(Icons.volunteer_activism)
       ],

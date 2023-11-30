@@ -42,12 +42,13 @@ class _MyAppState extends State<MyApp> {
       ],
       themeMode: _themeMode,
       darkTheme: ThemeData(
+        fontFamily: 'GangwonEduBold',
         brightness: Brightness.dark,
         useMaterial3: true,
         colorSchemeSeed: seedColor,
       ),
       theme: ThemeData(
-        // fontFamily: 'EF_Diary',
+        fontFamily: 'GangwonEduBold',
         brightness: Brightness.light,
         useMaterial3: true,
         colorSchemeSeed: seedColor,

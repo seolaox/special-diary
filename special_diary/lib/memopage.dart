@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'test/datehandler.dart';
-import 'test/memopad.dart';
+
+import 'model/datehandler.dart';
+import 'model/memopad.dart';
 
 class MemoPage extends StatefulWidget {
   const MemoPage({super.key});
@@ -24,7 +25,7 @@ class _MemoPageState extends State<MemoPage> {
     super.initState();
     scrollController = ScrollController();
     memoController = TextEditingController();
-    memoModifyController = TextEditingController(); 
+    memoModifyController = TextEditingController();
     handler = DatabaseHandler();
     handler.initializeMemoPadDB();
   }
@@ -35,7 +36,7 @@ class _MemoPageState extends State<MemoPage> {
       appBar: AppBar(
         title: TextField(
           decoration: InputDecoration(
-            hintText: '검색어를 입력해 주세요.', suffixIcon: Icon(Icons.search)),
+              hintText: '검색어를 입력해 주세요.', suffixIcon: Icon(Icons.search)),
           onChanged: (value) {
             setState(() {
               searchText = value;
@@ -47,9 +48,19 @@ class _MemoPageState extends State<MemoPage> {
         future: handler.queryMemoPad(),
         builder: (BuildContext context, AsyncSnapshot<List<MemoPad>> snapshot) {
           if (snapshot.hasData) {
-            return ListView.builder(
-              // reverse: true, // 역순으로 정렬
+            snapshot.data!.sort((a, b) {
+              // memoinsertdate를 기준으로 내림차순으로 정렬
+              final aDate = a.memoinsertdate;
+              final bDate = b.memoinsertdate;
 
+              if (aDate != null && bDate != null) {
+                return bDate.compareTo(aDate);
+              } else {
+                return 0;
+              }
+            });
+
+            return ListView.builder(
               itemCount: snapshot.data?.length,
               itemBuilder: (BuildContext context, int index) {
                 if (searchText.isNotEmpty &&
@@ -69,29 +80,26 @@ class _MemoPageState extends State<MemoPage> {
                             label: 'Edit',
                             onPressed: (context) {
                               updateBottomSheet(snapshot.data![index]);
-                                                },
+                            },
                           )
                         ]),
-                        endActionPane: ActionPane(
-                          motion: BehindMotion(), //
-                          children: [
-                            SlidableAction(
-                              //버튼 눌렀을때 action
-                              backgroundColor: const Color.fromARGB(255, 255, 158, 151),
-                              icon: Icons.delete,
-                              label: 'Delete',
-                              onPressed: (context)async {
-                              
-                                await handler
-                              .deleteMemoPad(snapshot.data![index].id!);
+                    endActionPane: ActionPane(
+                        motion: BehindMotion(), //
+                        children: [
+                          SlidableAction(
+                            //버튼 눌렀을때 action
+                            backgroundColor:
+                                const Color.fromARGB(255, 255, 158, 151),
+                            icon: Icons.delete,
+                            label: 'Delete',
+                            onPressed: (context) async {
+                              await handler
+                                  .deleteMemoPad(snapshot.data![index].id!);
                               snapshot.data!.remove(snapshot.data![index]);
-                              setState(() {
-                                
-                              });
-                              },
-                            ),
-                          ]),
-
+                              setState(() {});
+                            },
+                          ),
+                        ]),
                     child: GestureDetector(
                       onTap: () {
                         updateBottomSheet(snapshot.data![index]);
@@ -109,17 +117,22 @@ class _MemoPageState extends State<MemoPage> {
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
                                 child: Text(
-                                    snapshot.data![index].memoinsertdate != null
-                                        ? DateFormat('yyyy-MM-dd').format(
-                                            snapshot.data![index].memoinsertdate!)
-                                        : 'No Date'),
+                                  snapshot.data![index].memoinsertdate != null
+                                      ? DateFormat('yyyy-MM-dd').format(
+                                          snapshot.data![index].memoinsertdate!)
+                                      : 'No Date',
+                                  style: TextStyle(fontSize: 15),
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(8, 5, 0, 0),
                                 child: Text(
                                   snapshot.data![index].memo,
                                   style: TextStyle(
-                                      fontSize: 15, fontWeight: FontWeight.bold),
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold),
+                                  maxLines: 1, // 한 줄을 초과하면 말줄임표(ellipsis)를 표시
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ],
@@ -152,16 +165,14 @@ class _MemoPageState extends State<MemoPage> {
     setState(() {});
   }
 
-  insertBottomSheet(){
-    Get.bottomSheet(
-      Container(
+  insertBottomSheet() {
+    Get.bottomSheet(Container(
       width: 500,
       height: 700,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
       ),
-
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -173,6 +184,7 @@ class _MemoPageState extends State<MemoPage> {
             padding: const EdgeInsets.all(3.0),
             child: TextField(
               controller: memoController,
+              maxLength: 200,
               decoration: const InputDecoration(
                 hintText: '내용을 입력해 주세요. ',
                 enabledBorder: OutlineInputBorder(
@@ -204,7 +216,7 @@ class _MemoPageState extends State<MemoPage> {
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(100, 50),
-              backgroundColor:  Color.fromARGB(255, 151, 161, 252),
+              backgroundColor: Color.fromARGB(255, 151, 161, 252),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -220,8 +232,7 @@ class _MemoPageState extends State<MemoPage> {
           ),
         ],
       ),
-    )
-    );
+    ));
     memoController.clear();
   }
 
@@ -232,17 +243,13 @@ class _MemoPageState extends State<MemoPage> {
     var memoInsert = MemoPad(memo: memo, memoinsertdate: DateTime.now());
 
     await handler.insertMemoPad(memoInsert);
-                Get.back();
-                Get.back();
+    Get.back();
+    Get.back();
   }
 
-
-
-
-  updateBottomSheet(MemoPad memo){
+  updateBottomSheet(MemoPad memo) {
     memoModifyController.text = memo.memo;
-    Get.bottomSheet(
-      Container(
+    Get.bottomSheet(Container(
       width: 500,
       height: 700,
       decoration: BoxDecoration(
@@ -260,6 +267,7 @@ class _MemoPageState extends State<MemoPage> {
             padding: const EdgeInsets.all(3.0),
             child: TextField(
               controller: memoModifyController,
+              maxLength: 200,
               decoration: const InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(),
@@ -277,7 +285,7 @@ class _MemoPageState extends State<MemoPage> {
               keyboardType: TextInputType.multiline,
               maxLines: 13,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 18,
               ),
             ),
           ),
@@ -306,29 +314,16 @@ class _MemoPageState extends State<MemoPage> {
           ),
         ],
       ),
-      )
-    );
+    ));
   }
 
   updateAction(int memoId) async {
     //순서가 필요할때 무조건 async
-  String memo = memoModifyController.text;
-  var memoUpdate = MemoPad(id: memoId, memo: memo, memoinsertdate: DateTime.now());
-  await handler.updateMemoPad(memoUpdate);
-                Get.back();
-                Get.back();
-
-    // var memoUpdate = MemoPad(memo: memo, memoinsertdate: DateTime.now());
-
-    // await handler.updateMemoPad(memoUpdate);
-
-
+    String memo = memoModifyController.text;
+    var memoUpdate =
+        MemoPad(id: memoId, memo: memo, memoinsertdate: DateTime.now());
+    await handler.updateMemoPad(memoUpdate);
+    Get.back();
+    Get.back();
   }
-
-
-
-
-
-
-
 } //END

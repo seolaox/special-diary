@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:secret_diary/maplocalview.dart';
+import 'package:secret_diary/eventdetail.dart';
 import 'eventupdate.dart';
-import 'test/datehandler.dart';
-import 'test/sdiary.dart';
+import 'model/datehandler.dart';
+import 'model/sdiary.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -30,16 +30,15 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset('name'),
-        // title: TextField(
-        //   decoration: const InputDecoration(
-        //       hintText: '검색어를 입력해 주세요.', suffixIcon: Icon(Icons.search)),
-        //   onChanged: (value) {
-        //     setState(() {
-        //       searchText = value;
-        //     });
-        //   },
-        // ),
+        title: TextField(
+          decoration: const InputDecoration(
+              hintText: '검색어를 입력해 주세요.', suffixIcon: Icon(Icons.search)),
+          onChanged: (value) {
+            setState(() {
+              searchText = value;
+            });
+          },
+        ),
       ),
       body: FutureBuilder(
           //앱을 키면 db와 연결되어 있는 상태, FutureBuilder는 또 리스트 만들어 쓰지 않고 메모리 만들어 저장된 값 가져가 쓰는거
@@ -48,6 +47,17 @@ class _MainPageState extends State<MainPage> {
               (BuildContext context, AsyncSnapshot<List<Sdiary>> snapshot) {
             if (snapshot.hasData) {
               //snapshot통해 화면구성
+              snapshot.data!.sort((a, b) {
+                //eventdate를 기준으로 내림차순으로 정렬
+                final aDate = DateTime.tryParse(a.eventdate ?? '');
+                final bDate = DateTime.tryParse(b.eventdate ?? '');
+
+                if (aDate != null && bDate != null) {
+                  return bDate.compareTo(aDate);
+                } else {
+                  return 0;
+                }
+              });
               return ListView.builder(
                 // reverse: true,
                 itemCount: snapshot.data?.length, //async타입이라 ?로
@@ -65,17 +75,16 @@ class _MainPageState extends State<MainPage> {
                         children: [
                           SlidableAction(
                             //버튼 눌렀을때 action
-                            backgroundColor: const Color.fromARGB(255, 190, 201, 244),
+                            backgroundColor:
+                                const Color.fromARGB(255, 190, 201, 244),
                             icon: Icons.edit,
                             label: 'Edit',
                             onPressed: (context) {
-                              Get.to(const EventUpdate(), arguments: [
+                              Get.to(() => EventUpdate(), arguments: [
                                 snapshot.data![index].id,
                                 snapshot.data![index].title,
                                 snapshot.data![index].content,
                                 snapshot.data![index].weathericon,
-                                snapshot.data![index].lat,
-                                snapshot.data![index].lng,
                                 snapshot.data![index].image,
                                 snapshot.data![index].actiondate,
                                 snapshot.data![index].eventdate
@@ -94,13 +103,15 @@ class _MainPageState extends State<MainPage> {
                             icon: Icons.delete,
                             label: 'Delete',
                             onPressed: (context) async {
-                              Get.bottomSheet(
-                                Container(
+                              Get.bottomSheet(Container(
                                 width: 500,
                                 height: 250,
                                 decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.vertical(top: Radius.circular(30.0)),
-                                color: Theme.of(context).colorScheme.secondaryContainer,
+                                  borderRadius: const BorderRadius.vertical(
+                                      top: Radius.circular(30.0)),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondaryContainer,
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -117,22 +128,38 @@ class _MainPageState extends State<MainPage> {
                                           Get.back();
                                         },
                                         style: ElevatedButton.styleFrom(
-                                          minimumSize: const Size(400, 60),
-                                          // backgroundColor: Color.fromARGB(255, 146, 148, 255),
-                                          backgroundColor: Theme.of(context).colorScheme.errorContainer
-                                        ),
-                                        child: const Text('DELETE', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),)),
-                                        const SizedBox(height: 10,),
+                                            minimumSize: const Size(400, 60),
+                                            // backgroundColor: Color.fromARGB(255, 146, 148, 255),
+                                            backgroundColor: Theme.of(context)
+                                                .colorScheme
+                                                .errorContainer),
+                                        child: const Text(
+                                          'DELETE',
+                                          style: TextStyle(
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
+                                        )),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
                                     ElevatedButton(
                                         onPressed: () {
                                           Get.back();
                                         },
                                         style: ElevatedButton.styleFrom(
-                                          minimumSize: const Size(400, 60),
-                                          // backgroundColor: Color.fromARGB(255, 146, 148, 255),
-                                          backgroundColor: Theme.of(context).colorScheme.surface
-                                        ),
-                                        child: const Text('CANCEL', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),)),
+                                            minimumSize: const Size(400, 60),
+                                            // backgroundColor: Color.fromARGB(255, 146, 148, 255),
+                                            backgroundColor: Theme.of(context)
+                                                .colorScheme
+                                                .surface),
+                                        child: const Text(
+                                          'CANCEL',
+                                          style: TextStyle(
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
+                                        )),
                                   ],
                                 ),
                               ));
@@ -140,13 +167,15 @@ class _MainPageState extends State<MainPage> {
                           ),
                         ]),
                     child: GestureDetector(
-                      onLongPress: () {
-                        Get.to(const MapLocationView(), arguments: [
+                      onTap: () {
+                        Get.to(() => EventDetail(), arguments: [
                           snapshot.data![index].id,
                           snapshot.data![index].title,
-                          snapshot.data![index].lat,
-                          snapshot.data![index].lng,
-                          snapshot.data![index].eventdate,
+                          snapshot.data![index].content,
+                          snapshot.data![index].weathericon,
+                          snapshot.data![index].image,
+                          snapshot.data![index].actiondate,
+                          snapshot.data![index].eventdate
                         ])!
                             .then((value) => reloadData());
                       },
@@ -160,7 +189,7 @@ class _MainPageState extends State<MainPage> {
                               children: [
                                 SizedBox(
                                   width: 420, // 이미지의 고정된 너비
-                                  height: 200, // 컨테이너의 높이를 꽉 채우도록 설정
+                                  height: 235, // 컨테이너의 높이를 꽉 채우도록 설정
                                   child: Image.memory(
                                     snapshot.data![index].image,
                                     fit: BoxFit.cover,
@@ -172,13 +201,11 @@ class _MainPageState extends State<MainPage> {
                                       const EdgeInsets.fromLTRB(270, 0, 0, 0),
                                   child: Row(
                                     children: [
-                                      Text(snapshot.data![index].eventdate ??
-                                          'No Date'),
-                                      // Text(snapshot.data![index].eventdate !=
-                                      //         null
-                                      //     ? DateFormat('yyyy-MM-dd').format(
-                                      //         snapshot.data![index].actiondate!)
-                                      //     : 'No Date'),
+                                      Text(
+                                        snapshot.data![index].eventdate ??
+                                            'No Date',
+                                        style: TextStyle(fontSize: 16),
+                                      ),
                                       IconButton(
                                         onPressed: () {},
                                         iconSize: 24,
@@ -192,12 +219,16 @@ class _MainPageState extends State<MainPage> {
                                 Text(
                                   snapshot.data![index].title,
                                   style: const TextStyle(
-                                      fontSize: 17,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.bold),
+                                  maxLines: 1, // 한 줄을 초과하면 말줄임표(ellipsis)를 표시
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
                                   snapshot.data![index].content,
-                                  style: const TextStyle(fontSize: 15),
+                                  style: const TextStyle(fontSize: 17),
+                                  maxLines: 2, // 한 줄을 초과하면 말줄임표(ellipsis)를 표시
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ],
                             ),

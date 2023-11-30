@@ -66,19 +66,21 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              Image.asset('images/homeview.png',width: 150,height: 300,),
-              Image.asset('images/eventsearch.png',width: 150,height: 300,),
+              Image.asset('images/homeview.png',width: 130,height: 270,),
+              Image.asset('images/eventsearch.png',width: 130,height: 270,),
+              Image.asset('images/eventdetail.png',width: 130,height: 270,),
                 ],
               ),
               SizedBox(height: 10,),
               Text('앱을 실행할 때 구성되는 첫 화면입니다.'),
               Text('입력한 내용을 검색하면 키워드 검색으로 해당 기록물만 띄워줍니다.'),
+              Text('기록물을 클릭 시 입력한 내용을 자세히 볼 수 있습니다.'),
               SizedBox(height: 50,),
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
               Image.asset('images/eventupdate.png',width: 150,height: 300,),
-              Image.asset('images/eventpicker.png',width: 150,height: 300,),
+              Image.asset('images/datepicker.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -88,36 +90,21 @@ class _TutorialState extends State<Tutorial> {
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              Image.asset('images/eventdeleted.png',width: 150,height: 300,),
-              Image.asset('images/eventdeletesheet.png',width: 150,height: 300,),
+              Image.asset('images/eventdelete.png',width: 150,height: 300,),
+              Image.asset('images/deletesheet.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
               Text('해당 카드를 왼쪽으로 밀고 delete를 클릭 시 삭제할 수 있습니다.'),
               SizedBox(height: 60,),
-              Text('4. Map 화면',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
-                    Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Image.asset('images/mapview.png',width: 150,height: 300,),
-                  Column(
               
-                    children: [
-                      Text('해당 카드를 길게 누르면'),
-                      Text('기록한 곳의 장소를'),
-                      Text('띄워줍니다.'),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 60,),
-              Text('5. Memo입력',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
+              Text('4. Memo입력',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              // Image.asset('images/memoinsert.png',width: 130,height: 270,),
-              // Image.asset('images/memoupdate.png',width: 130,height: 270,),
-              // Image.asset('images/memodelete.png',width: 130,height: 270,),
+              Image.asset('images/memoinsert.png',width: 130,height: 270,),
+              Image.asset('images/memoupdate.png',width: 130,height: 270,),
+              Image.asset('images/memodelete.png',width: 130,height: 270,),
                 ],
               ),
               SizedBox(height: 10,),
@@ -125,16 +112,30 @@ class _TutorialState extends State<Tutorial> {
               Text('해당 카드를 클릭하거나 오른쪽으로 밀면 수정,'),
               Text('왼쪽으로 밀면 삭제할 수 있습니다.'),
               SizedBox(height: 50,),
-              Text('6. Theme 변경',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
+              Text('5. Theme 변경',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-              // Image.asset('images/lighttheme.png',width: 150,height: 300,),
-              // Image.asset('images/darktheme.png',width: 150,height: 300,),
+              Image.asset('images/lighttheme.png',width: 150,height: 300,),
+              Image.asset('images/darktheme.png',width: 150,height: 300,),
                 ],
               ),
               SizedBox(height: 10,),
               Text('해, 달 이모티콘을 누를 시 테마 변경이 가능합니다.'),
+              SizedBox(height: 50,),
+              Text('6. 사진 권한',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
+                Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              Image.asset('images/photoaccess.png',width: 150,height: 300,),
+                ],
+              ),
+              SizedBox(height: 10,),
+              Text('사진 권한이 없다는 창이 뜨면'),
+              Text('설정 → 개인정보 보호 및 보안 → 사진'),
+              Text('App의 접근 권한을 바꿔주세요.'),
+              SizedBox(height: 50,),
+              Text('글씨체제작: 강원도교육청X혜움디자인',style: TextStyle(fontSize: 10),),
               SizedBox(height: 70,),
               
               

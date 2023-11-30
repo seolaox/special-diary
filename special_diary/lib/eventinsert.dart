@@ -3,15 +3,14 @@ import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:secret_diary/components/appbarwidget.dart';
 import 'package:secret_diary/home.dart';
+import 'package:secret_diary/model/datehandler.dart';
 
-import 'test/datehandler.dart';
-import 'test/sdiary.dart';
+import 'model/sdiary.dart';
+
 
 class EventInsert extends StatefulWidget {
   final Function(ThemeMode) onChangeTheme;
@@ -38,8 +37,6 @@ class _EventInsertState extends State<EventInsert> {
   late DatabaseHandler handler;
   late TextEditingController titleController;
   late TextEditingController contentController;
-  late MapController mapController;
-  late Position currentPosition;
   late bool canRun;
   late double latData;
   late double lngData;
@@ -64,13 +61,11 @@ class _EventInsertState extends State<EventInsert> {
     handler = DatabaseHandler();
     titleController = TextEditingController();
     contentController = TextEditingController();
-    mapController = MapController();
     canRun = false;
     // date = DateTime.now();
     selectedDate = widget.selectedDay ?? date; // widget을 통해 selectedDay 값을 받아오기
     formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
 
-    checkLocationPermission();
   }
 
 
@@ -106,10 +101,9 @@ class _EventInsertState extends State<EventInsert> {
                   children: [
                     Icon(Icons.event_available_outlined),
                     SizedBox(width: 5,),
-                    Text(formattedDate,style: TextStyle(fontWeight: FontWeight.w700),),
+                    Text(formattedDate,style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),),
                   ],
                 ),
-                // child: Text('기념일 : ' + formattedDate'),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(270, 0, 0, 0),
@@ -232,7 +226,7 @@ class _EventInsertState extends State<EventInsert> {
                   ),
                   keyboardType: TextInputType.text,
                   style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+                      fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
@@ -257,7 +251,7 @@ class _EventInsertState extends State<EventInsert> {
                   keyboardType: TextInputType.multiline,
                   maxLines: 13,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
                   ),
                 ),
               ),
@@ -278,22 +272,28 @@ class _EventInsertState extends State<EventInsert> {
               SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-
-                    if (titleController.text.isEmpty ||
-                          contentController.text.isEmpty ||
-                          selectedIcon == null ||
-                          imageFile == null
-                          ) {
+                  
+                    if(titleController.text.isEmpty ||
+                          contentController.text.isEmpty){
                           Get.snackbar(
-                          "ERROR",
+                          "ERROR", 
                           "모든 항목을 입력해 주세요.",
                           snackPosition: SnackPosition.BOTTOM,
                           duration: Duration(seconds: 2),
+                          colorText: Colors.black,
                           backgroundColor: Color.fromARGB(255, 247, 228, 162),
                         );
-                              } else {
+                          }else if(imageFile == null){
+                            Get.snackbar(
+                          "ERROR",
+                          "사진을 선택해 주세요.",
+                          snackPosition: SnackPosition.BOTTOM,
+                          duration: Duration(seconds: 2),
+                          colorText: Colors.black,
+                          backgroundColor: Color.fromARGB(255, 248, 201, 168),);
+                          }else{
                               insertAction();
-                              }
+                          }
                   
 
                 },
@@ -326,56 +326,6 @@ class _EventInsertState extends State<EventInsert> {
   }
 //---FUNCTIONS---
 
-//Map뜨기전에 동작하는 것 - await를 통해서 허가받을때까지 대기
-  checkLocationPermission() async {
-    LocationPermission permission = await Geolocator.checkPermission();
-    //await하니까 뒤에 segment 함께 보임
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      //안쓴다 그러면 return
-      return;
-    }
-
-    if (permission == LocationPermission.whileInUse ||
-        permission == LocationPermission.always) {
-      //사용할때만 쓰거나 항상 쓴다그러면 위치 값 받아오자
-      getCurrentLocation();
-    }
-  }
-
-  getCurrentLocation() async {
-    await Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.best,
-            forceAndroidLocationManager: true)
-        .then((Position) {
-      currentPosition = Position;
-      canRun = true;
-      latData = currentPosition.latitude;
-      lngData = currentPosition.longitude;
-      setState(() {});
-      print(latData.toString() + ":" + lngData.toString());
-    }).catchError((e) {
-      print(e);
-    });
-  }
-
-  // // 이미지 가져오는 함수
-  // getImageFromGallery(ImageSource imageSource) async {
-  //   final XFile? pickedFile = await picker.pickImage(
-  //       source: imageSource); //카메라에서 찍고, 갤러리에서 선택된게 pickedFile로 들어감
-  //   if (pickedFile == null) {
-  //     //취소할 경우 처리
-  //     return;
-  //   } else {
-  //     imageFile =
-  //         XFile(pickedFile.path); //imageFile에는 경로를 넣어놨는데 xfile의 경로를 알려주는거
-  //     setState(() {});
-  //   }
-  // }
-
   
   // 이미지 가져오는 함수
 getImageFromGallery(ImageSource imageSource) async {
@@ -403,14 +353,14 @@ void showPhotoAccessDeniedDialog() {
   // 사용자에게 사진 액세스 권한이 필요하다는 메시지를 표시
   Get.defaultDialog(
     title: '사진 액세스 거부됨',
-    titleStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+    titleStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: Colors.black),
     middleText: '사진 액세스 권한이 필요합니다. \n 설정에서 권한을 부여해주세요.',
-    middleTextStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
+    middleTextStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: Colors.black),
     backgroundColor: Theme.of(context).colorScheme.errorContainer,
     actions: [TextButton(
       onPressed: () {
         Get.back();
-      }, child: Text('Exit',style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900,color: Color.fromARGB(255, 246, 144, 144)),))]
+      }, child: Text('Exit',style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900,color: Color.fromARGB(255, 253, 109, 109),),))]
     );
 
 }
@@ -457,8 +407,6 @@ insertAction() async {
   String eventDate = formattedDate;
 
   var sdiaryInsert = Sdiary(
-    lat: latData,
-    lng: lngData,
     title: title,
     content: content,
     weathericon: getIconString(selectedIcon),
@@ -475,9 +423,9 @@ insertAction() async {
   _showDialog() {
     Get.defaultDialog(
         title: '입력결과', 
-        titleStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+        titleStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.black, ),
         middleText: '입력이 완료되었습니다.',
-        middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+        middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black, ),
         barrierDismissible: false,
         backgroundColor: Color.fromARGB(255, 210, 220, 255),
         // backgroundColor: Color.fromARGB(255, 210, 220, 255),
@@ -515,8 +463,8 @@ insertAction() async {
 
 disDatePicker()async{
     //캘린더 날짜 범위 설정하기
-   int firstYear = date.year -1; //전년도 까지만 보기
-   int lastYear = firstYear + 5; //5년뒤 까지 보기
+   int firstYear = date.year -23; //전년도 까지만 보기
+   int lastYear = firstYear + 100; //5년뒤 까지 보기
    final selectedDate = await showDatePicker(  //showDatePicker 화면을 구성하고 사용자가 selectedDate선택해서 값 받아올때까지 await 기다려
     //selectedDate는 showDatePicker에서 가져온 데이터라 String이 아님
     context: context,
