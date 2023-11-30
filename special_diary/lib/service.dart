@@ -8,7 +8,7 @@ class TermsOfService extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[300],
+        backgroundColor: const Color.fromARGB(255, 236, 234, 234),
         title: const Text('서비스 이용 약관', style: TextStyle(fontWeight: FontWeight.w600),),
       ),
       body: const Center(
