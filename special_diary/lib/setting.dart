@@ -57,29 +57,40 @@ class _SettingState extends State<Setting> {
               ],
             ),
             Divider(thickness: 0.1,color: Colors.grey[450],),
-            Row(
-              children: [
-                SizedBox(width: 10,),
-                Text('서비스 이용 약관',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
-                SizedBox(width: 230,),
-                IconButton(
-                  onPressed: () => Get.to(()=>TermsOfService()), 
-                  icon: Icon(Icons.arrow_forward_ios),)
-              ],
+            GestureDetector(
+              onTap: () {
+                Get.to(()=>TermsOfService());
+              },
+              child: Row(
+                children: [
+                  SizedBox(width: 10,),
+                  Text('서비스 이용 약관',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
+                  SizedBox(width: 230,),
+                  IconButton(
+                    onPressed: () => Get.to(()=>TermsOfService()), 
+                    icon: Icon(Icons.arrow_forward_ios),)
+                ],
+              ),
             ),
             Divider(thickness: 0.1,color: Colors.grey[450],),
-              Row(
-              children: [
-                SizedBox(width: 10,),
-                Text('Tutorial',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
-                SizedBox(width: 291,),
-                IconButton(
-                  onPressed: () {
-                    Get.to(()=> Tutorial());
-                  }, 
-                  icon: Icon(Icons.arrow_forward_ios))
-              ],
-            ),
+              GestureDetector(
+                onTap: () {
+                Get.to(()=>Tutorial());
+              },
+
+                child: Row(
+                children: [
+                  SizedBox(width: 10,),
+                  Text('Tutorial',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
+                  SizedBox(width: 291,),
+                  IconButton(
+                    onPressed: () {
+                      Get.to(()=> Tutorial());
+                    }, 
+                    icon: Icon(Icons.arrow_forward_ios))
+                ],
+                          ),
+              ),
             Divider(thickness: 0.1,color: Colors.grey[450],),
 
 

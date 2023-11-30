@@ -136,6 +136,7 @@ class _TutorialState extends State<Tutorial> {
               Text('App의 접근 권한을 바꿔주세요.'),
               SizedBox(height: 50,),
               Text('글씨체제작: 강원도교육청X혜움디자인',style: TextStyle(fontSize: 10),),
+              Text('아이콘제작: Freepik 제작 아이콘',style: TextStyle(fontSize: 10),),
               SizedBox(height: 70,),
               
               

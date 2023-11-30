@@ -72,6 +72,9 @@ dependencies:
   #shared preferences
   shared_preferences: ^2.2.2
 
+  #splash 실행화면
+  flutter_native_splash: ^2.3.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -9,7 +9,8 @@ import 'model/datehandler.dart';
 import 'model/sdiary.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+    final Function(ThemeMode) onChangeTheme;
+  const MainPage({super.key, required this.onChangeTheme});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -18,6 +19,12 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   late DatabaseHandler handler;
   String searchText = '';
+
+        _changeThemeMode(ThemeMode themeMode) {
+    //SettingPage에서도 themeMode사용하도록 widget설정
+    widget.onChangeTheme(themeMode);
+  }
+
 
   @override
   void initState() {
@@ -58,7 +65,26 @@ class _MainPageState extends State<MainPage> {
                   return 0;
                 }
               });
-              return ListView.builder(
+              
+              
+              return 
+              (snapshot.data?.isEmpty ?? true)
+              ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('하단에 '),
+                    Icon(Icons.event_note),
+                    Text('아이콘을 클릭하여'),
+                      ],
+                    ),
+                    Text('일정을 만들어 주세요.'),
+                  ],
+                ))
+                : ListView.builder(
                 // reverse: true,
                 itemCount: snapshot.data?.length, //async타입이라 ?로
                 itemBuilder: (BuildContext context, int index) {
@@ -80,7 +106,7 @@ class _MainPageState extends State<MainPage> {
                             icon: Icons.edit,
                             label: 'Edit',
                             onPressed: (context) {
-                              Get.to(() => EventUpdate(), arguments: [
+                              Get.to(() => EventUpdate(onChangeTheme: _changeThemeMode), arguments: [
                                 snapshot.data![index].id,
                                 snapshot.data![index].title,
                                 snapshot.data![index].content,
@@ -129,7 +155,6 @@ class _MainPageState extends State<MainPage> {
                                         },
                                         style: ElevatedButton.styleFrom(
                                             minimumSize: const Size(400, 60),
-                                            // backgroundColor: Color.fromARGB(255, 146, 148, 255),
                                             backgroundColor: Theme.of(context)
                                                 .colorScheme
                                                 .errorContainer),
@@ -168,7 +193,7 @@ class _MainPageState extends State<MainPage> {
                         ]),
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(() => EventDetail(), arguments: [
+                        Get.to(() => EventDetail(onChangeTheme: _changeThemeMode), arguments: [
                           snapshot.data![index].id,
                           snapshot.data![index].title,
                           snapshot.data![index].content,
@@ -189,7 +214,7 @@ class _MainPageState extends State<MainPage> {
                               children: [
                                 SizedBox(
                                   width: 420, // 이미지의 고정된 너비
-                                  height: 235, // 컨테이너의 높이를 꽉 채우도록 설정
+                                  height: 225, // 컨테이너의 높이를 꽉 채우도록 설정
                                   child: Image.memory(
                                     snapshot.data![index].image,
                                     fit: BoxFit.cover,
@@ -208,7 +233,7 @@ class _MainPageState extends State<MainPage> {
                                       ),
                                       IconButton(
                                         onPressed: () {},
-                                        iconSize: 24,
+                                        iconSize: 22,
                                         icon: getIconWidget(
                                             snapshot.data![index].weathericon ??
                                                 ''),
@@ -227,7 +252,7 @@ class _MainPageState extends State<MainPage> {
                                 Text(
                                   snapshot.data![index].content,
                                   style: const TextStyle(fontSize: 17),
-                                  maxLines: 2, // 한 줄을 초과하면 말줄임표(ellipsis)를 표시
+                                  maxLines: 1, // 한 줄을 초과하면 말줄임표(ellipsis)를 표시
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ],

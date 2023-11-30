@@ -206,7 +206,7 @@ class _EventInsertState extends State<EventInsert> {
               ),
 
               Padding(
-                padding: const EdgeInsets.fromLTRB(3, 10, 3, 3),
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 3),
                 child: TextField(
                   controller: titleController,
                   decoration: const InputDecoration(
@@ -230,7 +230,7 @@ class _EventInsertState extends State<EventInsert> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(3.0),
+                padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
                 child: TextField(
                   controller: contentController,
                   decoration: const InputDecoration(
@@ -433,7 +433,7 @@ insertAction() async {
         actions: [
           TextButton(
               onPressed: () {
-                Get.offAll(Home(onChangeTheme: _changeThemeMode), arguments: 0); //모두끄고 arguments로 0번째 페이지로 보내기
+                Get.offAll(() => Home(onChangeTheme: _changeThemeMode), arguments: 0); //모두끄고 arguments로 0번째 페이지로 보내기
               },
               child: Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
         ]);

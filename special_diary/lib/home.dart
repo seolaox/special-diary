@@ -66,7 +66,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         physics: const NeverScrollableScrollPhysics(),
         controller: _motionTabBarController,
         children: [
-            const MainPage(),
+            MainPage(onChangeTheme: _changeThemeMode),
             EventPage(onChangeTheme: _changeThemeMode),
             const MemoPage(),
             Setting(onChangeTheme: _changeThemeMode) 

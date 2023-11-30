@@ -12,7 +12,8 @@ import 'model/datehandler.dart';
 import 'model/sdiary.dart';
 
 class EventUpdate extends StatefulWidget {
-  const EventUpdate({super.key});
+    final Function(ThemeMode) onChangeTheme;
+  const EventUpdate({super.key, required this.onChangeTheme});
 
   @override
   State<EventUpdate> createState() => _EventUpdateState();
@@ -44,6 +45,11 @@ class _EventUpdateState extends State<EventUpdate> {
   late DateTime eventUpdateDate;
   late DateTime selectedDate; //날짜변경 버튼 누를 시 선택된 날짜
   late String formattedDate; //전 페이지에서 선택한 날짜
+
+    _changeThemeMode(ThemeMode themeMode) {
+    //SettingPage에서도 themeMode사용하도록 widget설정
+    widget.onChangeTheme(themeMode);
+  }
 
 
   @override
@@ -208,7 +214,7 @@ class _EventUpdateState extends State<EventUpdate> {
 
 
               Padding(
-                padding: const EdgeInsets.fromLTRB(3, 10, 3, 3),
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 3),
                 child: TextField(
                   controller: titleController,
                   decoration: const InputDecoration(
@@ -232,7 +238,7 @@ class _EventUpdateState extends State<EventUpdate> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(3.0),
+                padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
                 child: TextField(
                   controller: contentController,
                   decoration: const InputDecoration(
@@ -392,8 +398,7 @@ updateAction() async {
         actions: [
           TextButton(
               onPressed: () {
-                Get.back();
-                Get.back();
+                Get.offAll(() => Home(onChangeTheme: _changeThemeMode), arguments: 0);
               },
               child: Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
         ]);

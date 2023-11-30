@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:secret_diary/eventupdate.dart' as update;
 import 'package:secret_diary/model/datehandler.dart';
 import 'components/appbarwidget.dart';
 import 'eventinsert.dart';
 
 class EventDetail extends StatefulWidget {
-  const EventDetail({super.key});
+  final Function(ThemeMode) onChangeTheme;
+  const EventDetail({super.key, required this.onChangeTheme});
 
   @override
   State<EventDetail> createState() => _EventDetailState();
@@ -35,6 +37,12 @@ class _EventDetailState extends State<EventDetail> {
   late DateTime selectedDate; //날짜변경 버튼 누를 시 선택된 날짜
   late String formattedDate; //전 페이지에서 선택한 날짜
 
+      _changeThemeMode(ThemeMode themeMode) {
+    //SettingPage에서도 themeMode사용하도록 widget설정
+    widget.onChangeTheme(themeMode);
+  }
+
+
   @override
   void initState() {
     super.initState();
@@ -45,7 +53,6 @@ class _EventDetailState extends State<EventDetail> {
     id = value[0];
     titleController.text = value[1];
     contentController.text = value[2];
-    // iconweather = getIconString(getIconTypeFromString(value[3]));
     selectedIcon = getIconTypeFromString(value[3]);
     image = Image.memory(value[4]);
     presentdate =
@@ -90,7 +97,7 @@ class _EventDetailState extends State<EventDetail> {
                   children: [
                     Text(
                       formattedDate,
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                      style: TextStyle(fontSize: 16),
                     ),
                     SizedBox(
                       width: 5,
@@ -106,7 +113,7 @@ class _EventDetailState extends State<EventDetail> {
               ),
               _buildImagePicker(),
               Padding(
-                padding: const EdgeInsets.fromLTRB(3, 10, 3, 3),
+                padding: const EdgeInsets.fromLTRB(15, 10, 15, 3),
                 child: TextField(
                   controller: titleController,
                   decoration: const InputDecoration(
@@ -130,7 +137,7 @@ class _EventDetailState extends State<EventDetail> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(3.0),
+                padding: const EdgeInsets.fromLTRB(15, 3, 15, 3),
                 child: TextField(
                   controller: contentController,
                   decoration: const InputDecoration(
@@ -155,11 +162,27 @@ class _EventDetailState extends State<EventDetail> {
                   ),
                 ),
               ),
-              // ElevatedButton(
-              //     onPressed: () {
-              //       Get.back();
-              //     },
-              //     child: Text('수정하러가기')),
+              SizedBox(height: 15,),
+              ElevatedButton(
+                onPressed: () {
+                  Get.to(()=> update.EventUpdate(onChangeTheme: _changeThemeMode), arguments: value);
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(100, 50),
+                  backgroundColor:  Color.fromARGB(255, 137, 156, 255),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Text(
+                  "수정 페이지로 이동",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 234, 234, 236),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 50,
               ),
@@ -177,8 +200,8 @@ class _EventDetailState extends State<EventDetail> {
         //
       },
       child: Container(
-        width: 380,
-        height: 250,
+        width: 390,
+        height: 230,
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 212, 221, 247),
           image: imageFile == null

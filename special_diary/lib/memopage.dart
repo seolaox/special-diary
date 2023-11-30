@@ -247,9 +247,10 @@ class _MemoPageState extends State<MemoPage> {
     Get.back();
   }
 
-  updateBottomSheet(MemoPad memo) {
+    updateBottomSheet(MemoPad memo) {
     memoModifyController.text = memo.memo;
-    Get.bottomSheet(Container(
+    Get.bottomSheet(
+      Container(
       width: 500,
       height: 700,
       decoration: BoxDecoration(
@@ -259,6 +260,7 @@ class _MemoPageState extends State<MemoPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          SizedBox(height: 10,),
           Text(
             '- MEMO -',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
@@ -269,6 +271,7 @@ class _MemoPageState extends State<MemoPage> {
               controller: memoModifyController,
               maxLength: 200,
               decoration: const InputDecoration(
+                hintText: '내용을 입력해 주세요. ',
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(),
                   borderRadius: BorderRadius.all(
@@ -285,7 +288,7 @@ class _MemoPageState extends State<MemoPage> {
               keyboardType: TextInputType.multiline,
               maxLines: 13,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
           ),
@@ -315,7 +318,9 @@ class _MemoPageState extends State<MemoPage> {
         ],
       ),
     ));
+    memoController.clear();
   }
+
 
   updateAction(int memoId) async {
     //순서가 필요할때 무조건 async
