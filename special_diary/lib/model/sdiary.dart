@@ -4,7 +4,7 @@ class Sdiary {
   final int? id;
   final String title;
   final String content;
-  final String? weathericon;
+  final String? weathericon; //해당 속성들이 nullable(값이 null이 될 수 있는)한 경우를 나타내기 위해서 ? 사용
   final Uint8List image;
   final DateTime? actiondate;
   final String? eventdate; 

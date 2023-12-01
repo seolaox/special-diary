@@ -132,6 +132,7 @@ class _EventDetailState extends State<EventDetail> {
                     ),
                   ),
                   keyboardType: TextInputType.text,
+                  readOnly: true,
                   style: const TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold),
                 ),
@@ -156,6 +157,7 @@ class _EventDetailState extends State<EventDetail> {
                     ),
                   ),
                   keyboardType: TextInputType.multiline,
+                  readOnly: true,
                   maxLines: 13,
                   style: const TextStyle(
                     fontSize: 16,

@@ -10,7 +10,8 @@ class AppbarTitle extends StatelessWidget {
       children: [
         Text('My Special Diary',style: TextStyle( fontSize: 28,fontWeight: FontWeight.w700),),
         SizedBox(width: 5,),
-        Icon(Icons.volunteer_activism)
+        Icon(Icons.edit_calendar)
+        // Icon(Icons.volunteer_activism)
       ],
     );
   }

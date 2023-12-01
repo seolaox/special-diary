@@ -10,26 +10,29 @@ import 'memopage.dart';
 import 'setting.dart';
 
 class Home extends StatefulWidget {
+  // 테마 변경을 감지하고 처리하기 위한 onChangeTheme 콜백 함수를 받음
   final Function(ThemeMode) onChangeTheme;
-
   const Home({Key? key, required this.onChangeTheme}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
+//탭바의 모션을 위해 SingleTickerProviderStateMixin을 사용
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
-    _changeThemeMode(ThemeMode themeMode) {
     //SettingPage에서도 themeMode사용하도록 widget설정
+    _changeThemeMode(ThemeMode themeMode) {
     widget.onChangeTheme(themeMode);
   }
   
-  late MotionTabBarController _motionTabBarController;
+ 
+  late MotionTabBarController _motionTabBarController; 
 
   @override
   void initState() {
     super.initState();
+     //탭의 상태 및 애니메이션을 관리하는 컨트롤러. 초기에 인덱스 0으로 설정되며, 총 4개의 탭으로 구성
     _motionTabBarController = MotionTabBarController(
       initialIndex: 0,
       length: 4,
@@ -37,6 +40,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     );
   }
 
+//위젯이 dispose될 때 컨트롤러도 함께 dispose되도록 구현
   @override
   void dispose() {
     _motionTabBarController.dispose();
@@ -59,7 +63,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               end: Alignment.topCenter),
               
           ),),
-        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
       ),
       body: TabBarView(

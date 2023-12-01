@@ -40,7 +40,7 @@ class _TutorialState extends State<Tutorial> {
               SizedBox(height: 20,),
               Text('- TUTORIAL -',style: TextStyle(fontSize: 21,fontWeight: FontWeight.w900),),
                             SizedBox(height: 20,),
-              Text('1. 날짜 선택 ',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
+              Text('1. Date 선택 ',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -50,7 +50,7 @@ class _TutorialState extends State<Tutorial> {
               SizedBox(height: 10,),
               Text('기록할 날짜를 지정 후 +버튼을 누르면 입력창으로 이동합니다.',),
               SizedBox(height: 60,),
-              Text('2. Event입력',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
+              Text('2. Event 입력',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
               Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -62,7 +62,7 @@ class _TutorialState extends State<Tutorial> {
               Text('버튼을 누를 시 기록한 내용이 저장됩니다.',),
 
               SizedBox(height: 60,),
-              Text('3. Home화면',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
+              Text('3. Home 화면',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -98,7 +98,7 @@ class _TutorialState extends State<Tutorial> {
               Text('해당 카드를 왼쪽으로 밀고 delete를 클릭 시 삭제할 수 있습니다.'),
               SizedBox(height: 60,),
               
-              Text('4. Memo입력',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
+              Text('4. Memo 입력',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
                 Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -121,7 +121,7 @@ class _TutorialState extends State<Tutorial> {
                 ],
               ),
               SizedBox(height: 10,),
-              Text('해, 달 이모티콘을 누를 시 테마 변경이 가능합니다.'),
+              Text('해, 달 이모티콘을 클릭 시 테마 변경이 가능합니다.'),
               SizedBox(height: 50,),
               Text('6. 사진 권한',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
                 Row(
@@ -133,10 +133,9 @@ class _TutorialState extends State<Tutorial> {
               SizedBox(height: 10,),
               Text('사진 권한이 없다는 창이 뜨면'),
               Text('설정 → 개인정보 보호 및 보안 → 사진'),
-              Text('App의 접근 권한을 바꿔주세요.'),
+              Text('APP의 접근 권한을 바꿔주세요.'),
               SizedBox(height: 50,),
               Text('글씨체제작: 강원도교육청X혜움디자인',style: TextStyle(fontSize: 10),),
-              Text('아이콘제작: Freepik 제작 아이콘',style: TextStyle(fontSize: 10),),
               SizedBox(height: 70,),
               
               

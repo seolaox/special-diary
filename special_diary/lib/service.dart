@@ -9,7 +9,7 @@ class TermsOfService extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 236, 234, 234),
-        title: const Text('서비스 이용 약관', style: TextStyle(fontWeight: FontWeight.w600),),
+        title: const Text('서비스 이용 약관', style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black),),
       ),
       body: const Center(
         child: SingleChildScrollView(
