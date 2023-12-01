@@ -52,13 +52,13 @@ class _MyAppState extends State<MyApp> {
       ],
       themeMode: _themeMode,
       darkTheme: ThemeData(
-        fontFamily: 'GangwonEduBold',
+        fontFamily: '강원교육모두 Bold',
         brightness: Brightness.dark,
         useMaterial3: true,
         colorSchemeSeed: seedColor,
       ),
       theme: ThemeData(
-        fontFamily: 'GangwonEduBold',
+        fontFamily: '강원교육모두 Bold',
         brightness: Brightness.light,
         useMaterial3: true,
         colorSchemeSeed: seedColor,

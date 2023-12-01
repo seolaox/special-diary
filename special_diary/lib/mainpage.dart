@@ -152,7 +152,7 @@ class _MainPageState extends State<MainPage> {
                                               onPressed: () async {
                                                 await handler.deleteSdiary(
                                                     snapshot.data![index].id!);
-                                                snapshot.data!.remove(
+                                                    snapshot.data!.remove(
                                                     snapshot.data![index]);
                                                 Get.back();
                                                 setState(() {});
@@ -228,10 +228,10 @@ class _MainPageState extends State<MainPage> {
                                       SizedBox(
                                         width: 420, // 이미지의 고정된 너비
                                         height: 225, // 컨테이너의 높이를 꽉 채우도록 설정
-                                        child: Image.memory(
-                                          snapshot.data![index].image,
+                                        child: Image.memory( //메모리에 있는 이미지 데이터를 표시
+                                          snapshot.data![index].image, 
                                           fit: BoxFit.cover,
-                                          width: 100,
+                                          // width: 100,
                                         ),
                                       ),
                                       Padding(
@@ -251,7 +251,7 @@ class _MainPageState extends State<MainPage> {
                                                       .data![index]
                                                       .weathericon ??
                                                   ''),
-                                            )
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -293,12 +293,11 @@ class _MainPageState extends State<MainPage> {
 
   reloadData() {
     handler.querySdiary();
-
     setState(() {});
   }
 
-  // 저장된 아이콘 값을 기반으로 아이콘 위젯을 반환
-  Widget getIconWidget(String iconString) {
+// 문자열 iconString을 입력으로 받아 해당하는 아이콘을 생성하는 Flutter 위젯을 반환
+    getIconWidget(String iconString) {
     switch (iconString.toLowerCase()) {
       case 'sunny':
         return Icon(
