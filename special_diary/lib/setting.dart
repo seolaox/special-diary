@@ -28,18 +28,18 @@ class _SettingState extends State<Setting> {
     themeName = '다크 모드';
   }
 
-  // 저장된 아이콘 테마 로드
+  // 앱 시작 시에 호출하여 저장된 아이콘 테마 로드
   Future<void> loadIconTheme() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance(); 
     setState(() {
-      iconTheme = prefs.getBool('iconTheme') ?? false;
-    });
+      iconTheme = prefs.getBool('iconTheme') ?? false; //sharedPreferences를 사용하여 'iconTheme' 키에 저장된 값을 가져오고, 만약 값이 없으면 기본값으로 false를 사용
+    }); //setState 함수를 사용하여 상태를 업데이트하고, iconTheme 변수에 로드된 값을 할당
   }
 
-  // 아이콘 테마 저장
+  // 사용자가 테마를 변경할 때 호출하여 새로운 테마를 저장
   Future<void> saveIconTheme(bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('iconTheme', value);
+    prefs.setBool('iconTheme', value); //prefs.setBool('iconTheme', value)를 사용하여 'iconTheme' 키에 전달된 value 값을 저장
   }
 
   @override
@@ -59,7 +59,7 @@ class _SettingState extends State<Setting> {
                 color: Color.fromARGB(255, 238, 239, 242),
                 borderRadius: BorderRadius.circular(10), // 원하는 둥글기 정도를 설정
               ),
-              child: Row(
+              child: const Row(
                 children: [
                   SizedBox(
                     width: 20,
@@ -75,7 +75,7 @@ class _SettingState extends State<Setting> {
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
-                        color: const Color.fromARGB(255, 146, 146, 146)),
+                        color: Color.fromARGB(255, 146, 146, 146)),
                   ),
                 ],
               ),
@@ -92,10 +92,10 @@ class _SettingState extends State<Setting> {
                 height: 60,
                 width: 400,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 238, 239, 242),
+                  color: const Color.fromARGB(255, 238, 239, 242),
                   borderRadius: BorderRadius.circular(10), // 원하는 둥글기 정도를 설정
                 ),
-                child: Row(
+                child: const Row(
                   children: [
                     SizedBox(
                       width: 20,
@@ -121,10 +121,10 @@ class _SettingState extends State<Setting> {
                 height: 60,
                 width: 400,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 238, 239, 242),
+                  color: const Color.fromARGB(255, 238, 239, 242),
                   borderRadius: BorderRadius.circular(10), // 원하는 둥글기 정도를 설정
                 ),
-                child: Row(
+                child: const Row(
                   children: [
                     SizedBox(
                       width: 20,
@@ -148,16 +148,16 @@ class _SettingState extends State<Setting> {
               height: 60,
               width: 400,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 238, 239, 242),
+                color: const Color.fromARGB(255, 238, 239, 242),
                 borderRadius: BorderRadius.circular(10), // 원하는 둥글기 정도를 설정
               ),
               child: Row(
                 children: [
-                  SizedBox(width: 20,),
+                  const SizedBox(width: 20,),
                   Text(themeName,
                       style:
-                  TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black)),
-                  Spacer(), //항상 오른쪽 끝에 위치, 남는 공간을 채움
+                  const TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black)),
+                  const Spacer(), //항상 오른쪽 끝에 위치, 남는 공간을 채움
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                     child: IconButton(

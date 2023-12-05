@@ -37,14 +37,14 @@ class _EventPageState extends State<EventPage> {
             ),
             focusedDay: focusedDay,
             onDaySelected: (DateTime selectedDay, DateTime focusedDay) {
-              // 선택된 날짜의 상태를 갱신합니다.	
+              // 선택된 날짜의 상태를 갱신.
               setState((){
                 this.selectedDay = selectedDay;
                 this.focusedDay = focusedDay;
               });
             },
             selectedDayPredicate: (DateTime day) {
-              // selectedDay 와 동일한 날짜의 모양을 바꿔줍니다.	
+              // selectedDay 와 동일한 날짜의 모양을 바꿔줌.
               return isSameDay(selectedDay, day);
             },
           ),
@@ -54,8 +54,6 @@ class _EventPageState extends State<EventPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _openEventInsertPage(selectedDay);
-
-          // Get.to(()=>EventInsert());
         },
         child: Icon(Icons.add),
         ),
@@ -64,6 +62,7 @@ class _EventPageState extends State<EventPage> {
   }
   //---FUNCTIONS---
 
+//날짜를 선택하지 않으면 페이지가 넘어가지 않음
       void _openEventInsertPage(DateTime? selectedDay) {
     if (selectedDay == null) {
       Get.snackbar(

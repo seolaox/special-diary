@@ -211,8 +211,6 @@ class _EventUpdateState extends State<EventUpdate> {
                   ),
                 ],
               ),
-
-
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 3),
                 child: TextField(
@@ -412,7 +410,6 @@ updateAction() async {
 
 
   // IconType을 문자열로 변환하기 위한 도우미 함수
-
 String getIconString(IconType icon) {
   switch (icon) {
     case IconType.Sunny:
@@ -428,23 +425,23 @@ String getIconString(IconType icon) {
   }
 }
 
-Widget getIconWidget(String iconString) {
-  print('Icon String: $iconString');
-  switch (iconString.toLowerCase()) {
-    case 'sunny':
-      return Icon(Icons.sunny, color: Colors.amber[400],);
-    case 'waterdrop':  // 'WaterDrop' 대신 'waterdrop'으로 수정
-      return Icon(Icons.water_drop, color: Colors.blue[300]);
-    case 'cloud':
-      return Icon(Icons.cloud, color: Colors.grey[400],);
-    case 'air':
-      return Icon(Icons.air, color: Colors.blueGrey[200],);
-    case 'acunit':  // 'AcUnit' 대신 'acunit'으로 수정
-      return Icon(Icons.ac_unit, color: Colors.blue[100], );
-    default:
-      return Icon(Icons.error); // 기본값으로 오류 아이콘을 표시
-  }
-}
+// Widget getIconWidget(String iconString) {
+//   print('Icon String: $iconString');
+//   switch (iconString.toLowerCase()) {
+//     case 'sunny':
+//       return Icon(Icons.sunny, color: Colors.amber[400],);
+//     case 'waterdrop':  // 'WaterDrop' 대신 'waterdrop'으로 수정
+//       return Icon(Icons.water_drop, color: Colors.blue[300]);
+//     case 'cloud':
+//       return Icon(Icons.cloud, color: Colors.grey[400],);
+//     case 'air':
+//       return Icon(Icons.air, color: Colors.blueGrey[200],);
+//     case 'acunit':  // 'AcUnit' 대신 'acunit'으로 수정
+//       return Icon(Icons.ac_unit, color: Colors.blue[100], );
+//     default:
+//       return Icon(Icons.error); // 기본값으로 오류 아이콘을 표시
+//   }
+// }
 
 IconType getIconTypeFromString(String iconString) {
   switch (iconString) {

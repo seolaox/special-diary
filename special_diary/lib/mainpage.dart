@@ -192,7 +192,7 @@ class _MainPageState extends State<MainPage> {
                                                 style: TextStyle(
                                                     fontSize: 25,
                                                     fontWeight: FontWeight.bold,
-                                                    color: Colors.black),
+                                                    color: Colors.black)
                                               )),
                                         ],
                                       ),
