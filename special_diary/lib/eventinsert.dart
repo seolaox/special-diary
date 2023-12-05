@@ -75,13 +75,13 @@ class _EventInsertState extends State<EventInsert> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 65,
-        title: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 45, 0),
+        title: const Padding(
+          padding: EdgeInsets.fromLTRB(0, 0, 45, 0),
           child: AppbarTitle(),
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+            borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
             gradient: LinearGradient(
               colors: [Theme.of(context).colorScheme.primaryContainer,Theme.of(context).colorScheme.surfaceTint,],
               begin: Alignment.bottomCenter,
@@ -99,9 +99,9 @@ class _EventInsertState extends State<EventInsert> {
                 padding: const EdgeInsets.fromLTRB(290, 10, 3, 0),
                 child: Row(
                   children: [
-                    Icon(Icons.event_available_outlined),
-                    SizedBox(width: 5,),
-                    Text(formattedDate,style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),),
+                    const Icon(Icons.event_available_outlined),
+                    const SizedBox(width: 5,),
+                    Text(formattedDate,style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15),),
                   ],
                 ),
               ),
@@ -112,8 +112,8 @@ class _EventInsertState extends State<EventInsert> {
                     disDatePicker();
                   },
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(70, 30),
-                    backgroundColor: Color.fromARGB(255, 154, 172, 243),
+                    minimumSize: const Size(70, 30),
+                    backgroundColor: const Color.fromARGB(255, 154, 172, 243),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
@@ -128,7 +128,7 @@ class _EventInsertState extends State<EventInsert> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
@@ -142,7 +142,7 @@ class _EventInsertState extends State<EventInsert> {
                     },
                     style: IconButton.styleFrom(
                       backgroundColor: selectedIcon == IconType.Sunny
-                    ?Color.fromARGB(255, 109, 147, 243)
+                    ?const Color.fromARGB(255, 109, 147, 243)
                       : Colors.white,
                     ),
                     icon: Icon(Icons.sunny, color: Colors.amber[400], size: 30),
@@ -155,7 +155,7 @@ class _EventInsertState extends State<EventInsert> {
                     },
                     style: IconButton.styleFrom(
                       backgroundColor: selectedIcon == IconType.WaterDrop
-                    ?Color.fromARGB(255, 109, 147, 243)
+                    ?const Color.fromARGB(255, 109, 147, 243)
                       : Colors.white,
                     ),
                     icon: Icon(Icons.water_drop,
@@ -169,7 +169,7 @@ class _EventInsertState extends State<EventInsert> {
                     },
                     style: IconButton.styleFrom(
                       backgroundColor: selectedIcon == IconType.Cloud
-                    ?Color.fromARGB(255, 109, 147, 243)
+                    ?const Color.fromARGB(255, 109, 147, 243)
                       :Colors.white,
                     ),
                     icon: Icon(Icons.cloud, color: Colors.grey[400], size: 30),
@@ -182,7 +182,7 @@ class _EventInsertState extends State<EventInsert> {
                     },
                     style: IconButton.styleFrom(
                       backgroundColor: selectedIcon == IconType.Air
-                    ?Color.fromARGB(255, 109, 147, 243)
+                    ?const Color.fromARGB(255, 109, 147, 243)
                       : Colors.white,
                     ),
                     icon:
@@ -196,7 +196,7 @@ class _EventInsertState extends State<EventInsert> {
                     },
                     style: IconButton.styleFrom(
                       backgroundColor: selectedIcon == IconType.AcUnit
-                      ?Color.fromARGB(255, 109, 147, 243)
+                      ?const Color.fromARGB(255, 109, 147, 243)
                       :Colors.white,
                     ),
                     icon:
@@ -256,7 +256,7 @@ class _EventInsertState extends State<EventInsert> {
                 ),
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
@@ -269,7 +269,7 @@ class _EventInsertState extends State<EventInsert> {
               ),
               // SizedBox(height: 0, width: double.infinity),
               _buildImagePicker(),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   
@@ -279,18 +279,18 @@ class _EventInsertState extends State<EventInsert> {
                           "ERROR", 
                           "모든 항목을 입력해 주세요.",
                           snackPosition: SnackPosition.BOTTOM,
-                          duration: Duration(seconds: 2),
+                          duration: const Duration(seconds: 2),
                           colorText: Colors.black,
-                          backgroundColor: Color.fromARGB(255, 247, 228, 162),
+                          backgroundColor: const Color.fromARGB(255, 247, 228, 162),
                         );
                           }else if(imageFile == null){
                             Get.snackbar(
                           "ERROR",
                           "사진을 선택해 주세요.",
                           snackPosition: SnackPosition.BOTTOM,
-                          duration: Duration(seconds: 2),
+                          duration: const Duration(seconds: 2),
                           colorText: Colors.black,
-                          backgroundColor: Color.fromARGB(255, 248, 201, 168),);
+                          backgroundColor: const Color.fromARGB(255, 248, 201, 168),);
                           }else{
                               insertAction();
                           }
@@ -298,9 +298,9 @@ class _EventInsertState extends State<EventInsert> {
 
                 },
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(100, 50),
+                  minimumSize: const Size(100, 50),
                   // backgroundColor: Color.fromARGB(255, 146, 148, 255),
-                  backgroundColor: Color.fromARGB(255, 159, 168, 249),
+                  backgroundColor: const Color.fromARGB(255, 159, 168, 249),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -315,7 +315,7 @@ class _EventInsertState extends State<EventInsert> {
                 ),
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
             ],
@@ -353,14 +353,14 @@ void showPhotoAccessDeniedDialog() {
   // 사용자에게 사진 액세스 권한이 필요하다는 메시지를 표시
   Get.defaultDialog(
     title: '사진 액세스 거부됨',
-    titleStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: Colors.black),
+    titleStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: Colors.black),
     middleText: '사진 액세스 권한이 필요합니다. \n 설정에서 권한을 부여해주세요.',
-    middleTextStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: Colors.black),
+    middleTextStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: Colors.black),
     backgroundColor: Theme.of(context).colorScheme.errorContainer,
     actions: [TextButton(
       onPressed: () {
         Get.back();
-      }, child: Text('Exit',style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900,color: Color.fromARGB(255, 253, 109, 109),),))]
+      }, child: const Text('Exit',style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900,color: Color.fromARGB(255, 253, 109, 109),),))]
     );
 
 }
@@ -375,7 +375,7 @@ void showPhotoAccessDeniedDialog() {
         width: 350,
         height: 210,
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 212, 221, 247),
+          color: const Color.fromARGB(255, 212, 221, 247),
           image: imageFile != null
               ? DecorationImage(
                   image: FileImage(File(imageFile!.path)),
@@ -384,7 +384,7 @@ void showPhotoAccessDeniedDialog() {
               : null,
         ),
         child: imageFile == null
-            ? Icon(
+            ? const Icon(
                 Icons.add_a_photo,
                 size: 48,
                 color: Colors.grey,
@@ -423,11 +423,11 @@ insertAction() async {
   _showDialog() {
     Get.defaultDialog(
         title: '입력결과', 
-        titleStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.black, ),
+        titleStyle: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.black, ),
         middleText: '입력이 완료되었습니다.',
-        middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black, ),
+        middleTextStyle: const TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black, ),
         barrierDismissible: false,
-        backgroundColor: Color.fromARGB(255, 210, 220, 255),
+        backgroundColor: const Color.fromARGB(255, 210, 220, 255),
         // backgroundColor: Color.fromARGB(255, 210, 220, 255),
         // backgroundColor: Color.fromARGB(255, 255, 210, 226),
         actions: [
@@ -435,7 +435,7 @@ insertAction() async {
               onPressed: () {
                 Get.offAll(() => Home(onChangeTheme: _changeThemeMode), arguments: 0); //모두끄고 arguments로 0번째 페이지로 보내기
               },
-              child: Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
+              child: const Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
         ]);
   }
 
@@ -472,7 +472,7 @@ disDatePicker()async{
     firstDate: DateTime(firstYear),
     lastDate: DateTime(lastYear),
     initialEntryMode: DatePickerEntryMode.calendarOnly, //캘린더로 설정하기
-    locale: Locale('ko','KR') //한국시간으로 바꿔서 보여주기
+    locale: const Locale('ko','KR') //한국시간으로 바꿔서 보여주기
   );
       if (selectedDate != null) {
       // 날짜 선택 시 selectedDate 업데이트

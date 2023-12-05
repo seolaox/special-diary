@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -26,19 +24,17 @@ class _EventDetailState extends State<EventDetail> {
   late int id;
   late String name;
   late Image image;
-  late String iconweather;
   XFile? imageFile; //image picker를 정의한 타입 안드로이드 ios 둘 다 다루기 위해 정의한 타입이 xfile
   final ImagePicker picker = ImagePicker();
   var value = Get.arguments ?? "_";
   late bool checkGallery;
   late DateTime presentdate;
-  late DateTime date;
   late DateTime eventUpdateDate;
   late DateTime selectedDate; //날짜변경 버튼 누를 시 선택된 날짜
   late String formattedDate; //전 페이지에서 선택한 날짜
 
-      _changeThemeMode(ThemeMode themeMode) {
     //SettingPage에서도 themeMode사용하도록 widget설정
+      _changeThemeMode(ThemeMode themeMode) {
     widget.onChangeTheme(themeMode);
   }
 
@@ -59,9 +55,7 @@ class _EventDetailState extends State<EventDetail> {
         value[5] != null ? DateTime.parse(value[5].toString()) : DateTime.now();
     eventUpdateDate = DateTime.parse(value[6]);
     checkGallery = false;
-    date = DateTime.now();
-    selectedDate = eventUpdateDate ?? date; // widget을 통해 selectedDay 값을 받아오기
-    formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
+    formattedDate = DateFormat('yyyy-MM-dd').format(eventUpdateDate);
   }
 
   @override
@@ -69,13 +63,13 @@ class _EventDetailState extends State<EventDetail> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 65,
-        title: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 45, 0),
+        title: const Padding(
+          padding: EdgeInsets.fromLTRB(0, 0, 45, 0),
           child: AppbarTitle(),
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20)),
             gradient: LinearGradient(colors: [
@@ -84,7 +78,6 @@ class _EventDetailState extends State<EventDetail> {
             ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
           ),
         ),
-        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
       ),
       body: SingleChildScrollView(
@@ -97,9 +90,9 @@ class _EventDetailState extends State<EventDetail> {
                   children: [
                     Text(
                       formattedDate,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     IconButton(
@@ -164,14 +157,14 @@ class _EventDetailState extends State<EventDetail> {
                   ),
                 ),
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               ElevatedButton(
                 onPressed: () {
                   Get.to(()=> update.EventUpdate(onChangeTheme: _changeThemeMode), arguments: value);
                 },
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(100, 50),
-                  backgroundColor:  Color.fromARGB(255, 137, 156, 255),
+                  minimumSize: const Size(100, 50),
+                  backgroundColor:  const Color.fromARGB(255, 137, 156, 255),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -185,7 +178,7 @@ class _EventDetailState extends State<EventDetail> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
             ],
@@ -205,7 +198,7 @@ class _EventDetailState extends State<EventDetail> {
         width: 390,
         height: 230,
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 212, 221, 247),
+          color: const Color.fromARGB(255, 212, 221, 247),
           image: imageFile == null
               ? DecorationImage(
                   image: MemoryImage(value[4]),
@@ -221,7 +214,6 @@ class _EventDetailState extends State<EventDetail> {
   }
 
   Widget getIconWidget(String iconString) {
-    print('Icon String: $iconString');
     switch (iconString.toLowerCase()) {
       case 'sunny':
         return Icon(
@@ -246,7 +238,7 @@ class _EventDetailState extends State<EventDetail> {
           color: Colors.blue[100],
         );
       default:
-        return Icon(Icons.error); // 기본값으로 오류 아이콘을 표시
+        return const Icon(Icons.error); // 기본값으로 오류 아이콘을 표시
     }
   }
 
@@ -264,34 +256,6 @@ class _EventDetailState extends State<EventDetail> {
         return IconType.AcUnit;
       default:
         return IconType.Sunny;
-    }
-  }
-
-  // 날짜 변경 시 호출되는 함수
-  void updateFormattedDate() {
-    formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
-    setState(() {});
-  }
-
-  disDatePicker() async {
-    //캘린더 날짜 범위 설정하기
-    int firstYear = date.year - 1; //전년도 까지만 보기
-    int lastYear = firstYear + 5; //5년뒤 까지 보기
-    final selectedDate = await showDatePicker(
-        //showDatePicker 화면을 구성하고 사용자가 selectedDate선택해서 값 받아올때까지 await 기다려
-        //selectedDate는 showDatePicker에서 가져온 데이터라 String이 아님
-        context: context,
-        initialDate: date,
-        firstDate: DateTime(firstYear),
-        lastDate: DateTime(lastYear),
-        initialEntryMode: DatePickerEntryMode.calendarOnly, //캘린더로 설정하기
-        locale: Locale('ko', 'KR') //한국시간으로 바꿔서 보여주기
-        );
-    if (selectedDate != null) {
-      // 날짜 선택 시 selectedDate 업데이트
-      this.selectedDate = selectedDate;
-      // formattedDate 업데이트 함수 호출
-      updateFormattedDate();
     }
   }
 } //END

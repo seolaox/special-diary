@@ -26,12 +26,12 @@ class _EventPageState extends State<EventPage> {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           TableCalendar(
             firstDay: DateTime.utc(2000, 1, 1),
             lastDay: DateTime.utc(2099, 12, 31),
             locale: "ko_KR",
-            headerStyle: HeaderStyle(
+            headerStyle: const HeaderStyle(
               formatButtonVisible: false,
               titleCentered: true,
             ),
@@ -55,7 +55,7 @@ class _EventPageState extends State<EventPage> {
         onPressed: () {
           _openEventInsertPage(selectedDay);
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         ),
         
     );
@@ -70,7 +70,7 @@ class _EventPageState extends State<EventPage> {
         '글을 작성할 날짜를 선택해 주세요.',
         snackPosition: SnackPosition.BOTTOM,
         colorText: Colors.black,
-        backgroundColor: Color.fromARGB(255, 247, 228, 162),
+        backgroundColor: const Color.fromARGB(255, 247, 228, 162),
       );
     } else {
       Get.to(() => EventInsert(selectedDay: selectedDay, onChangeTheme: _changeThemeMode,));

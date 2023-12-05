@@ -162,7 +162,7 @@ class _MainPageState extends State<MainPage> {
                                               style: ElevatedButton.styleFrom(
                                                 minimumSize:
                                                     const Size(400, 60),
-                                                backgroundColor: Color.fromARGB(
+                                                backgroundColor: const Color.fromARGB(
                                                     255, 255, 188, 183),
                                               ),
                                               child: const Text(
@@ -242,7 +242,7 @@ class _MainPageState extends State<MainPage> {
                                             Text(
                                               snapshot.data![index].eventdate ??
                                                   'No Date',
-                                              style: TextStyle(fontSize: 16),
+                                              style: const TextStyle(fontSize: 16),
                                             ),
                                             IconButton(
                                               onPressed: () {},

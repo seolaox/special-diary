@@ -35,7 +35,6 @@ class _EventUpdateState extends State<EventUpdate> {
   late int id;
   late String name;
   late Image image;
-  late String iconweather;
   XFile? imageFile; //image picker를 정의한 타입 안드로이드 ios 둘 다 다루기 위해 정의한 타입이 xfile
   final ImagePicker picker = ImagePicker();
   var value = Get.arguments ?? "_";
@@ -58,13 +57,11 @@ class _EventUpdateState extends State<EventUpdate> {
 
     
     handler = DatabaseHandler();
-    // date = DateTime.now();
     titleController = TextEditingController();
     contentController = TextEditingController();
     id = value[0];
     titleController.text = value[1];
     contentController.text = value[2];
-    iconweather = getIconString(getIconTypeFromString(value[3]));
     selectedIcon = getIconTypeFromString(value[3]);
     image = Image.memory(value[4]);
     presentdate =
@@ -72,7 +69,7 @@ class _EventUpdateState extends State<EventUpdate> {
     eventUpdateDate = DateTime.parse(value[6]);
     checkGallery = false;
     date = DateTime.now();
-    selectedDate =  eventUpdateDate ?? date; // widget을 통해 selectedDay 값을 받아오기
+    selectedDate =  eventUpdateDate ?? date; 
     formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
   }
 
@@ -82,20 +79,19 @@ class _EventUpdateState extends State<EventUpdate> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 65,
-        title: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 45, 0),
+        title: const Padding(
+          padding: EdgeInsets.fromLTRB(0, 0, 45, 0),
           child: AppbarTitle(),
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+            borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
             gradient: LinearGradient(
               colors: [Theme.of(context).colorScheme.primaryContainer,Theme.of(context).colorScheme.surfaceTint,],
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter),
               
           ),),
-        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
       ),
       body: SingleChildScrollView(
@@ -106,9 +102,9 @@ class _EventUpdateState extends State<EventUpdate> {
                 padding: const EdgeInsets.fromLTRB(290, 10, 3, 0),
                 child: Row(
                   children: [
-                    Icon(Icons.event_available_outlined),
-                    SizedBox(width: 5,),
-                    Text(formattedDate,style: TextStyle(fontWeight: FontWeight.w700),),
+                    const Icon(Icons.event_available_outlined),
+                    const SizedBox(width: 5,),
+                    Text(formattedDate,style: const TextStyle(fontWeight: FontWeight.w700),),
                   ],
                 ),
               ),
@@ -119,8 +115,8 @@ class _EventUpdateState extends State<EventUpdate> {
                     disDatePicker();
                   },
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(70, 30),
-                    backgroundColor: Color.fromARGB(255, 154, 172, 243),
+                    minimumSize: const Size(70, 30),
+                    backgroundColor: const Color.fromARGB(255, 154, 172, 243),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
@@ -135,7 +131,7 @@ class _EventUpdateState extends State<EventUpdate> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
@@ -149,7 +145,7 @@ class _EventUpdateState extends State<EventUpdate> {
                     },
                     style: IconButton.styleFrom(
                       backgroundColor: selectedIcon == IconType.Sunny
-                    ?Color.fromARGB(255, 109, 147, 243)
+                    ?const Color.fromARGB(255, 109, 147, 243)
                       : Colors.white,
                     ),
                     icon: Icon(Icons.sunny, color: Colors.amber[400], size: 30),
@@ -162,7 +158,7 @@ class _EventUpdateState extends State<EventUpdate> {
                     },
                     style: IconButton.styleFrom(
                       backgroundColor: selectedIcon == IconType.WaterDrop
-                    ?Color.fromARGB(255, 109, 147, 243)
+                    ?const Color.fromARGB(255, 109, 147, 243)
                       : Colors.white,
                     ),
                     icon: Icon(Icons.water_drop,
@@ -176,7 +172,7 @@ class _EventUpdateState extends State<EventUpdate> {
                     },
                     style: IconButton.styleFrom(
                       backgroundColor: selectedIcon == IconType.Cloud
-                    ?Color.fromARGB(255, 109, 147, 243)
+                    ?const Color.fromARGB(255, 109, 147, 243)
                       :Colors.white,
                     ),
                     icon: Icon(Icons.cloud, color: Colors.grey[400], size: 30),
@@ -189,7 +185,7 @@ class _EventUpdateState extends State<EventUpdate> {
                     },
                     style: IconButton.styleFrom(
                       backgroundColor: selectedIcon == IconType.Air
-                    ?Color.fromARGB(255, 109, 147, 243)
+                    ?const Color.fromARGB(255, 109, 147, 243)
                       : Colors.white,
                     ),
                     icon:
@@ -203,7 +199,7 @@ class _EventUpdateState extends State<EventUpdate> {
                     },
                     style: IconButton.styleFrom(
                       backgroundColor: selectedIcon == IconType.AcUnit
-                      ?Color.fromARGB(255, 109, 147, 243)
+                      ?const Color.fromARGB(255, 109, 147, 243)
                       :Colors.white,
                     ),
                     icon:
@@ -262,7 +258,7 @@ class _EventUpdateState extends State<EventUpdate> {
                 ),
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
@@ -275,14 +271,14 @@ class _EventUpdateState extends State<EventUpdate> {
               ),
               // SizedBox(height: 0, width: double.infinity),
               _buildImagePicker(),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   updateAction();
                 },
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(100, 50),
-                  backgroundColor: Color.fromARGB(255, 159, 168, 249),
+                  minimumSize: const Size(100, 50),
+                  backgroundColor: const Color.fromARGB(255, 159, 168, 249),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -296,7 +292,7 @@ class _EventUpdateState extends State<EventUpdate> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
             ],
@@ -331,7 +327,7 @@ class _EventUpdateState extends State<EventUpdate> {
         width: 350,
         height: 210,
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 212, 221, 247),
+          color: const Color.fromARGB(255, 212, 221, 247),
           image: imageFile == null
               ? DecorationImage(
                   image: MemoryImage(value[4]),
@@ -388,26 +384,19 @@ updateAction() async {
   _showDialog() {
     Get.defaultDialog(
         title: '수정결과',
-        titleStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.black, ),
+        titleStyle: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.black, ),
         middleText: '수정이 완료되었습니다.',
-        middleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black, ),
+        middleTextStyle: const TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black, ),
         barrierDismissible: false,
-        backgroundColor: Color.fromARGB(255, 217, 203, 252),
+        backgroundColor: const Color.fromARGB(255, 217, 203, 252),
         actions: [
           TextButton(
               onPressed: () {
                 Get.offAll(() => Home(onChangeTheme: _changeThemeMode), arguments: 0);
               },
-              child: Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
+              child: const Text('OK', style: TextStyle(fontWeight: FontWeight.w700,color: Colors.black, ),),)
         ]);
   }
-
-
-
-
-
-
-
 
   // IconType을 문자열로 변환하기 위한 도우미 함수
 String getIconString(IconType icon) {
@@ -425,24 +414,6 @@ String getIconString(IconType icon) {
   }
 }
 
-// Widget getIconWidget(String iconString) {
-//   print('Icon String: $iconString');
-//   switch (iconString.toLowerCase()) {
-//     case 'sunny':
-//       return Icon(Icons.sunny, color: Colors.amber[400],);
-//     case 'waterdrop':  // 'WaterDrop' 대신 'waterdrop'으로 수정
-//       return Icon(Icons.water_drop, color: Colors.blue[300]);
-//     case 'cloud':
-//       return Icon(Icons.cloud, color: Colors.grey[400],);
-//     case 'air':
-//       return Icon(Icons.air, color: Colors.blueGrey[200],);
-//     case 'acunit':  // 'AcUnit' 대신 'acunit'으로 수정
-//       return Icon(Icons.ac_unit, color: Colors.blue[100], );
-//     default:
-//       return Icon(Icons.error); // 기본값으로 오류 아이콘을 표시
-//   }
-// }
-
 IconType getIconTypeFromString(String iconString) {
   switch (iconString) {
     case 'Sunny':
@@ -459,7 +430,6 @@ IconType getIconTypeFromString(String iconString) {
       return IconType.Sunny; 
   }
 }
-
     // 날짜 변경 시 호출되는 함수
   void updateFormattedDate() {
     formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
@@ -477,7 +447,7 @@ disDatePicker()async{
     firstDate: DateTime(firstYear),
     lastDate: DateTime(lastYear),
     initialEntryMode: DatePickerEntryMode.calendarOnly, //캘린더로 설정하기
-    locale: Locale('ko','KR') //한국시간으로 바꿔서 보여주기
+    locale: const Locale('ko','KR') //한국시간으로 바꿔서 보여주기
   );
   if (selectedDate != null) {
       // 날짜 선택 시 selectedDate 업데이트

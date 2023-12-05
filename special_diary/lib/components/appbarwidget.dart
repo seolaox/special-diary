@@ -5,7 +5,7 @@ class AppbarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('My Special Diary',style: TextStyle( fontSize: 28,fontWeight: FontWeight.w700),),

@@ -35,7 +35,7 @@ class _MemoPageState extends State<MemoPage> {
     return Scaffold(
       appBar: AppBar(
         title: TextField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               hintText: '검색어를 입력해 주세요.', suffixIcon: Icon(Icons.search)),
           onChanged: (value) {
             setState(() {
@@ -67,15 +67,15 @@ class _MemoPageState extends State<MemoPage> {
                     !snapshot.data![index].memo
                         .toLowerCase()
                         .contains(searchText.toLowerCase())) {
-                  return SizedBox.shrink();
+                  return const SizedBox.shrink();
                 } else {
                   return Slidable(
                     startActionPane: ActionPane(
-                        motion: BehindMotion(), //
+                        motion: const BehindMotion(), //
                         children: [
                           SlidableAction(
                             //버튼 눌렀을때 action
-                            backgroundColor: Color.fromARGB(255, 190, 201, 244),
+                            backgroundColor: const Color.fromARGB(255, 190, 201, 244),
                             icon: Icons.edit,
                             label: 'Edit',
                             onPressed: (context) {
@@ -84,7 +84,7 @@ class _MemoPageState extends State<MemoPage> {
                           )
                         ]),
                     endActionPane: ActionPane(
-                        motion: BehindMotion(), //
+                        motion: const BehindMotion(), //
                         children: [
                           SlidableAction(
                             //버튼 눌렀을때 action
@@ -105,15 +105,15 @@ class _MemoPageState extends State<MemoPage> {
                         updateBottomSheet(snapshot.data![index]);
                       },
                       child: Card(
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.elliptical(20, 20))),
-                        child: Container(
+                        child: SizedBox(
                           height: 80,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(),
+                              const Row(),
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
                                 child: Text(
@@ -121,14 +121,14 @@ class _MemoPageState extends State<MemoPage> {
                                       ? DateFormat('yyyy-MM-dd').format(
                                           snapshot.data![index].memoinsertdate!)
                                       : 'No Date',
-                                  style: TextStyle(fontSize: 15),
+                                  style: const TextStyle(fontSize: 15),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(8, 5, 0, 0),
                                 child: Text(
                                   snapshot.data![index].memo,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.bold),
                                   maxLines: 1, // 한 줄을 초과하면 말줄임표(ellipsis)를 표시
@@ -145,7 +145,7 @@ class _MemoPageState extends State<MemoPage> {
               },
             );
           } else {
-            return CircularProgressIndicator(); // 혹은 다른 로딩 인디케이터를 여기에 추가할 수 있습니다.
+            return const CircularProgressIndicator(); // 혹은 다른 로딩 인디케이터를 여기에 추가할 수 있습니다.
           }
         },
       ),
@@ -153,7 +153,7 @@ class _MemoPageState extends State<MemoPage> {
         onPressed: () {
           insertBottomSheet();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -171,12 +171,12 @@ class _MemoPageState extends State<MemoPage> {
       height: 700,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondaryContainer,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(30.0)),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             '- MEMO -',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
           ),
@@ -207,7 +207,7 @@ class _MemoPageState extends State<MemoPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           ElevatedButton(
@@ -215,8 +215,8 @@ class _MemoPageState extends State<MemoPage> {
               insertAction()!.then((value) => reloadData());
             },
             style: ElevatedButton.styleFrom(
-              minimumSize: Size(100, 50),
-              backgroundColor: Color.fromARGB(255, 151, 161, 252),
+              minimumSize: const Size(100, 50),
+              backgroundColor: const Color.fromARGB(255, 151, 161, 252),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -255,13 +255,13 @@ class _MemoPageState extends State<MemoPage> {
       height: 700,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondaryContainer,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(30.0)),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: 10,),
-          Text(
+          const SizedBox(height: 10,),
+          const Text(
             '- MEMO -',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
           ),
@@ -292,7 +292,7 @@ class _MemoPageState extends State<MemoPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           ElevatedButton(
@@ -300,8 +300,8 @@ class _MemoPageState extends State<MemoPage> {
               updateAction(memo.id!)!.then((value) => reloadData());
             },
             style: ElevatedButton.styleFrom(
-              minimumSize: Size(100, 50),
-              backgroundColor: Color.fromARGB(255, 151, 161, 252),
+              minimumSize: const Size(100, 50),
+              backgroundColor: const Color.fromARGB(255, 151, 161, 252),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
