@@ -168,7 +168,7 @@ class _MemoPageState extends State<MemoPage> {
   insertBottomSheet() {
     Get.bottomSheet(Container(
       width: 500,
-      height: 700,
+      height: 550,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30.0)),
@@ -232,7 +232,9 @@ class _MemoPageState extends State<MemoPage> {
           ),
         ],
       ),
-    ));
+    ),
+    isScrollControlled: true //오버플로우 방지
+    );
     memoController.clear();
   }
 
@@ -252,7 +254,7 @@ class _MemoPageState extends State<MemoPage> {
     Get.bottomSheet(
       Container(
       width: 500,
-      height: 700,
+      height: 550,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30.0)),
@@ -317,7 +319,10 @@ class _MemoPageState extends State<MemoPage> {
           ),
         ],
       ),
-    ));
+        ),
+        isScrollControlled: true,//오버플로우 방지
+        );
+        
     memoController.clear();
   }
 
