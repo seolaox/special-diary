@@ -341,7 +341,6 @@ getImageFromGallery(ImageSource imageSource) async {
     }
   } catch (e) {
     // 예외 처리
-    print("Error: $e");
     if (e is PlatformException && e.code == 'photo_access_denied') {
       // 사용자가 사진 액세스를 거부한 경우
       showPhotoAccessDeniedDialog();

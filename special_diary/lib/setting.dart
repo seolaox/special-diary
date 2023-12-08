@@ -56,7 +56,7 @@ class _SettingState extends State<Setting> {
               height: 60,
               width: 400,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 238, 239, 242),
+                color: const Color.fromARGB(255, 238, 239, 242),
                 borderRadius: BorderRadius.circular(10), // 원하는 둥글기 정도를 설정
               ),
               child: const Row(
@@ -86,7 +86,7 @@ class _SettingState extends State<Setting> {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(() => TermsOfService());
+                Get.to(() => const TermsOfService());
               },
               child: Container(
                 height: 60,
@@ -116,7 +116,7 @@ class _SettingState extends State<Setting> {
               color: Colors.grey[450],
             ),
             GestureDetector(
-              onTap: () => Get.to(() => Tutorial()),
+              onTap: () => Get.to(() => const Tutorial()),
               child: Container(
                 height: 60,
                 width: 400,
