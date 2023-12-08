@@ -1,7 +1,8 @@
 # My Special Diary
 하루를 간편하게 기록하기 위해 만든 앱            
 2023-11-22 ~ 2023-11-30                      
-<img src = https://github.com/Oh-Kang94/season3_team1_disabled_app/blob/main/App%20mockup.png> </img>
+<img src = https://github.com/seolaox/special-diary/blob/main/myspecialdiaryscreen.png> </img>
+
 ------
 
 ### 시연 영상
