@@ -17,9 +17,4 @@
 -
 
 ---
-#### Database    
-    SQLite   
-#### 기술 스택
-<p align="left">
-    <img src="https://skillicons.dev/icons?i=flutter,github,git"/>
-</p>
+
