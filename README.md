@@ -18,11 +18,10 @@
 
 ---
 #### Database    
-    MySQL
-    Firebase    
+    SQLite   
 #### 기술 스택
 <p align="left">
-    <img src="https://skillicons.dev/icons?i=flutter,aws,mysql,js,express,figma,github,git,firebase"/>
+    <img src="https://skillicons.dev/icons?i=flutter,github,git,SQLite"/>
     <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/slack_tile_logo_icon_168820.png" height="53" title="Slack"/>
     <img src="https://cdn.icon-icons.com/icons2/3913/PNG/512/miro_logo_icon_248450.png" height="53" title="Miro"/>
 </p>
