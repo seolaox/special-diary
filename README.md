@@ -22,5 +22,4 @@
 #### 기술 스택
 <p align="left">
     <img src="https://skillicons.dev/icons?i=flutter,github,git"/>
-    <img src="https://cdn.icon-icons.com/icons2/3913/PNG/512/miro_logo_icon_248450.png" height="53" title="Miro"/>
 </p>
