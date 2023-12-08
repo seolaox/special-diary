@@ -6,8 +6,8 @@
 ------
 
 ### 시연 영상
-<a href="https://drive.google.com/file/d/1nndZibrbXJfcGPsRMD9gW21Tt6-mjXsw/view?usp=share_link" title="시연영상으로 이동">
-  <img src="https://github.com/Oh-Kang94/season3_team1_disabled_app/blob/main/SplashImage.jpg" alt="image" ,height="30%", width="30%">
+<a href="https://drive.google.com/file/d/1YqdeiFzQK8MJZ0FjY-a1uXE5L8B7naf2/view?usp=drive_link" title="시연영상으로 이동">
+  <img src="https://github.com/seolaox/special-diary/blob/main/maindiaryscreen.png" alt="image" ,height="30%", width="30%">
 </a>
 
 ------
