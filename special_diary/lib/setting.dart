@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:secret_diary/components/appbarwidget.dart';
 import 'package:secret_diary/service.dart';
 import 'package:secret_diary/tutorial.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,10 +67,10 @@ class _SettingState extends State<Setting> {
                     '버전',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black)),
                   SizedBox(
-                    width: 280,
+                    width: 265,
                   ),
                   Text(
-                    'version',
+                    'ver 1.0',
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,

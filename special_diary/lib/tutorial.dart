@@ -39,7 +39,7 @@ class _TutorialState extends State<Tutorial> {
             children: [
               const SizedBox(height: 20,),
               const Text('- TUTORIAL -',style: TextStyle(fontSize: 21,fontWeight: FontWeight.w900),),
-                            SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               const Text('1. Date 선택 ',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w700),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

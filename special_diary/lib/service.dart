@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class TermsOfService extends StatelessWidget {
   const TermsOfService({super.key});
@@ -221,7 +220,7 @@ class TermsOfService extends StatelessWidget {
                   '개인정보 처리방침의 변경',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
-                const Text('본 개인정보 처리방침은 2023년 12월 10일부터 시행됩니다.'),
+                const Text('본 개인정보 처리방침은 2023년 12월 11일부터 시행됩니다.'),
                 const SizedBox(
                   height: 60,
                 ),

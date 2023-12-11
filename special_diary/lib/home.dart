@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:secret_diary/components/appbarwidget.dart';
-import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
+// import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
 
 import 'eventpage.dart';
 import 'mainpage.dart';

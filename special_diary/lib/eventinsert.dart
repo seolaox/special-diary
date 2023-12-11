@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -37,9 +36,6 @@ class _EventInsertState extends State<EventInsert> {
   late DatabaseHandler handler;
   late TextEditingController titleController;
   late TextEditingController contentController;
-  late bool canRun;
-  late double latData;
-  late double lngData;
   XFile? imageFile;
   final ImagePicker picker = ImagePicker();
   late DateTime date;
@@ -61,7 +57,6 @@ class _EventInsertState extends State<EventInsert> {
     handler = DatabaseHandler();
     titleController = TextEditingController();
     contentController = TextEditingController();
-    canRun = false;
     // date = DateTime.now();
     selectedDate = widget.selectedDay ?? date; // widget을 통해 selectedDay 값을 받아오기
     formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);

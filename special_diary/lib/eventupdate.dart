@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:secret_diary/mainpage.dart';
+// import 'package:secret_diary/mainpage.dart';
 
 import 'components/appbarwidget.dart';
 import 'home.dart';

@@ -8,7 +8,7 @@ class AppbarTitle extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('My Special Diary',style: TextStyle( fontSize: 28,fontWeight: FontWeight.w700),),
+        Text('오늘의 이야기',style: TextStyle( fontSize: 28,fontWeight: FontWeight.w700),),
         SizedBox(width: 5,),
         Icon(Icons.edit_calendar)
         // Icon(Icons.volunteer_activism)
