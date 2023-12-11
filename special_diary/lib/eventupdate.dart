@@ -94,208 +94,217 @@ class _EventUpdateState extends State<EventUpdate> {
           ),),
         foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(290, 10, 3, 0),
-                child: Row(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 30, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Icon(Icons.event_available_outlined),
+                      const SizedBox(width: 5,),
+                      Text(formattedDate,style: const TextStyle(fontWeight: FontWeight.w700),),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          disDatePicker();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(70, 30),
+                          backgroundColor: const Color.fromARGB(255, 154, 172, 243),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        child: const Text(
+                          "날짜 변경",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 234, 234, 236),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const Icon(Icons.event_available_outlined),
-                    const SizedBox(width: 5,),
-                    Text(formattedDate,style: const TextStyle(fontWeight: FontWeight.w700),),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                              selectedIcon = IconType.Sunny;
+                            });
+                      },
+                      style: IconButton.styleFrom(
+                        backgroundColor: selectedIcon == IconType.Sunny
+                      ?const Color.fromARGB(255, 109, 147, 243)
+                        : Colors.white,
+                      ),
+                      icon: Icon(Icons.sunny, color: Colors.amber[400], size: 30),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                          setState(() {
+                              selectedIcon = IconType.WaterDrop;
+                            });
+                      },
+                      style: IconButton.styleFrom(
+                        backgroundColor: selectedIcon == IconType.WaterDrop
+                      ?const Color.fromARGB(255, 109, 147, 243)
+                        : Colors.white,
+                      ),
+                      icon: Icon(Icons.water_drop,
+                          color: Colors.blue[300], size: 30),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                              selectedIcon = IconType.Cloud;
+                            });
+                      },
+                      style: IconButton.styleFrom(
+                        backgroundColor: selectedIcon == IconType.Cloud
+                      ?const Color.fromARGB(255, 109, 147, 243)
+                        :Colors.white,
+                      ),
+                      icon: Icon(Icons.cloud, color: Colors.grey[400], size: 30),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                            setState(() {
+                        selectedIcon = IconType.Air;
+                            });
+                      },
+                      style: IconButton.styleFrom(
+                        backgroundColor: selectedIcon == IconType.Air
+                      ?const Color.fromARGB(255, 109, 147, 243)
+                        : Colors.white,
+                      ),
+                      icon:
+                          Icon(Icons.air, color: Colors.blueGrey[200], size: 30),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                          setState(() {
+                              selectedIcon = IconType.AcUnit;
+                            });
+                      },
+                      style: IconButton.styleFrom(
+                        backgroundColor: selectedIcon == IconType.AcUnit
+                        ?const Color.fromARGB(255, 109, 147, 243)
+                        :Colors.white,
+                      ),
+                      icon:
+                          Icon(Icons.ac_unit, color: Colors.blue[100], size: 30),
+                    ),
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(270, 0, 0, 0),
-                child: ElevatedButton(
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 3),
+                  child: TextField(
+                    controller: titleController,
+                    decoration: const InputDecoration(
+                      hintText: 'Title ',
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15.0),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15.0),
+                        ),
+                      ),
+                    ),
+                    keyboardType: TextInputType.text,
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
+                  child: TextField(
+                    controller: contentController,
+                    decoration: const InputDecoration(
+                      hintText: 'Content ',
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15.0),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                      ),
+                    ),
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 13,
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+      
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  '수정을 원하시면 사진을 클릭해 주세요.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                // SizedBox(height: 0, width: double.infinity),
+                _buildImagePicker(),
+                const SizedBox(height: 10),
+                ElevatedButton(
                   onPressed: () {
-                    disDatePicker();
+                    updateAction();
                   },
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(70, 30),
-                    backgroundColor: const Color.fromARGB(255, 154, 172, 243),
+                    minimumSize: const Size(100, 50),
+                    backgroundColor: const Color.fromARGB(255, 159, 168, 249),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: const Text(
-                    "날짜 변경",
+                    "수정",
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 234, 234, 236),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                            selectedIcon = IconType.Sunny;
-                          });
-                    },
-                    style: IconButton.styleFrom(
-                      backgroundColor: selectedIcon == IconType.Sunny
-                    ?const Color.fromARGB(255, 109, 147, 243)
-                      : Colors.white,
-                    ),
-                    icon: Icon(Icons.sunny, color: Colors.amber[400], size: 30),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                        setState(() {
-                            selectedIcon = IconType.WaterDrop;
-                          });
-                    },
-                    style: IconButton.styleFrom(
-                      backgroundColor: selectedIcon == IconType.WaterDrop
-                    ?const Color.fromARGB(255, 109, 147, 243)
-                      : Colors.white,
-                    ),
-                    icon: Icon(Icons.water_drop,
-                        color: Colors.blue[300], size: 30),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                            selectedIcon = IconType.Cloud;
-                          });
-                    },
-                    style: IconButton.styleFrom(
-                      backgroundColor: selectedIcon == IconType.Cloud
-                    ?const Color.fromARGB(255, 109, 147, 243)
-                      :Colors.white,
-                    ),
-                    icon: Icon(Icons.cloud, color: Colors.grey[400], size: 30),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                          setState(() {
-                      selectedIcon = IconType.Air;
-                          });
-                    },
-                    style: IconButton.styleFrom(
-                      backgroundColor: selectedIcon == IconType.Air
-                    ?const Color.fromARGB(255, 109, 147, 243)
-                      : Colors.white,
-                    ),
-                    icon:
-                        Icon(Icons.air, color: Colors.blueGrey[200], size: 30),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                        setState(() {
-                            selectedIcon = IconType.AcUnit;
-                          });
-                    },
-                    style: IconButton.styleFrom(
-                      backgroundColor: selectedIcon == IconType.AcUnit
-                      ?const Color.fromARGB(255, 109, 147, 243)
-                      :Colors.white,
-                    ),
-                    icon:
-                        Icon(Icons.ac_unit, color: Colors.blue[100], size: 30),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 3),
-                child: TextField(
-                  controller: titleController,
-                  decoration: const InputDecoration(
-                    hintText: 'Title ',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(15.0),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(15.0),
-                      ),
-                    ),
-                  ),
-                  keyboardType: TextInputType.text,
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+                const SizedBox(
+                  height: 50,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
-                child: TextField(
-                  controller: contentController,
-                  decoration: const InputDecoration(
-                    hintText: 'Content ',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(15.0),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                    ),
-                  ),
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 13,
-                  style: const TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                '수정을 원하시면 사진을 클릭해 주세요.',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              // SizedBox(height: 0, width: double.infinity),
-              _buildImagePicker(),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  updateAction();
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(100, 50),
-                  backgroundColor: const Color.fromARGB(255, 159, 168, 249),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text(
-                  "수정",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 234, 234, 236),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

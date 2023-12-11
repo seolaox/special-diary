@@ -226,7 +226,7 @@ class _MainPageState extends State<MainPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(
-                                        width: 420, // 이미지의 고정된 너비
+                                        width: double.infinity, // 이미지의 고정된 너비
                                         height: 225, // 컨테이너의 높이를 꽉 채우도록 설정
                                         child: Image.memory( //메모리에 있는 이미지 데이터를 표시
                                           snapshot.data![index].image, 
@@ -234,26 +234,22 @@ class _MainPageState extends State<MainPage> {
                                           // width: 100,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            270, 0, 0, 0),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              snapshot.data![index].eventdate ??
-                                                  'No Date',
-                                              style: const TextStyle(fontSize: 16),
-                                            ),
-                                            IconButton(
-                                              onPressed: () {},
-                                              iconSize: 22,
-                                              icon: getIconWidget(snapshot
-                                                      .data![index]
-                                                      .weathericon ??
-                                                  ''),
-                                            ),
-                                          ],
-                                        ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            snapshot.data![index].eventdate ??
+                                                'No Date',
+                                            style: const TextStyle(fontSize: 16),
+                                          ),
+                                          IconButton(
+                                            onPressed: () {},
+                                            iconSize: 22,
+                                            icon: getIconWidget(snapshot
+                                                    .data![index]
+                                                    .weathericon ??
+                                                ''),
+                                          ),
+                                        ],
                                       ),
                                       Text(
                                         snapshot.data![index].title,

@@ -85,7 +85,7 @@ class _EventDetailState extends State<EventDetail> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(270, 10, 3, 0),
+                padding: const EdgeInsets.fromLTRB(25, 10, 3, 0),
                 child: Row(
                   children: [
                     Text(
@@ -194,20 +194,22 @@ class _EventDetailState extends State<EventDetail> {
       onTap: () {
         //
       },
-      child: Container(
-        width: 390,
-        height: 230,
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 212, 221, 247),
-          image: imageFile == null
-              ? DecorationImage(
-                  image: MemoryImage(value[4]),
-                  fit: BoxFit.cover,
-                )
-              : DecorationImage(
-                  image: FileImage(File(imageFile!.path)),
-                  fit: BoxFit.cover,
-                ),
+      child: SingleChildScrollView(
+        child: Container(
+          width: 390,
+          height: 230,
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 212, 221, 247),
+            image: imageFile == null
+                ? DecorationImage(
+                    image: MemoryImage(value[4]),
+                    fit: BoxFit.cover,
+                  )
+                : DecorationImage(
+                    image: FileImage(File(imageFile!.path)),
+                    fit: BoxFit.cover,
+                  ),
+          ),
         ),
       ),
     );

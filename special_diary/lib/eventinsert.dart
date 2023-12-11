@@ -86,234 +86,245 @@ class _EventInsertState extends State<EventInsert> {
         // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(290, 10, 3, 0),
-                child: Row(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 30, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Icon(Icons.event_available_outlined),
+                      const SizedBox(width: 5,),
+                      Text(formattedDate,style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15),),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          disDatePicker();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(70, 30),
+                          backgroundColor: const Color.fromARGB(255, 154, 172, 243),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        child: const Text(
+                          "날짜 변경",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 234, 234, 236),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const Icon(Icons.event_available_outlined),
-                    const SizedBox(width: 5,),
-                    Text(formattedDate,style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15),),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                              selectedIcon = IconType.Sunny;
+                            });
+                      },
+                      style: IconButton.styleFrom(
+                        backgroundColor: selectedIcon == IconType.Sunny
+                      ?const Color.fromARGB(255, 109, 147, 243)
+                        : Colors.white,
+                      ),
+                      icon: Icon(Icons.sunny, color: Colors.amber[400], size: 30),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                          setState(() {
+                              selectedIcon = IconType.WaterDrop;
+                            });
+                      },
+                      style: IconButton.styleFrom(
+                        backgroundColor: selectedIcon == IconType.WaterDrop
+                      ?const Color.fromARGB(255, 109, 147, 243)
+                        : Colors.white,
+                      ),
+                      icon: Icon(Icons.water_drop,
+                          color: Colors.blue[300], size: 30),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                              selectedIcon = IconType.Cloud;
+                            });
+                      },
+                      style: IconButton.styleFrom(
+                        backgroundColor: selectedIcon == IconType.Cloud
+                      ?const Color.fromARGB(255, 109, 147, 243)
+                        :Colors.white,
+                      ),
+                      icon: Icon(Icons.cloud, color: Colors.grey[400], size: 30),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                            setState(() {
+                        selectedIcon = IconType.Air;
+                            });
+                      },
+                      style: IconButton.styleFrom(
+                        backgroundColor: selectedIcon == IconType.Air
+                      ?const Color.fromARGB(255, 109, 147, 243)
+                        : Colors.white,
+                      ),
+                      icon:
+                          Icon(Icons.air, color: Colors.blueGrey[200], size: 30),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                          setState(() {
+                              selectedIcon = IconType.AcUnit;
+                            });
+                      },
+                      style: IconButton.styleFrom(
+                        backgroundColor: selectedIcon == IconType.AcUnit
+                        ?const Color.fromARGB(255, 109, 147, 243)
+                        :Colors.white,
+                      ),
+                      icon:
+                          Icon(Icons.ac_unit, color: Colors.blue[100], size: 30),
+                    ),
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(270, 0, 0, 0),
-                child: ElevatedButton(
+          
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 3),
+                  child: TextField(
+                    controller: titleController,
+                    maxLines: 1,
+                    decoration: const InputDecoration(
+                      hintText: 'Title ',
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15.0),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15.0),
+                        ),
+                      ),
+                    ),
+                    keyboardType: TextInputType.text,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
+                  child: TextField(
+                    controller: contentController,
+                    decoration: const InputDecoration(
+                      hintText: 'Content ',
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15.0),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                      ),
+                    ),
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 13,
+                    style: const TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+          
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  '특별한 날을 기념할 사진을 등록해 주세요',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                // SizedBox(height: 0, width: double.infinity),
+                _buildImagePicker(),
+                const SizedBox(height: 10),
+                ElevatedButton(
                   onPressed: () {
-                    disDatePicker();
+                    
+                      if(titleController.text.isEmpty ||
+                            contentController.text.isEmpty){
+                            Get.snackbar(
+                            "ERROR", 
+                            "모든 항목을 입력해 주세요.",
+                            snackPosition: SnackPosition.BOTTOM,
+                            duration: const Duration(seconds: 2),
+                            colorText: Colors.black,
+                            backgroundColor: const Color.fromARGB(255, 247, 228, 162),
+                          );
+                            }else if(imageFile == null){
+                              Get.snackbar(
+                            "ERROR",
+                            "사진을 선택해 주세요.",
+                            snackPosition: SnackPosition.BOTTOM,
+                            duration: const Duration(seconds: 2),
+                            colorText: Colors.black,
+                            backgroundColor: const Color.fromARGB(255, 248, 201, 168),);
+                            }else{
+                                insertAction();
+                            }
+                    
+          
                   },
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(70, 30),
-                    backgroundColor: const Color.fromARGB(255, 154, 172, 243),
+                    minimumSize: const Size(100, 50),
+                    // backgroundColor: Color.fromARGB(255, 146, 148, 255),
+                    backgroundColor: const Color.fromARGB(255, 159, 168, 249),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: const Text(
-                    "날짜 변경",
+                    "입력",
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 234, 234, 236),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                            selectedIcon = IconType.Sunny;
-                          });
-                    },
-                    style: IconButton.styleFrom(
-                      backgroundColor: selectedIcon == IconType.Sunny
-                    ?const Color.fromARGB(255, 109, 147, 243)
-                      : Colors.white,
-                    ),
-                    icon: Icon(Icons.sunny, color: Colors.amber[400], size: 30),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                        setState(() {
-                            selectedIcon = IconType.WaterDrop;
-                          });
-                    },
-                    style: IconButton.styleFrom(
-                      backgroundColor: selectedIcon == IconType.WaterDrop
-                    ?const Color.fromARGB(255, 109, 147, 243)
-                      : Colors.white,
-                    ),
-                    icon: Icon(Icons.water_drop,
-                        color: Colors.blue[300], size: 30),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                            selectedIcon = IconType.Cloud;
-                          });
-                    },
-                    style: IconButton.styleFrom(
-                      backgroundColor: selectedIcon == IconType.Cloud
-                    ?const Color.fromARGB(255, 109, 147, 243)
-                      :Colors.white,
-                    ),
-                    icon: Icon(Icons.cloud, color: Colors.grey[400], size: 30),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                          setState(() {
-                      selectedIcon = IconType.Air;
-                          });
-                    },
-                    style: IconButton.styleFrom(
-                      backgroundColor: selectedIcon == IconType.Air
-                    ?const Color.fromARGB(255, 109, 147, 243)
-                      : Colors.white,
-                    ),
-                    icon:
-                        Icon(Icons.air, color: Colors.blueGrey[200], size: 30),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                        setState(() {
-                            selectedIcon = IconType.AcUnit;
-                          });
-                    },
-                    style: IconButton.styleFrom(
-                      backgroundColor: selectedIcon == IconType.AcUnit
-                      ?const Color.fromARGB(255, 109, 147, 243)
-                      :Colors.white,
-                    ),
-                    icon:
-                        Icon(Icons.ac_unit, color: Colors.blue[100], size: 30),
-                  ),
-                ],
-              ),
-
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 3),
-                child: TextField(
-                  controller: titleController,
-                  decoration: const InputDecoration(
-                    hintText: 'Title ',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(15.0),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(15.0),
-                      ),
-                    ),
-                  ),
-                  keyboardType: TextInputType.text,
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
+          
+                const SizedBox(
+                  height: 50,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
-                child: TextField(
-                  controller: contentController,
-                  decoration: const InputDecoration(
-                    hintText: 'Content ',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(15.0),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                    ),
-                  ),
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 13,
-                  style: const TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                '특별한 날을 기념할 사진을 등록해 주세요',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              // SizedBox(height: 0, width: double.infinity),
-              _buildImagePicker(),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  
-                    if(titleController.text.isEmpty ||
-                          contentController.text.isEmpty){
-                          Get.snackbar(
-                          "ERROR", 
-                          "모든 항목을 입력해 주세요.",
-                          snackPosition: SnackPosition.BOTTOM,
-                          duration: const Duration(seconds: 2),
-                          colorText: Colors.black,
-                          backgroundColor: const Color.fromARGB(255, 247, 228, 162),
-                        );
-                          }else if(imageFile == null){
-                            Get.snackbar(
-                          "ERROR",
-                          "사진을 선택해 주세요.",
-                          snackPosition: SnackPosition.BOTTOM,
-                          duration: const Duration(seconds: 2),
-                          colorText: Colors.black,
-                          backgroundColor: const Color.fromARGB(255, 248, 201, 168),);
-                          }else{
-                              insertAction();
-                          }
-                  
-
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(100, 50),
-                  // backgroundColor: Color.fromARGB(255, 146, 148, 255),
-                  backgroundColor: const Color.fromARGB(255, 159, 168, 249),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text(
-                  "입력",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 234, 234, 236),
-                  ),
-                ),
-              ),
-
-              const SizedBox(
-                height: 50,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
