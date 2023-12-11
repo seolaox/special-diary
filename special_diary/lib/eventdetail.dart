@@ -194,22 +194,20 @@ class _EventDetailState extends State<EventDetail> {
       onTap: () {
         //
       },
-      child: SingleChildScrollView(
-        child: Container(
-          width: 390,
-          height: 230,
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 212, 221, 247),
-            image: imageFile == null
-                ? DecorationImage(
-                    image: MemoryImage(value[4]),
-                    fit: BoxFit.cover,
-                  )
-                : DecorationImage(
-                    image: FileImage(File(imageFile!.path)),
-                    fit: BoxFit.cover,
-                  ),
-          ),
+      child: Container(
+        width: 390,
+        height: 230,
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 212, 221, 247),
+          image: imageFile == null
+              ? DecorationImage(
+                  image: MemoryImage(value[4]),
+                  fit: BoxFit.cover,
+                )
+              : DecorationImage(
+                  image: FileImage(File(imageFile!.path)),
+                  fit: BoxFit.cover,
+                ),
         ),
       ),
     );

@@ -45,7 +45,7 @@ class _EventPageState extends State<EventPage> {
             },
             selectedDayPredicate: (DateTime day) {
               // selectedDay 와 동일한 날짜의 모양을 바꿔줌.
-              return isSameDay(selectedDay, day);
+              return isSameDay(selectedDay ?? DateTime.now(), day);
             },
           ),
         ],
@@ -53,7 +53,7 @@ class _EventPageState extends State<EventPage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _openEventInsertPage(selectedDay);
+          _openEventInsertPage();
         },
         child: const Icon(Icons.add),
         ),
@@ -63,21 +63,27 @@ class _EventPageState extends State<EventPage> {
   //---FUNCTIONS---
 
 //날짜를 선택하지 않으면 페이지가 넘어가지 않음
-      void _openEventInsertPage(DateTime? selectedDay) {
-    if (selectedDay == null) {
-      Get.snackbar(
-        'ERROR', 
-        '글을 작성할 날짜를 선택해 주세요.',
-        snackPosition: SnackPosition.BOTTOM,
-        colorText: Colors.black,
-        backgroundColor: const Color.fromARGB(255, 247, 228, 162),
-      );
-    } else {
-      Get.to(() => EventInsert(selectedDay: selectedDay, onChangeTheme: _changeThemeMode,));
-    }
+//       void _openEventInsertPage(DateTime? selectedDay) {
+//     if (selectedDay == null) {
+//       Get.snackbar(
+//         'ERROR', 
+//         '글을 작성할 날짜를 선택해 주세요.',
+//         snackPosition: SnackPosition.BOTTOM,
+//         colorText: Colors.black,
+//         backgroundColor: const Color.fromARGB(255, 247, 228, 162),
+//       );
+//     } else {
+//       Get.to(() => EventInsert(selectedDay: selectedDay, onChangeTheme: _changeThemeMode,));
+//     }
+//   }
+
+
+
+
+// }
+
+  void _openEventInsertPage() {
+    // _openEventInsertPage 메서드에서 selectedDay를 직접 사용
+    Get.to(() => EventInsert(selectedDay: selectedDay, onChangeTheme: _changeThemeMode));
   }
-
-
-
-
 }
