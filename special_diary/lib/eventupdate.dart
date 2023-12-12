@@ -332,20 +332,23 @@ class _EventUpdateState extends State<EventUpdate> {
       onTap: () {
         getImageFromGallery(ImageSource.gallery);
       },
-      child: Container(
-        width: 350,
-        height: 210,
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 212, 221, 247),
-          image: imageFile == null
-              ? DecorationImage(
-                  image: MemoryImage(value[4]),
-                  fit: BoxFit.cover,
-                )
-              : DecorationImage(
-                  image: FileImage(File(imageFile!.path)),
-                  fit: BoxFit.cover,
-                ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+          width: double.infinity,
+          height: 270,
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 212, 221, 247),
+            image: imageFile == null
+                ? DecorationImage(
+                    image: MemoryImage(value[4]),
+                    fit: BoxFit.cover,
+                  )
+                : DecorationImage(
+                    image: FileImage(File(imageFile!.path)),
+                    fit: BoxFit.cover,
+                  ),
+          ),
         ),
       ),
     );

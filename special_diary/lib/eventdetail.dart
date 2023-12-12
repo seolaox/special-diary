@@ -104,7 +104,10 @@ class _EventDetailState extends State<EventDetail> {
                   ],
                 ),
               ),
-              _buildImagePicker(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                child: _buildImagePicker(),
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(15, 10, 15, 3),
                 child: TextField(
@@ -196,7 +199,7 @@ class _EventDetailState extends State<EventDetail> {
       },
       child: Container(
         width: 390,
-        height: 230,
+        height: 250,
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 212, 221, 247),
           image: imageFile == null

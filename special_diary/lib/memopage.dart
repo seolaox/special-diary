@@ -169,73 +169,75 @@ class _MemoPageState extends State<MemoPage> {
     Get.bottomSheet(
       GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: Container(
-        width: double.infinity,
-        height: 550,
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondaryContainer,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(30.0)),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              '- MEMO -',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: TextField(
-                controller: memoController,
-                maxLength: 200,
-                decoration: const InputDecoration(
-                  hintText: '내용을 입력해 주세요. ',
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15.0),
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
-                    ),
-                  ),
-                ),
-                keyboardType: TextInputType.multiline,
-                maxLines: 13,
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                insertAction()!.then((value) => reloadData());
-              },
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(100, 50),
-                backgroundColor: const Color.fromARGB(255, 151, 161, 252),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: const Text(
-                "입력",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 234, 234, 236),
-                ),
-              ),
-            ),
-          ],
-        ),
+        child: SingleChildScrollView(
+          child: Container(
+          width: double.infinity,
+          height: 550,
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.secondaryContainer,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(30.0)),
           ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                '- MEMO -',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: TextField(
+                  controller: memoController,
+                  maxLength: 200,
+                  decoration: const InputDecoration(
+                    hintText: '내용을 입력해 주세요. ',
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15.0),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                    ),
+                  ),
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 13,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  insertAction()!.then((value) => reloadData());
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(100, 50),
+                  backgroundColor: const Color.fromARGB(255, 151, 161, 252),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Text(
+                  "입력",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 234, 234, 236),
+                  ),
+                ),
+              ),
+            ],
+          ),
+            ),
+        ),
       ),
     isScrollControlled: true //오버플로우 방지
     );
@@ -258,74 +260,76 @@ class _MemoPageState extends State<MemoPage> {
     Get.bottomSheet(
       GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: Container(
-        width: double.infinity,
-        height: 550,
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondaryContainer,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(30.0)),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 10,),
-            const Text(
-              '- MEMO -',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: TextField(
-                controller: memoModifyController,
-                maxLength: 200,
-                decoration: const InputDecoration(
-                  hintText: '내용을 입력해 주세요. ',
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15.0),
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
-                    ),
-                  ),
-                ),
-                keyboardType: TextInputType.multiline,
-                maxLines: 13,
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                updateAction(memo.id!)!.then((value) => reloadData());
-              },
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(100, 50),
-                backgroundColor: const Color.fromARGB(255, 151, 161, 252),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: const Text(
-                "수정",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 234, 234, 236),
-                ),
-              ),
-            ),
-          ],
-        ),
+        child: SingleChildScrollView(
+          child: Container(
+          width: double.infinity,
+          height: 550,
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.secondaryContainer,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(30.0)),
           ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 10,),
+              const Text(
+                '- MEMO -',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: TextField(
+                  controller: memoModifyController,
+                  maxLength: 200,
+                  decoration: const InputDecoration(
+                    hintText: '내용을 입력해 주세요. ',
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15.0),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                    ),
+                  ),
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 13,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  updateAction(memo.id!)!.then((value) => reloadData());
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(100, 50),
+                  backgroundColor: const Color.fromARGB(255, 151, 161, 252),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Text(
+                  "수정",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 234, 234, 236),
+                  ),
+                ),
+              ),
+            ],
+          ),
+            ),
+        ),
       ),
         isScrollControlled: true,//오버플로우 방지
         );

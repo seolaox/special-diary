@@ -122,24 +122,24 @@ class TermsOfService extends StatelessWidget {
 
                     const SizedBox(height: 5,),
 
-                  Padding(
-  padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-  child: Table(
-    border: TableBorder.all(),
-    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-    columnWidths: const <int, TableColumnWidth>{
-      0: FixedColumnWidth(70.0), // 첫 세 열의 너비를 50으로 설정
-      1: FixedColumnWidth(90.0),
-      2: FixedColumnWidth(80.0),
-      3: FixedColumnWidth(150.0), // 네 번째 열의 너비를 100으로 설정
-    },
-    children: <TableRow>[
-      _buildColoredTableRow(['서비스', '수집 목적', '수집 항목', '보유 및 이용시간'], Theme.of(context).colorScheme.surfaceVariant),
-      _buildColoredTableOneRow(['글 작성', '서비스 제공', '이용자 사진', '이용자의 삭제 요청 시까지']),
-      _buildColoredTableTwoRow(['회원 관리', '고충처리 목적', '이메일 주소', '서비스 공급 완료 시까지']),
-    ],
-  ),
-),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Table(
+                      border: TableBorder.all(),
+                      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                      columnWidths: const <int, TableColumnWidth>{
+                        0: FixedColumnWidth(60.0), // 첫 세 열의 너비를 50으로 설정
+                        1: FixedColumnWidth(85.0),
+                        2: FixedColumnWidth(70.0),
+                        3: FixedColumnWidth(145.0), // 네 번째 열의 너비를 100으로 설정
+                      },
+                      children: <TableRow>[
+                        _buildColoredTableRow(['서비스', '수집 목적', '수집 항목', '보유 및 이용시간'], Theme.of(context).colorScheme.surfaceVariant),
+                        _buildColoredTableOneRow(['글 작성', '서비스 제공', '이용자 사진', '이용자의 삭제 요청 시까지']),
+                        _buildColoredTableTwoRow(['회원 관리', '고충처리 목적', '이메일 주소', '서비스 공급 완료 시까지']),
+                      ],
+                    ),
+                  ),
 
                 const SizedBox(
                   height: 30,

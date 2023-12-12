@@ -134,7 +134,7 @@ class _MainPageState extends State<MainPage> {
                                   label: 'Delete',
                                   onPressed: (context) async {
                                     Get.bottomSheet(Container(
-                                      width: 500,
+                                      width: double.infinity,
                                       height: 250,
                                       decoration: BoxDecoration(
                                         borderRadius:
